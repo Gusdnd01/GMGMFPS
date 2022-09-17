@@ -6,11 +6,17 @@ using UnityEditor;
 [AddComponentMenu("ColorHierarchy/ColorHierarchy")]
 public class ColorHierarchy : MonoBehaviour
 {
+    //기본값 : 회색
+    //빨간색 : 별로 안건들이는거
+    //파란색 : Player
+    //초록색 : 배치형 오브젝트
+    //빛 관련 : 노란색
+
     private static Dictionary<object, ColorHierarchy> coloredObjects = new Dictionary<object, ColorHierarchy>();
 
     public string prefix = "#";
-    public Color backColor = new Color(0, 150, 100, 255);
-    public Color fontColor = new Color(0, 0, 0, 255);
+    public Color backColor = new Color(100, 100, 100, 255);
+    public Color fontColor = new Color(255, 255, 255, 255);
 
     static ColorHierarchy()
     {

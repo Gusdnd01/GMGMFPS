@@ -11,7 +11,7 @@ public class NameManager : EditorWindow
     Transform trn;
     NameSettingPreset preset;
 
-    [MenuItem("Win/CustonWindow/NameManager")]
+    [MenuItem("HyunWoong/Utility/NameManager")]
     static void open()
     {
         var window = GetWindow<NameManager>();
