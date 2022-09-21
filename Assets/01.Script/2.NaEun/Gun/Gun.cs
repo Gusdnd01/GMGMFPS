@@ -1,21 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Gun : Weapon
 {
-    public enum State
-    {
-        Ready, // 준비 완료
-        Shoot, // 발사 중
-        Reloading, // 재장전
-        FineSight, // 정조준
-    }
-    public State state { get; protected set; }
-
-    [Header("data")]
-    [SerializeField] protected WeaponDataSo data;
-
-
     protected GameObject Player;
     protected AudioSource sound;
 
@@ -24,106 +12,83 @@ public class Gun : Weapon
     [Header("sound & effect")]
     [SerializeField] protected Transform muzzleTrans;
     [SerializeField] protected Transform powerShotPoint;
-    //[SerializeField] protected LineRenderer bulletLine;
-    //[SerializeField] protected GameObject aimPoint;
 
     protected RaycastHit hit; // 충돌 정보
 
     [Header("bullet")]
     protected int maxBullet; // 최대 총알 개수
     protected int curBullet; // 한 탄창에 현재 남아 있는 총알 개수
-    //[SerializeField] protected int mag; // 한 탄창에 들어갈 수 있는 총알 개수
-    //[SerializeField] protected float reloadDelay;
 
-    //[Header("camera")]
+    [Header("camera")]
     protected Camera cam;
-
-    //[Header("Fire Pos")]
-    //protected float curAttackDelay;
 
     protected void Awake()
     {
-        maxBullet = data.bulletCapacity * 5;
+        maxBullet = data.bulletAmount * 5;
 
         cam = Camera.main;
-
-        state = State.Ready;
-        //bulletLine.enabled = false;
-
-        curBullet = data.bulletCapacity;
+        curBullet = data.bulletAmount;
     }
 
     protected void Start()
     {
-        if (state == State.Ready)
-        {
-            StartCoroutine(TryFire());
-        }
+
     }
 
-    protected virtual IEnumerator TryFire()
-    {
-        while (true)
-        {
-            if (state == State.Ready)
-            {
-                if (curBullet > 0)
-                {
-                    yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-                    state = State.Shoot;
-                    LeftClick();
-
-                    yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
-                    state = State.Ready;
-                }
-                else
-                    StartCoroutine(Reloading());
-
-            }
-            yield return new WaitForSeconds(data.attackDelay);
-        }
-    }
-
-    public override void LeftClick()
-    {
-        //sound.PlayOneShot(data.shotClip);
-        //curAttackDelay = data.attackDelay;
-        curBullet--;
-
-        Debug.DrawRay(muzzleTrans.position, muzzleTrans.forward, Color.blue, 0.5f);
-        //bulletLine.startWidth = 0.1f;
-        //bulletLine.endWidth = 0.01f;
-        //bulletLine.SetPosition(0, weaponMuzzle.position);
-        //bulletLine.SetPosition(1, aimPoint.transform.position);
-        //bulletLine.enabled = true;
-        // 발사 이펙트
-    }
     protected virtual IEnumerator Reloading()
     {
-        state = State.Reloading;
         yield return new WaitForSeconds(data.reloadDelay);
-        maxBullet -= data.bulletCapacity - curBullet;
-        curBullet = data.bulletCapacity;
-        state = State.Ready;
+        maxBullet -= (data.bulletAmount - curBullet);
+        curBullet = data.bulletAmount;
         sound.PlayOneShot(data.reloadClip);
     }
+    [SerializeField] private Transform firePos;
 
-    public override void RightClick()
+    public override void Attack(Action callbackAction)
     {
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, data.range))
-        {
-            if (hit.transform.CompareTag("Enemy"))
-            {
-                //IDamageAble
-            }
-        }
+        StartCoroutine(AttackCor(callbackAction));
     }
 
-    public override void PressR()
+    public virtual IEnumerator AttackCor(Action callbackAction)
     {
-        if (Input.GetKeyDown(KeyCode.R) && state == State.Ready && curBullet < data.bulletCapacity)
-        {
-            StartCoroutine(Reloading());
-        }
+        print("발사!");
+        PlayAudio(data.attackClip);
+        // PlayAudio(data.dryAttackClip); 이걸 어떻게 써야할까?
+        // TODO : 발사시 작동될 코드 작성 EX : 반동, Raycast 등등
+        RaycastHit hit;
+        yield return new WaitForSeconds(data.attackDelay);
+        callbackAction();   // 받아온 함수 실행
+    }
+
+    public override void Reload(Action callbackAction)
+    {
+        StartCoroutine(ReloadCor(callbackAction));
+    }
+
+    public virtual IEnumerator ReloadCor(Action callbackAction)
+    {
+        print("장전!");
+        PlayAudio(data.reloadClip);
+        // TODO : 장전시 해야할 행동 EX : 총알 체우기 등등
+        yield return new WaitForSeconds(data.reloadDelay);
+        callbackAction();   // 받아온 함수 실행
+    }
+
+    public override void RightClick(Action callbackAction)
+    {
+        StartCoroutine(RightClickCor(callbackAction));
+    }
+
+    public virtual IEnumerator RightClickCor(Action callbackAction)
+    {
+        print("특수행동!");
+        // TODO : 특수행동 구현 EX : 정조준, 기타 총마다 스킬
+        yield return new WaitForSeconds(data.zoomDelay);
+        callbackAction();   // 받아온 함수 실행
+    }
+
+    protected virtual void ShootRay()
+    {
+        // TODO : Raycast 처리
     }
 }
