@@ -19,15 +19,47 @@ public class InteractableObject : MonoBehaviour, IInteract
         print("asd");
         index = Random.Range(0, objects.Count);
         Vector3 rand = Random.insideUnitCircle * 5f;
-        GameObject obj = Instantiate(objects[index], new Vector3(rand.x, 1 ,rand.y), Quaternion.identity);
+
+
+        PoolManager.Instance.Pop(PoolType.Item).GetComponent<ItemPool>().ItemActive(CheckIndex());
 
         gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 
+    private int CheckIndex()
+    {
+        int index = Random.Range(0, 10);
+        print(index);
+        int result = 0;
+
+        if (index >= 0 && index < 2)
+        {
+            result = 0;
+        }
+        else if(index >= 2 && index < 4)
+        {
+            result = 1;
+        }
+        else
+        {
+            result = 2;
+        }
+        print(result);
+
+        return result;
+    }
+
     private void Update(){
-        if(isDissolve){
+        Dissolve();
+    }
+
+    void Dissolve()
+    {
+        if (isDissolve)
+        {
             fade -= 0.1f;
-            if(fade <= -1){
+            if (fade <= -1)
+            {
                 fade = -1;
                 isDissolve = false;
 

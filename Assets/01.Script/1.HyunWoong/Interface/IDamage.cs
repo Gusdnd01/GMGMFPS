@@ -8,5 +8,5 @@ public interface IDamage
     /// 요소들이 받는 피해
     /// </summary>
     /// <param name="damage">받을 피해</param>
-    public abstract void OnDamaged(float damage);
+    public abstract void OnDamaged(int damage);
 }
