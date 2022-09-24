@@ -1739,7 +1739,6 @@ GameObject:
   m_Component:
   - component: {fileID: 287504025004263526}
   - component: {fileID: 8515633497266992637}
-  - component: {fileID: 5082276641181908637}
   m_Layer: 0
   m_Name: Robot Kyle (1)
   m_TagString: Untagged
@@ -1779,27 +1778,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &5082276641181908637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865833112613763701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df00675dd283dd443a4901e77199e58d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originObj: {fileID: 3865833112613763701}
-  ragdollObj: {fileID: 7639104181829269428}
-  head: {fileID: 1811117552587995871}
-  leftArm: {fileID: 1811117554360452021}
-  rightArm: {fileID: 1811117553209479476}
-  leftKnee: {fileID: 1811117554582278473}
-  rightKnee: {fileID: 1811117553764896261}
-  ribs: {fileID: 1811117553589780583}
-  hip: {fileID: 1811117552700990531}
 --- !u!1 &3887557991249075674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,7 +3720,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6654302780568929703}
   - component: {fileID: 2992683665318705212}
-  - component: {fileID: 1811117554311009774}
   m_Layer: 0
   m_Name: Robot Kyle(Ragdoll)
   m_TagString: Untagged
@@ -3782,27 +3759,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &1811117554311009774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7639104181829269428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df00675dd283dd443a4901e77199e58d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originObj: {fileID: 0}
-  ragdollObj: {fileID: 0}
-  head: {fileID: 1811117552587995871}
-  leftArm: {fileID: 1811117554360452021}
-  rightArm: {fileID: 1811117553209479476}
-  leftKnee: {fileID: 1811117554582278473}
-  rightKnee: {fileID: 1811117553764896261}
-  ribs: {fileID: 1811117553589780583}
-  hip: {fileID: 1811117552700990531}
 --- !u!1 &7662557114992857115
 GameObject:
   m_ObjectHideFlags: 0

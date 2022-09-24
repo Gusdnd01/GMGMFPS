@@ -22,16 +22,28 @@ public class Ragdoll : MonoBehaviour
         //임시 코드
         if(Input.GetButtonDown("Jump"))
         {
-            ChangeRagdoll();
-            CopyTransformOriginToRagdoll(originObj.transform, ragdollObj.transform);
-            ribs.AddForce(new Vector3(0, 300f, -300f), ForceMode.Impulse);
+            AddForceToRagdoll(new Vector3(0, 300, -300));
         }
     }
 
-    private void ChangeRagdoll()
+    private void AddForceToRagdoll(Vector3 forceVactor)
     {
-        originObj.SetActive(false);
-        ragdollObj.SetActive(true);
+        if(originObj.activeSelf == true)
+        {
+            ChangeRagdoll();
+            CopyTransformOriginToRagdoll(originObj.transform, ragdollObj.transform);
+        }
+
+        ribs.AddForce(forceVactor, ForceMode.Impulse);
+    }
+
+    private void ChangeRagdoll()
+    {   
+        if(originObj.activeSelf == true)
+        {
+            originObj.SetActive(false);
+            ragdollObj.SetActive(true);
+        }
     }
 
     private void CopyTransformOriginToRagdoll(Transform origin, Transform ragdoll)

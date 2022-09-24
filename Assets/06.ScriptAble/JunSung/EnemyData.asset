@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   hp: 50
-  walkSpeed: 10
-  runSpeed: 15
+  walkSpeed: 2
+  runSpeed: 5
   activeDistance: 10
-  attackDistance: 5
+  attackDistance: 2
+  eyeSight: 10
   attackPower: 10
-  attackRadius: 5
+  attackRadius: 0.5
   attackDelay: 1
   stunTime: 3
