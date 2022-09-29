@@ -59,10 +59,9 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (isAya)
         {
-            intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
+            
         }
-        vignette.color.Override(Color.red);
-        vignette.intensity.Override(intencity);
+
     }
 
     private IEnumerator Dash()
@@ -149,7 +148,9 @@ public class PlayerController : MonoBehaviour, IDamage
         print(currentHp/m_Hp);
         if (currentHp/m_Hp <= 0.3f)// 100 <= 0.3f
         {
-            isAya = true;
+            intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
+            vignette.color.Override(Color.red);
+            vignette.intensity.Override(intencity);
         }
 
         if (m_Hp <= 0f)
