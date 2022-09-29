@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using MoreMountains.Feedbacks;
 
 public class CameraMove : MonoBehaviour
@@ -15,7 +16,11 @@ public class CameraMove : MonoBehaviour
     [SerializeField]
     Transform player;
 
+    [SerializeField]
+    RectTransform interactableImage;
+
     private bool playerDie = false;
+    private bool interactable = false;
 
     private void Awake()
     {
@@ -26,6 +31,7 @@ public class CameraMove : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Interact());
+        StartCoroutine(MoveImage());
     }
 
     private void Update()
@@ -45,6 +51,22 @@ public class CameraMove : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation * m_sensitivity, 0, 0);
 
         player.Rotate(0, mouseX * m_sensitivity, 0);
+    }
+
+    private IEnumerator MoveImage()
+    {
+        while (true)
+        {
+            if (interactable)
+            {
+                interactableImage.anchoredPosition = new Vector3(Mathf.Lerp(interactableImage.anchoredPosition.x, -50, 0.1f), -50, 0);
+            }
+            else
+            {
+                interactableImage.anchoredPosition = new Vector3(Mathf.Lerp(interactableImage.anchoredPosition.x, 600, 0.1f), -50, 0);
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 
     private void SensitiveControll()
@@ -68,12 +90,18 @@ public class CameraMove : MonoBehaviour
     {
         while (!playerDie)
         {
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 10))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
             {
-                Debug.DrawRay(transform.position, transform.forward, Color.blue);
+                interactable = true;
+                Debug.DrawRay(transform.position, transform.forward, Color.blue); 
+            }
+            else
+                interactable = false;
 
+            if (interactable)
+            {
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F));
                 if (hit.transform.GetComponent<IInteract>() == null)
                 {
                     continue;
@@ -85,7 +113,7 @@ public class CameraMove : MonoBehaviour
                     hit.transform.GetComponent<IInteract>().OnInteractive();
                 }
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 281c5beffd93ed843a1eaa03d18632da, type: 2}
   isAttack: 0
   isStun: 0
   hp: 0
