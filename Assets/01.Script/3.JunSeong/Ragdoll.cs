@@ -16,17 +16,7 @@ public class Ragdoll : MonoBehaviour
     [SerializeField] private Rigidbody ribs;
     [SerializeField] private Rigidbody hip;
 
-
-    private void Update() 
-    {
-        //임시 코드
-        if(Input.GetButtonDown("Jump"))
-        {
-            AddForceToRagdoll(new Vector3(0, 300, -300));
-        }
-    }
-
-    private void AddForceToRagdoll(Vector3 forceVactor)
+    public void AddForceToRagdoll(Vector3 forceVactor)
     {
         if(originObj.activeSelf == true)
         {

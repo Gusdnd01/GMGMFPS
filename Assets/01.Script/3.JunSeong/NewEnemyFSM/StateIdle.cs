@@ -1,64 +1,34 @@
-using System.Runtime.InteropServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StateIdle : State<EnemyFSM>
-{
-    private CharacterController characterController;
+{ 
 
     public override void OnAwake()
     {
-        characterController = stateMachineClass.GetComponent<CharacterController>();
+        
     }
-
+    
     public override void OnStart()
     {
-        characterController.Move(Vector3.zero);
-        stateMachineClass.speed = stateMachineClass.data.walkSpeed;
+        Debug.Log("Start Idle");
     }
 
     public override void OnUpdate(float deltaTime)
     {
-        if(!stateMachineClass.isHit)
+        if(stateMachineClass.SearchPlayer())
         {
-            UnhitProcess();
+            stateMachine.ChangeState<StateMove>();
         }
-        else
+        else if(stateMachineClass.FlagAttack)
         {
-            HitProcess();
+            stateMachine.ChangeState<StateAttack>();
         }
     }
 
     public override void OnEnd()
     {
         Debug.Log("End Idle");
-    }
-
-    public override void OnHitEvent()
-    {
-
-    }
-
-    private void UnhitProcess()
-    {
-        Transform target = stateMachineClass.SearchPlayer();
-
-        if(target)
-        {
-            if(stateMachineClass.GetFlagAttack)
-            {
-                stateMachine.ChangeState<StateAttack>();
-            }
-            else
-            {
-                stateMachine.ChangeState<StateMove>();
-            }
-        }
-    }
-
-    private void HitProcess()
-    {
-        stateMachine.ChangeState<StateMove>();
     }
 }

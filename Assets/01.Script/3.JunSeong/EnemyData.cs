@@ -9,14 +9,16 @@ public class EnemyData : ScriptableObject
 
     public float walkSpeed;
     public float runSpeed;
+    public float jumpSpeed;
+    public float maxSpeed;
 
     public float activeDistance;
-    public float attackDistance;
-    public float eyeSight;
 
+    public float attackDistance;
     public int attackPower;
     public float attackRadius;
     public float attackDelay;
+    public float attackAngle;
 
     public float stunTime;
 }

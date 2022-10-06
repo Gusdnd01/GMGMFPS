@@ -15,7 +15,7 @@ public class JunSungTest : MonoBehaviour
     {
         if(Input.GetButtonDown("Jump"))
         {
-            GameObject.Find("Enemy").GetComponent<EnemyFSM>().OnHitEvent(this.transform);
+            GameObject.Find("DemoModel").GetComponent<EnemyFSM>().OnHit();
         }
     }
 }

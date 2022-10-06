@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEditor;
 
 public class EnemyFSM : MonoBehaviour
 {
-    public LayerMask targetLayerMask;
-    public Transform target;    
-    public EnemyData data;
-    public Vector3 originPosition;
-    public bool isHit = false;
-    public float speed;
+    private StateMachine<EnemyFSM> fsmManager;
 
-    public bool GetFlagAttack
+    public float findRadius;
+    public float attackDistance;
+    public float speed = 5;
+
+    public Vector3 originPos = Vector3.zero;
+
+    public bool FlagAttack
     {
         get
         {
@@ -20,53 +23,63 @@ public class EnemyFSM : MonoBehaviour
                 return false;
             }
 
-            float distacne = Vector3.Distance(transform.position, target.position);
-            
-            return(distacne <= data.attackDistance);
+            return Vector3.Distance(transform.position, target.position) < attackDistance;
         }
     }
+    public Transform target;
+    public Animator animator;
 
-    protected StateMachine<EnemyFSM> fsmManager;
-
-    private void Start() 
+    private void Awake() 
     {
+        originPos = transform.position;
+
         fsmManager = new StateMachine<EnemyFSM>(this, new StateIdle());
-        fsmManager.AddStateList(new StateMove());
-        fsmManager.AddStateList(new StateAttack());
-        fsmManager.AddStateList(new StateStun());
+        fsmManager.AddState(new StateMove());
+        fsmManager.AddState(new StateAttack());
+        fsmManager.AddState(new StateStun());    
 
-        originPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
 
-    private void Update() 
+    private void Update()
     {
-        fsmManager.Update(Time.deltaTime);
+        fsmManager.NowState.OnUpdate(Time.deltaTime);
     }
 
-    public void OnHitEvent(Transform transform)
+    public void OnHit()
     {
-        fsmManager.OnHitEvent();
-
-        if(!isHit)
-        {
-            target = transform;
-            isHit = true;
-            speed = data.runSpeed;
-        }
-
-        fsmManager.ChangeState<StateStun>();
+        fsmManager.NowState.OnHit();
     }
 
     public Transform SearchPlayer()
     {
-        target = null;
+        Collider[] col = Physics.OverlapSphere(originPos, findRadius, 1 << 7);
 
-        Collider[] findTargets = Physics.OverlapSphere(transform.position, data.eyeSight, targetLayerMask);
-        if(findTargets.Length > 0)
+        if(col.Length > 0)
         {
-            target = findTargets[0].transform;
+            target = col[0].transform;
+            return target;
         }
 
-        return target;
+        return null;
     }
+
+    public void CheckHIt()
+    {
+        Collider[] col = Physics.OverlapSphere(transform.position + transform.forward, 1.5f, 1 << 7);
+
+        if(col.Length > 0)
+        {
+            Debug.Log("개같이 처맞");
+        }
+    }
+
+    #if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(originPos, findRadius);
+        Gizmos.DrawWireSphere(transform.position, attackDistance);    
+    }
+    #endif
 }

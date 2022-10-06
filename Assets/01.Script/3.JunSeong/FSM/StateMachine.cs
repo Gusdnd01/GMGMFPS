@@ -1,66 +1,64 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
+using System;
+using UnityEngine;
 
-public sealed class StateMachine<T>
+public class StateMachine<T>
 {
-    private T stateMachine;
-    public Dictionary<Type, State<T>> stateList = new Dictionary<Type, State<T>>();
+    private T stateMachineClass;
+    private Dictionary<Type, State<T>> stateList = new Dictionary<Type, State<T>>();
+
+    private State<T> beforeState;
+    public State<T> BeforeState => beforeState;
 
     private State<T> nowState;
     public State<T> NowState => nowState;
 
-    private State<T> beforeState;
-    public State<T>  BeforeState => beforeState;
-
-    private float stateDurationTime = 0f;
+    private float stateDurationTime;
     public float StateDurationTime => stateDurationTime;
 
-    public StateMachine(T _stateMachine, State<T> initState)
+    public StateMachine(T _stateMachineClass, State<T> initState)
     {
-        this.stateMachine = _stateMachine;
-        AddStateList(initState);
+        stateMachineClass = _stateMachineClass;
+        AddState(initState);
         nowState = initState;
         nowState.OnStart();
     }
 
-    public void AddStateList(State<T> state)
+    public void AddState(State<T> state)
     {
-        state.SetStateMachineWithClass(this, stateMachine);
-        state.OnAwake();
+        state.SetStateMachineWithClass(this, stateMachineClass);
         stateList[state.GetType()] = state;
+        state.OnAwake();
     }
 
-    public Q ChangeState<Q>() where Q : State<T>
+    public void ChangeState<Q>() where Q : State<T>
     {
-        var newState = typeof(Q);
-        
-        if(nowState.GetType() == newState)
-        {
-            return nowState as Q;
-        }
+        Type newState = typeof(Q);
 
-        if(nowState.GetType() != newState)
+        if(newState == nowState.GetType())
+        {
+            return;
+        }
+        else
         {
             nowState.OnEnd();
+            beforeState = nowState;
+            nowState = stateList[newState];
+            nowState.OnStart();
+
+            stateDurationTime = 0;
         }
-
-        beforeState = nowState;
-        nowState = stateList[newState];
-
-        nowState.OnStart();
-        stateDurationTime = 0f;
-
-        return nowState as Q;
     }
 
-    public void Update(float deltaTime) 
-    {
+    public void Update(float deltaTime)
+    {   
         stateDurationTime += deltaTime;
-        nowState.OnUpdate(StateDurationTime);
+        nowState.OnUpdate(stateDurationTime);
     }
 
-    public void OnHitEvent()
+    public void OnHit()
     {
-        nowState.OnHitEvent();
+        nowState.OnHit();
     }
 }
