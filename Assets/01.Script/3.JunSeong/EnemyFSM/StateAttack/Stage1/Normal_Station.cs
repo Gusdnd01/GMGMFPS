@@ -13,6 +13,7 @@ public class Normal_Station : AttackPattern
 
     private Vector3 moveVec;
     public bool isAttack = false;
+    public bool isJump = false;
     public float jumpPower;
     public float jumpSpeed;
     public float gravity = -9.81f;
@@ -31,10 +32,18 @@ public class Normal_Station : AttackPattern
         {
             Punch();
         }
-        else
+        else if(Vector3.Distance(transform.position, target.position) >= 10)
         {
             if(!isAttack)
             {
+                Jump(target);
+            }
+        }
+        else if(Vector3.Distance(transform.position, target.position) < 10)
+        {
+            if(!isAttack)
+            {
+                animator.SetBool("Move", true);
                 nav.SetDestination(target.position);
                 moveVec = new Vector3(nav.velocity.x * enemy.speed, nav.velocity.y, nav.velocity.z * enemy.speed);
             }
@@ -48,6 +57,8 @@ public class Normal_Station : AttackPattern
         {
             moveVec.y = 0;
         }
+
+        Debug.Log("Move");
 
         characterController.Move(moveVec * Time.deltaTime);
     }
@@ -65,18 +76,25 @@ public class Normal_Station : AttackPattern
 
     private void Jump(Transform target)
     {
-        if(isAttack)
+        if(!isAttack)
         {
-            //animator.SetTrigger(Jump)
+            animator.SetTrigger("Jump");
             Debug.Log("Jump");
+            isAttack = true;
             Vector3 dir = (target.position - transform.position).normalized;
             moveVec = new Vector3(dir.x * jumpSpeed, characterController.velocity.y + jumpPower, dir.z * jumpSpeed);
+            Debug.LogWarning($"Move Vec : {moveVec}, JumpSpeed : {jumpSpeed})");
         }
     }
 
     public void EndAttack()//animation event
     {
         isAttack = false;
+        moveVec = Vector3.zero;
+    }
+
+    public void EndJump()//animation event
+    {
         moveVec = Vector3.zero;
     }
 }

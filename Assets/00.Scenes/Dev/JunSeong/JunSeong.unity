@@ -455,11 +455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b292b19e81fa3134cad9d5fd75d538bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  data: {fileID: 0}
-  isAttack: 0
-  isStun: 0
-  hp: 0
 --- !u!65 &868672450
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -902,8 +897,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttack: 0
-  jumpPower: 0
-  jumpSpeed: 0
+  isJump: 0
+  jumpPower: 10
+  jumpSpeed: 10
   gravity: -9.81
 --- !u!1 &1865293611 stripped
 GameObject:
