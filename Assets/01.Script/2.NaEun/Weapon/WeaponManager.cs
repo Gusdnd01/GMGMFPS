@@ -92,12 +92,12 @@ public class WeaponManager : MonoBehaviour
         prevWeapon.gameObject.SetActive(false);
     }
 
-    enum InputState     // InputState ต้
-    {
-        Attack,
-        Reload,
-        RightClick,
-        None,
-        Length
-    }
+}
+public enum InputState     // InputState ต้
+{
+    Attack,
+    Reload,
+    RightClick,
+    None,
+    Length
 }

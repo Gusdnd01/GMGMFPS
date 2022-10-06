@@ -7,7 +7,6 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon Class")]
     [SerializeField] protected WeaponDataSo data;
-
     public WeaponDataSo Data { get { return data; } }
 
     public abstract void Attack(Action callbackAction);

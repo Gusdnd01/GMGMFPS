@@ -13,9 +13,11 @@ public class WeaponDataSo : ScriptableObject
     [Range(0.5f, 5f)] public float reloadDelay = 2.5f;
     [Range(0.1f, 1f)] public float zoomDelay = 0.2f;
     [Range(1, 100)] public int bulletAmount = 30;
+    public int magBullet = 90;
+
     [Header("성능재원")]
     public AttackType attackType = AttackType.Auto;
-    //public Vector2 recoil = Vector2.one;
+    public Vector2 recoil = Vector2.one;
     [Range(10, 100)] public float dmg = 25;
 
     [Header("사운드")]
@@ -23,7 +25,7 @@ public class WeaponDataSo : ScriptableObject
     public AudioClip dryAttackClip;
     public AudioClip reloadClip;
 }
-public enum AttackType
+    public enum AttackType
 {
     Auto,
     SemiAuto
