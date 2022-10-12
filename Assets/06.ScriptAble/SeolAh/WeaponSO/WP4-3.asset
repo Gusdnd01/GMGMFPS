@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aac73cc26ce34f4f8fd19c3836e9554, type: 3}
   m_Name: WP4-3
   m_EditorClassIdentifier: 
-  weaponImage: {fileID: 21300000, guid: 38efdfd2cb5b648e882835ae19da50bb, type: 3}
+  weaponImage: {fileID: 21300000, guid: f9f1b64e6369b46c485fca9431befb71, type: 3}
   bulletNum: 12
