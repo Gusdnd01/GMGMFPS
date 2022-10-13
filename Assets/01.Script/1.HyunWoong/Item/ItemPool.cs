@@ -30,7 +30,7 @@ public class ItemPool : PoolAbleObject
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, 0.5f * Mathf.Sin(Time.time) + 1, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0.5f * Mathf.Sin(Time.time) + 1.5f, transform.position.z);
     }
 
     public void SetPosition(Vector3 trm)

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Disssolve : MonoBehaviour
 {
-    Material mat;
+    Material[] mat;
     bool isDissolve = false;
     float fade = -1f;
 
     void Awake()
     {
-        mat = GetComponent<MeshRenderer>().material;
+        mat = GetComponent<MeshRenderer>().materials;
     }
     public bool IsDissolve
     {
@@ -37,7 +37,10 @@ public class Disssolve : MonoBehaviour
                 fade = 2f;
                 isDissolve = false;
             }
-            mat.SetFloat("_Cutoff_Height", fade);
+            foreach(Material m in mat)
+            {
+                m.SetFloat("_Cutoff_Height", fade);
+            }
         }
     }
 }
