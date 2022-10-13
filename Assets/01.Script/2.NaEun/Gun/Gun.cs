@@ -1,129 +1,131 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Gun : Weapon
 {
-    public enum State
+    [SerializeField] protected Transform firePos;
+    protected int curBullet;
+    protected InputState state;
+    [SerializeField] protected TextMeshProUGUI bulletTxt;
+    [SerializeField] protected LayerMask layer;
+    protected PlayerController pc;
+    protected int count = 5;
+
+    protected virtual void Awake()
     {
-        Ready, // 준비 완료
-        Shoot, // 발사 중
-        Reloading, // 재장전
-        FineSight, // 정조준
-    }
-    public State state { get; protected set; }
-
-    [Header("data")]
-    [SerializeField] protected WeaponDataSo data;
-
-
-    protected GameObject Player;
-    protected AudioSource sound;
-
-    protected float originTurnSpeed; //감도 제어를 위한 플레이어의 원래 감도
-
-    [Header("sound & effect")]
-    [SerializeField] protected Transform muzzleTrans;
-    [SerializeField] protected Transform powerShotPoint;
-    //[SerializeField] protected LineRenderer bulletLine;
-    //[SerializeField] protected GameObject aimPoint;
-
-    protected RaycastHit hit; // 충돌 정보
-
-    [Header("bullet")]
-    protected int maxBullet; // 최대 총알 개수
-    protected int curBullet; // 한 탄창에 현재 남아 있는 총알 개수
-    //[SerializeField] protected int mag; // 한 탄창에 들어갈 수 있는 총알 개수
-    //[SerializeField] protected float reloadDelay;
-
-    //[Header("camera")]
-    protected Camera cam;
-
-    //[Header("Fire Pos")]
-    //protected float curAttackDelay;
-
-    protected void Awake()
-    {
-        maxBullet = data.bulletCapacity * 5;
-
-        cam = Camera.main;
-
-        state = State.Ready;
-        //bulletLine.enabled = false;
-
-        curBullet = data.bulletCapacity;
+        curBullet = data.bulletAmount;
+        bulletTxt = GameObject.Find("Canvas/BulletUI/CurBullet").GetComponent<TextMeshProUGUI>();
+        pc = GameObject.Find("Player").GetComponent<PlayerController>();
+        bulletTxt.text = $"{curBullet} / {data.magBullet}";
     }
 
-    protected void Start()
+    public override void Attack(Action callbackAction)
     {
-        if (state == State.Ready)
+        StartCoroutine(AttackCor(callbackAction));
+    }
+
+    public virtual IEnumerator AttackCor(Action callbackAction)
+    {
+
+        bulletTxt.text = $"{curBullet} / {data.magBullet}";
+        // PlayAudio(data.dryAttackClip); 이걸 어떻게 써야할까?
+        // TODO : 발사시 작동될 코드 작성 EX : 반동, Raycast 등등\while (true)
+        if (curBullet > 0)
         {
-            StartCoroutine(TryFire());
-        }
-    }
+            curBullet--;
+            ShootRay();
 
-    protected virtual IEnumerator TryFire()
-    {
-        while (true)
+            AudioManager.PlayAudioRandPitch(data.attackClip);
+
+            print("ㅎ호");
+        }
+        else
         {
-            if (state == State.Ready)
-            {
-                if (curBullet > 0)
-                {
-                    yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-                    state = State.Shoot;
-                    LeftClick();
-
-                    yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
-                    state = State.Ready;
-                }
-                else
-                    StartCoroutine(Reloading());
-
-            }
-            yield return new WaitForSeconds(data.attackDelay);
+            print("ㄹㄹㅎㅎㄴㄴ");
+            AudioManager.PlayAudioRandPitch(data.dryAttackClip);
+            // 틱 틱 틱..!
         }
+
+        yield return new WaitForSeconds(data.attackDelay);
+
+        callbackAction();
     }
 
-    public override void LeftClick()
+    public override void Reload(Action callbackAction)
     {
-        //sound.PlayOneShot(data.shotClip);
-        //curAttackDelay = data.attackDelay;
-        curBullet--;
-
-        Debug.DrawRay(muzzleTrans.position, muzzleTrans.forward, Color.blue, 0.5f);
-        //bulletLine.startWidth = 0.1f;
-        //bulletLine.endWidth = 0.01f;
-        //bulletLine.SetPosition(0, weaponMuzzle.position);
-        //bulletLine.SetPosition(1, aimPoint.transform.position);
-        //bulletLine.enabled = true;
-        // 발사 이펙트
+        StartCoroutine(ReloadCor(callbackAction));
     }
-    protected virtual IEnumerator Reloading()
+
+    public virtual IEnumerator ReloadCor(Action callbackAction)
     {
-        state = State.Reloading;
+        PlayAudio(data.reloadClip);
+        // TODO : 장전시 해야할 행동 EX : 총알 채우기 등등
+        data.magBullet -= (data.bulletAmount - curBullet);
+        curBullet = data.bulletAmount;
+        if (data.bulletAmount <= 0)
+        {
+            callbackAction();
+        }
         yield return new WaitForSeconds(data.reloadDelay);
-        maxBullet -= data.bulletCapacity - curBullet;
-        curBullet = data.bulletCapacity;
-        state = State.Ready;
-        sound.PlayOneShot(data.reloadClip);
+        bulletTxt.text = $"{curBullet} / {data.magBullet}";
+        callbackAction();   // 받아온 함수 실행
     }
 
-    public override void RightClick()
+    public override void RightClick(Action callbackAction)
     {
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, data.range))
+        StartCoroutine(RightClickCor(callbackAction));
+    }
+
+    public virtual IEnumerator RightClickCor(Action callbackAction)
+    {
+        print("특수행동!");
+        // TODO : 특수행동 구현 EX : 정조준, 기타 총마다 스킬
+        yield return new WaitForSeconds(data.zoomDelay);
+        callbackAction();   // 받아온 함수 실행
+    }
+
+    protected virtual void ShootRay()
+    {
+        RaycastHit hit;
+        float reactionRollback = Random.Range(-2.5f, 2.5f);
+
+        Debug.DrawRay(firePos.transform.position, firePos.transform.forward, Color.yellow, 0.5f);
+        //StartCoroutine(Recoil());
+        if (data.isCanShotGun)
         {
-            if (hit.transform.CompareTag("Enemy"))
+            for (int i = 0; i < count; i++)
             {
-                //IDamageAble
+                Vector3 randPos = firePos.position + firePos.forward * 10 + firePos.TransformDirection(Random.insideUnitCircle);
+                Vector3 dir = (randPos - firePos.position).normalized;
+
+                Debug.DrawRay(firePos.transform.position, dir * 10, Color.yellow, 0.5f);
+                if (Physics.Raycast(firePos.transform.position, dir, out hit, 10, layer))
+                {
+                    //hit.transform.gameObject.GetComponent<IHitAble>()?.Hit(data.dmg, firePos.position);
+                    //총기 반동 코루틴 실행
+                    print(hit.transform.gameObject.name);
+                }
+            }
+        }
+        else
+        {
+            if (Physics.Raycast(firePos.transform.position, firePos.transform.forward, out hit, layer))
+            {
+                //hit.transform.gameObject.GetComponent<IHitAble>()?.Hit(data.dmg, firePos.position);
+                //총기 반동 코루틴 실행
+                print(hit.transform.gameObject.name);
             }
         }
     }
 
-    public override void PressR()
+    protected IEnumerator Recoil()
     {
-        if (Input.GetKeyDown(KeyCode.R) && state == State.Ready && curBullet < data.bulletCapacity)
-        {
-            StartCoroutine(Reloading());
-        }
+        transform.localEulerAngles += data.upRecoil;
+        //tansform.localEulerAngles -= data.upRecoil * Time.deltaTime * data.reloadDelay;
+        yield return null;
     }
 }
