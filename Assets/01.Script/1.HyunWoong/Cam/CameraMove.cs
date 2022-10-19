@@ -43,6 +43,7 @@ public class CameraMove : MonoBehaviour
     {
         StartCoroutine(Interact());
         StartCoroutine(MoveImage());
+        StartCoroutine(Attack());
     }
 
     private void Update()
@@ -118,7 +119,14 @@ public class CameraMove : MonoBehaviour
         }
     }
 
-    private voi
+    private IEnumerator Attack()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+            Recoil(new Vector2(0.5f, 0.5f), 0.1f);
+        }
+    }
 
     private IEnumerator Interact()
     {
