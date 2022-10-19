@@ -7,11 +7,13 @@ public class StateMove : State<EnemyFSM>
 {
     NavMeshAgent nav;
     CharacterController characterController;
+    Boss boss;
 
     public override void OnAwake()
     {
         nav = stateMachineClass.GetComponent<NavMeshAgent>();
         characterController = stateMachineClass.GetComponent<CharacterController>();
+        boss = stateMachineClass.boss;
     }
     
     public override void OnStart()
@@ -22,27 +24,18 @@ public class StateMove : State<EnemyFSM>
 
     public override void OnUpdate(float deltaTime)
     {
-        Transform target = stateMachineClass.SearchPlayer();
-
-        if(target)
+        if(boss.CheckAngle())
         {
-            nav.SetDestination(target.position);
-            characterController.Move(nav.velocity.normalized * stateMachineClass.speed * Time.deltaTime);
-
-            if(stateMachineClass.FlagAttack)
-            {
-                stateMachine.ChangeState<StateAttack>();
-            }
+            boss.Move();
         }
         else
         {
-            nav.SetDestination(stateMachineClass.originPos);
-            characterController.Move(nav.velocity.normalized * stateMachineClass.speed * Time.deltaTime);
+            boss.Turn();
+        }
 
-            if(nav.remainingDistance <= nav.stoppingDistance)
-            {
-                stateMachine.ChangeState<StateIdle>();
-            }
+        if(deltaTime >= 3f || stateMachineClass.FlagAttack)
+        {
+            stateMachine.ChangeState<StateAttack>();
         }
     }
 

@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class JunSungTest : MonoBehaviour
 {
-    // Start is called before the first frame update
+    CharacterController characterController;
+
     void Start()
     {
-        
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Jump"))
-        {
-            GameObject.Find("DemoModel").GetComponent<EnemyFSM>().OnHit();
-        }
+        characterController.Move(Vector3.zero);  
     }
 }

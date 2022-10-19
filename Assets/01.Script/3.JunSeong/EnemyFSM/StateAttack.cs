@@ -8,35 +8,46 @@ public class StateAttack : State<EnemyFSM>
 {
     NavMeshAgent nav;
     CharacterController characterController;
-    AttackPattern attackPattern;
+    Boss boss;
+
+    private bool endAttack = false;
+    private bool startAttack = true;
 
     public override void OnAwake()
     {
-        attackPattern = stateMachineClass.GetComponent<AttackPattern>();
+        boss = stateMachineClass.boss;
     }
     
     public override void OnStart()
     {
         Debug.Log("Start Attack");
+
+        if(startAttack)
+        {
+            startAttack = false;
+            boss.Attacking();
+        }
+
+        if(endAttack)
+        {
+            stateMachine.ChangeState<StateMove>();
+        }
     }
 
     public override void OnUpdate(float deltaTime)
     {
-        Transform target = stateMachineClass.SearchPlayer();
-
-        if(target)
-        {
-            attackPattern.Attack(target);
-        }
-        else
-        {
-            stateMachine.ChangeState<StateMove>();
-        }
-        
+        boss.Attacking();
     }
 
     public override void OnEnd()
     {
         Debug.Log("End Attack");
+        endAttack = false;
+        startAttack = false;
+    }
+
+    public void EndAttack()
+    {
+        endAttack = true;
     }
 }

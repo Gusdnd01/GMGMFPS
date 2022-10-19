@@ -17,14 +17,7 @@ public class StateIdle : State<EnemyFSM>
 
     public override void OnUpdate(float deltaTime)
     {
-        if(stateMachineClass.SearchPlayer())
-        {
-            stateMachine.ChangeState<StateMove>();
-        }
-        else if(stateMachineClass.FlagAttack)
-        {
-            stateMachine.ChangeState<StateAttack>();
-        }
+        stateMachine.ChangeState<StateMove>();
     }
 
     public override void OnEnd()
