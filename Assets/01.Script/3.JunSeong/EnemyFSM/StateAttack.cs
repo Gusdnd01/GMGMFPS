@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class StateAttack : State<EnemyFSM>
 {
-    NavMeshAgent nav;
+    //NavMeshAgent nav;
     CharacterController characterController;
     Boss boss;
 
@@ -15,28 +15,26 @@ public class StateAttack : State<EnemyFSM>
 
     public override void OnAwake()
     {
-        boss = stateMachineClass.boss;
+        boss = stateMachineClass.GetComponent<Boss>();
     }
     
     public override void OnStart()
     {
         Debug.Log("Start Attack");
+    }
 
-        if(startAttack)
+    public override void OnUpdate(float deltaTime)
+    {
+        if (startAttack)
         {
             startAttack = false;
             boss.Attacking();
         }
 
-        if(endAttack)
+        if (endAttack)
         {
             stateMachine.ChangeState<StateMove>();
         }
-    }
-
-    public override void OnUpdate(float deltaTime)
-    {
-        boss.Attacking();
     }
 
     public override void OnEnd()

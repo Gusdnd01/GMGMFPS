@@ -63,7 +63,7 @@ public class Bear : Boss
 
         if(hit.Length > 0)
         {
-            //player hit
+            hit[0].GetComponent<IDamage>().OnDamaged(wieldDamage);
         }
     }
 
@@ -77,7 +77,7 @@ public class Bear : Boss
 
         if (hit.Length > 0)
         {
-            //player hit
+            hit[0].GetComponent<IDamage>().OnDamaged(downSlapDamage);
         }
     }
 
@@ -91,7 +91,7 @@ public class Bear : Boss
 
         if (hit.Length > 0)
         {
-            //player hit
+            hit[0].GetComponent<IDamage>().OnDamaged(bigDownSlapDamage);
         }
     }
 

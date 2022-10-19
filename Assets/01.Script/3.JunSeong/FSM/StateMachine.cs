@@ -23,6 +23,7 @@ public class StateMachine<T>
         AddState(initState);
         nowState = initState;
         nowState.OnStart();
+        stateDurationTime = 0;
     }
 
     public void AddState(State<T> state)

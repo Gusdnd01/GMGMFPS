@@ -17,7 +17,7 @@ public abstract class Boss : MonoBehaviour
     {
         get
         {
-            return Vector3.Distance(transform.position, player.position);
+            return Vector3.Distance(transform.position, GameObject.Find("Player").GetComponent<Transform>().position);
         }
     }   
     
@@ -25,7 +25,7 @@ public abstract class Boss : MonoBehaviour
     {
         get
         {
-            return (player.position - transform.position).normalized;
+            return (GameObject.Find("Player").GetComponent<Transform>().position - transform.position).normalized;
         }
     }    
 
@@ -48,7 +48,7 @@ public abstract class Boss : MonoBehaviour
     public void Turn()
     {
         //È¸Àü
-        float angle = MathF.Atan2(MoveDirection.y, MoveDirection.x);
+        float angle = Mathf.Atan2(MoveDirection.x, MoveDirection.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * turnSpeed);
     }
