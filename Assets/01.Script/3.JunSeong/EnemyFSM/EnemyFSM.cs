@@ -27,7 +27,7 @@ public class EnemyFSM : MonoBehaviour
         }
     }
     public Transform target;
-    public Animator animator;
+    //public Animator animator;
     public  Boss boss;
 
     private void Awake() 
@@ -36,15 +36,16 @@ public class EnemyFSM : MonoBehaviour
 
         fsmManager = new StateMachine<EnemyFSM>(this, new StateIdle());
         fsmManager.AddState(new StateMove());
-        fsmManager.AddState(new StateAttack());   
+        fsmManager.AddState(new StateAttack());
 
-        animator = GetComponent<Animator>();
-        boss = GetComponent<Boss>();
+        //animator = GetComponent<Animator>();
+        boss = GetComponent<Bear>();
+        Debug.Log(boss);
     }
 
     private void Update()
     {
-        fsmManager.NowState.OnUpdate(Time.deltaTime);
+        fsmManager.Update(Time.deltaTime);
     }
 
     public void OnHit()
@@ -54,7 +55,7 @@ public class EnemyFSM : MonoBehaviour
 
     public Transform SearchPlayer()
     {
-        Collider[] col = Physics.OverlapSphere(originPos, findRadius, 1 << 7);
+        Collider[] col = Physics.OverlapSphere(transform.position, findRadius, 1 << 7);
 
         if(col.Length > 0)
         {
