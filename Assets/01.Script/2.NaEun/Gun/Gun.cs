@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class Gun : Weapon
 {
@@ -80,13 +81,31 @@ public class Gun : Weapon
 
     protected virtual void ShootRay()
     {
-        RaycastHit hit;
-
-        Debug.DrawRay(firePos.transform.position, firePos.transform.forward * 150, Color.yellow, 0.5f);
-        if (Physics.Raycast(firePos.transform.position, firePos.transform.forward, out hit, layer))
+        if (data.isMultiShoot)
         {
-            //hit.transform.gameObject.GetComponent<IHitAble>()?.Hit(data.dmg, firePos.position);
-            print(hit.transform.gameObject.name);
+            Vector3[] dirs = new Vector3[data.multiShootCount];
+
+            for (int i = 0; i < data.multiShootCount; i++)
+            {
+                Vector3 randPos = firePos.position + firePos.forward * 10 + firePos.TransformDirection(Random.insideUnitCircle * data.multiActually);
+                dirs[i] = (randPos - transform.position).normalized;
+            }
+
+            for (int i = 0; i < data.multiShootCount; i++)
+            {
+                Debug.DrawRay(firePos.position, dirs[i] * 10, Color.red, 10f);
+            }
+        }
+        else
+        {
+            RaycastHit hit;
+
+            Debug.DrawRay(firePos.transform.position, firePos.transform.forward * 150, Color.yellow, 0.5f);
+            if (Physics.Raycast(firePos.transform.position, firePos.transform.forward, out hit, layer))
+            {
+                //hit.transform.gameObject.GetComponent<IHitAble>()?.Hit(data.dmg, firePos.position);
+                print(hit.transform.gameObject.name);
+            }
         }
     }
 }

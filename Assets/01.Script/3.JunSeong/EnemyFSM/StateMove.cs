@@ -19,7 +19,7 @@ public class StateMove : State<EnemyFSM>
     public override void OnStart()
     {
         Debug.Log("Start Move");
-        stateMachineClass.animator.SetBool("Move", true);
+        //stateMachineClass.animator.SetBool("Move", true);
     }
 
     public override void OnUpdate(float deltaTime)
@@ -42,6 +42,6 @@ public class StateMove : State<EnemyFSM>
     public override void OnEnd()
     {
         Debug.Log("End Move");
-        stateMachineClass.animator.SetBool("Move", false);
+        //stateMachineClass.animator.SetBool("Move", false);
     }
 }

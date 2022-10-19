@@ -27,7 +27,7 @@ public class EnemyFSM : MonoBehaviour
         }
     }
     public Transform target;
-    public Animator animator;
+    //public Animator animator;
     public  Boss boss;
 
     private void Awake() 
@@ -38,7 +38,7 @@ public class EnemyFSM : MonoBehaviour
         fsmManager.AddState(new StateMove());
         fsmManager.AddState(new StateAttack());   
 
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         boss = GetComponent<Boss>();
     }
 

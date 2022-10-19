@@ -20,12 +20,17 @@ public class WeaponDataSo : ScriptableObject
     public Vector2 recoil = Vector2.one;
     [Range(10, 100)] public float dmg = 25;
 
+    [Header("샷건관련")]
+    public bool isMultiShoot;
+    public int multiShootCount = 1;
+    public float multiActually;//10M 앞으로 쐇을때 Actually지름 안으로 탄착이 모임
+
     [Header("사운드")]
     public AudioClip attackClip;
     public AudioClip dryAttackClip;
     public AudioClip reloadClip;
 }
-    public enum AttackType
+public enum AttackType
 {
     Auto,
     SemiAuto
