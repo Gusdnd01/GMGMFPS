@@ -14,32 +14,21 @@ public class WeaponManager : MonoBehaviour
 
     public void Start()                 // WeaponCycle 돌리기
     {
+        WeaponSwap();
         StartCoroutine(WeaponCycle());
     }
     public void Update()                // InputCheck 하기
     {
         CheckInput();
-        WeaponSwap();
     }
 
     private void CheckInput()           // Update마다 호출됨
     {
         if (curInputState == InputState.None && isCanReadKey)   // 만약 지금 인풋 상태가 None이면(isCanReadKey 는 안전장치)
         {
-            switch (curWeapon.Data.attackType)
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                case AttackType.Auto:
-                    if (Input.GetKey(KeyCode.Mouse0)) // 촐 쏠지 체크
-                    {
-                        curInputState = InputState.Attack;
-                    }
-                    break;
-                case AttackType.SemiAuto:
-                    if (Input.GetKeyDown(KeyCode.Mouse0)) // 촐 쏠지 체크
-                    {
-                        curInputState = InputState.Attack;
-                    }
-                    break;
+                curInputState = InputState.Attack;
             }
             if (Input.GetKey(KeyCode.Mouse1))
             {
@@ -93,17 +82,16 @@ public class WeaponManager : MonoBehaviour
             print($"Prev : {curWeaponIndex}  New : {newIndex}");
             ChangeWeapon(weapons[newIndex], weapons[curWeaponIndex]);
             curWeaponIndex = newIndex;
-            curWeapon = weapons[curWeaponIndex];
         }
     }
-    protected void ChangeWeapon(Weapon newWeapon, Weapon prevWeapon)
-    {
-        newWeapon.StopAllCoroutines();
-        prevWeapon.StopAllCoroutines();
 
+    private void ChangeWeapon(Weapon newWeapon, Weapon prevWeapon)
+    //prevWeapon은 끄고 newWeapon은 활성화 하기
+    {
         newWeapon.gameObject.SetActive(true);
         prevWeapon.gameObject.SetActive(false);
     }
+
 }
 public enum InputState     // InputState 들
 {
