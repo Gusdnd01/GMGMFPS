@@ -19,8 +19,11 @@ public class LevelSelector : MonoBehaviour
     public bool isOpenLevel;
 
     TextMeshProUGUI text;
+
+    SceneLoader sceneLoader = new SceneLoader();
     private void Start()
     {
+        sceneLoader = GetComponent<SceneLoader>();
         if (isOpenLevel)
         {
             text = GetComponentInChildren<TextMeshProUGUI>();
