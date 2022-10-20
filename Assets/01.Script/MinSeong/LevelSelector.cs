@@ -18,7 +18,7 @@ public class LevelSelector : MonoBehaviour
     public int level;
     public bool isOpenLevel;
 
-    TextMeshProUGUI text;   
+    TextMeshProUGUI text;
     private void Start()
     {
         if (isOpenLevel)
@@ -30,11 +30,11 @@ public class LevelSelector : MonoBehaviour
 
     public void OpenScene()
     {
-        if(gameObject.name == "Start")
+        if (gameObject.name == "Start")
         {
-            SceneLoader.LoadScene("Level Selector");
+            //SceneLoader.LoadScene("Level Selector");
+            SceneManager.LoadScene(SceneName);
         }
-        SceneManager.LoadScene(SceneName);
     }
 
     public void OpenLevel()
