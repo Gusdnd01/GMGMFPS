@@ -10,7 +10,10 @@ public class EnemyFSM : MonoBehaviour
 
     public float findRadius;
     public float attackDistance;
-    public float speed = 5;
+    public float speed;
+
+    public float idleTime = 2f;
+    public float moveTime = 3f;
 
     public Vector3 originPos = Vector3.zero;
 
@@ -27,8 +30,10 @@ public class EnemyFSM : MonoBehaviour
         }
     }
     public Transform target;
-    //public Animator animator;
-    public  Boss boss;
+    public Animator animator;
+    public EnemyBase enemy;
+
+    public int moveSpeedHash = Animator.StringToHash("MoveSpeed");
 
     private void Awake() 
     {
@@ -38,9 +43,14 @@ public class EnemyFSM : MonoBehaviour
         fsmManager.AddState(new StateMove());
         fsmManager.AddState(new StateAttack());
 
-        //animator = GetComponent<Animator>();
-        boss = GetComponent<Bear>();
-        Debug.Log(boss);
+        animator = GetComponent<Animator>();       
+    }
+
+    private void Start()
+    {
+        target = GameObject.Find("Player").GetComponent<Transform>();
+        speed = enemy.MoveSpeed;
+        attackDistance = enemy.minAttackDistance;
     }
 
     private void Update()
@@ -66,22 +76,17 @@ public class EnemyFSM : MonoBehaviour
         return null;
     }
 
-    public void CheckHIt()
+    public void SetAttackPattern(EnemyBase _enemy)
     {
-        Collider[] col = Physics.OverlapSphere(transform.position + transform.forward, 1.5f, 1 << 7);
-
-        if(col.Length > 0)
-        {
-            Debug.Log("개같이 처맞");
-        }
+        this.enemy = _enemy;
     }
 
     #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(originPos, findRadius);
-        Gizmos.DrawWireSphere(transform.position, attackDistance);    
+        Gizmos.color = Color.blue;
+     
+        Gizmos.DrawWireSphere(transform.position, 2);    
     }
     #endif
 }

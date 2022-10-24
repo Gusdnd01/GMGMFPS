@@ -5,38 +5,35 @@ using UnityEngine.AI;
 
 public class StateMove : State<EnemyFSM>
 {
-    //NavMeshAgent nav;
-    CharacterController characterController;
-    Boss boss;
+    private float speedChangeAmount = 10;
 
     public override void OnAwake()
     {
-        //nav = stateMachineClass.GetComponent<NavMeshAgent>();
-        characterController = stateMachineClass.GetComponent<CharacterController>();
-        boss = stateMachineClass.GetComponent<Boss>();
+        
     }
     
     public override void OnStart()
     {
         Debug.Log("Start Move");
-        //stateMachineClass.animator.SetBool("Move", true);
     }
 
     public override void OnUpdate(float deltaTime)
     {
-        if(boss.CheckAngle())
+        stateMachineClass.animator.SetFloat(stateMachineClass.moveSpeedHash, Mathf.Lerp(stateMachineClass.moveSpeedHash,
+            stateMachineClass.enemy.MoveSpeed, deltaTime * speedChangeAmount));
+
+        if(stateMachineClass.enemy.CheckAngle())
         {
-            boss.Move();
+            stateMachineClass.enemy.Move();
             Debug.Log("Move");
         }
         else
         {
-            boss.Turn();
+            stateMachineClass.enemy.Turn();
             Debug.Log("Turn");
         }
 
-        //Debug.Log(deltaTime);
-        if(deltaTime >= 3f || stateMachineClass.SearchPlayer())
+        if(stateMachineClass.moveTime <= deltaTime || stateMachineClass.SearchPlayer())
         {
             stateMachine.ChangeState<StateAttack>();
         }
@@ -45,6 +42,5 @@ public class StateMove : State<EnemyFSM>
     public override void OnEnd()
     {
         Debug.Log("End Move");
-        //stateMachineClass.animator.SetBool("Move", false);
     }
 }

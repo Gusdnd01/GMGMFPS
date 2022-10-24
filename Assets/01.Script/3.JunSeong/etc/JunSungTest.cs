@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JunSungTest : MonoBehaviour
+public class JunSungTest : MonoBehaviour, IDamage
 {
     CharacterController characterController;
 
-    void Start()
+    public void OnDamaged(int damage)
+    {
+        Debug.Log(damage);
+    }
+
+    /*void Start()
     {
         characterController = GetComponent<CharacterController>();
     }
@@ -15,5 +20,5 @@ public class JunSungTest : MonoBehaviour
     void Update()
     {
         characterController.Move(Vector3.zero);  
-    }
+    }*/
 }
