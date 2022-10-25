@@ -6,16 +6,7 @@ using UnityEngine;
 public class GunSystem : MonoBehaviour
 {
     [SerializeField] private GunSetting gunSet;
-    // [Header("Gun stats")]
-    // [SerializeField] private int damage;
-    // [SerializeField] private float timeBetweenShooting;
-    // [SerializeField] private float spread;
-    // [SerializeField] private float range;
-    // [SerializeField] private float reloadTime;
-    // [SerializeField] private float timeBetweenShots;
-    // [SerializeField] private int magazineSize;
-    // [SerializeField] private int bulletsPerTap;
-    //[SerializeField] private bool allowButtonHold;
+
     private int curbullet;
     private int bulletsShot;
 
@@ -66,6 +57,8 @@ public class GunSystem : MonoBehaviour
     }
     private void Shoot()
     {
+        GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
+
         readyToShoot = false;
 
         //Spread

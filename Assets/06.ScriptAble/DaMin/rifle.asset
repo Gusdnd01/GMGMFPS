@@ -21,3 +21,5 @@ MonoBehaviour:
   magazineSize: 32
   bulletsPerTap: 1
   allowButtonHold: 1
+  intensity: 17
+  shaketime: 7.08

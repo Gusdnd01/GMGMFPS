@@ -24,5 +24,11 @@ public class GunSetting : ScriptableObject
     public int BulletsPerTap => bulletsPerTap;
     [SerializeField] private bool allowButtonHold;      //True = 연사  False = 단발     if(timeBetweenShots > 0 && !allowButtonHold)점사
     public bool AllowButtonHold => allowButtonHold;
+
+    [Header("ShakeCamera")]
+    [SerializeField] private float intensity; //흔들림 강도
+    public float Intensity => intensity;
+    [SerializeField] private float shaketime;
+    public float Shaketime => shaketime;
 }
 
