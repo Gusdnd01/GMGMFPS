@@ -21,6 +21,8 @@ public class LevelSelector : MonoBehaviour
     TextMeshProUGUI text;
 
     SceneLoader sceneLoader = new SceneLoader();
+
+    [SerializeField] TextMeshProUGUI aa;
     private void Start()
     {
         sceneLoader = GetComponent<SceneLoader>();
@@ -35,14 +37,14 @@ public class LevelSelector : MonoBehaviour
     {
         if (gameObject.name == "Start")
         {
-            //SceneLoader.LoadScene("Level Selector");
-            SceneManager.LoadScene(SceneName);
+            SceneLoader.Instance.LoadScene(SceneName);
+            //SceneManager.LoadScene(SceneName);
         }
     }
 
     public void OpenLevel()
     {
-        SceneManager.LoadScene("Level " + level.ToString());
+        SceneLoader.Instance.LoadScene("Level " + level.ToString());
     }
 
     public void Quit()

@@ -23,4 +23,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Dev/HyunWoong/HyunWoong.unity
     guid: 91a99e48db3ea9841b2d338fc6c6fae5
+  - enabled: 1
+    path: Assets/00.Scenes/Dev/MinSeong/Level 1.unity
+    guid: 37b3370e1818c74468def4f02ff979f3
+  - enabled: 1
+    path: Assets/00.Scenes/Dev/MinSeong/Level 2.unity
+    guid: 7fb1c947c62d2ce4fb6c33d8a4876148
+  - enabled: 1
+    path: Assets/00.Scenes/Dev/MinSeong/Level 3.unity
+    guid: f70926222a38bec4e93d0e52c7685773
+  - enabled: 1
+    path: Assets/00.Scenes/Dev/MinSeong/Level Select.unity
+    guid: 96e396bea8c2db2419c4632f22bcbdde
+  - enabled: 1
+    path: Assets/00.Scenes/Dev/MinSeong/Main Menu.unity
+    guid: 875f0c60ca9ab67409b579ccf36156e4
   m_configObjects: {}
