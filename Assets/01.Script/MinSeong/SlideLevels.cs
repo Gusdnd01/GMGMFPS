@@ -7,12 +7,17 @@ using UnityEngine.UI;
 public class SlideLevels : MonoBehaviour
 {
     public GameObject scrollbar;
+    public RectTransform rect;
     float scrollPos = 0;
     float[] pos;
 
+    float rectX;
+    float rectY;
+
     private void Start()
     {
-        
+        rectX = rect.sizeDelta.x;
+        rectY = rect.sizeDelta.y;
     }
 
     private void Update()
@@ -42,12 +47,16 @@ public class SlideLevels : MonoBehaviour
         {
             if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
             {
-                transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
+                transform.GetChild(i).GetComponent<RectTransform>().sizeDelta = 
+                    Vector2.Lerp(transform.GetChild(i).GetComponent<RectTransform>().sizeDelta, 
+                    new Vector2(rectX, rectY), 0.1f);
                 for (int a = 0; a < pos.Length; a++)
                 {
                     if (a != i)
                     {
-                        transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(0.8f, 0.8f), 0.1f);
+                        transform.GetChild(a).GetComponent<RectTransform>().sizeDelta = 
+                            Vector2.Lerp(transform.GetChild(a).GetComponent<RectTransform>().sizeDelta, 
+                            new Vector2(rectX * 0.8f, rectY * 0.8f), 0.1f);
                     }
                 }
             }
