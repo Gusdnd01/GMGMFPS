@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rifle
   m_EditorClassIdentifier: 
   damage: 20
-  timeBetweenShooting: 0.12
+  timeBetweenShooting: 0.119
   spread: 0.035
   range: 100
   reloadTime: 1
@@ -21,5 +21,5 @@ MonoBehaviour:
   magazineSize: 32
   bulletsPerTap: 1
   allowButtonHold: 1
-  intensity: 17
-  shaketime: 7.08
+  intensity: 15
+  shaketime: 0.6

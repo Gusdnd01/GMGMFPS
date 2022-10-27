@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f22b58899fa3d5b448a2522da67a1c8c, type: 3}
-  m_Name: Shotgun
+  m_Name: pistol
   m_EditorClassIdentifier: 
-  damage: 7
-  timeBetweenShooting: 1
-  spread: 0.083
-  range: 70
-  reloadTime: 2
+  damage: 15
+  timeBetweenShooting: 0.141
+  spread: 0.02
+  range: 120
+  reloadTime: 0.8
   timeBetweenShots: 0
-  magazineSize: 24
-  bulletsPerTap: 9
-  allowButtonHold: 1
+  magazineSize: 8
+  bulletsPerTap: 1
+  allowButtonHold: 0
+  intensity: 10
+  shaketime: 0.5

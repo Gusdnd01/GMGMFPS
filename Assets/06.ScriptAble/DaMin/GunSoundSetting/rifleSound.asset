@@ -9,15 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f22b58899fa3d5b448a2522da67a1c8c, type: 3}
-  m_Name: pistol
+  m_Script: {fileID: 11500000, guid: d483328f19c8a834ba8feea014b057d2, type: 3}
+  m_Name: rifleSound
   m_EditorClassIdentifier: 
-  damage: 15
-  timeBetweenShooting: 0.141
-  spread: 0.02
-  range: 120
-  reloadTime: 0.8
-  timeBetweenShots: 0
-  magazineSize: 8
-  bulletsPerTap: 1
-  allowButtonHold: 0
+  shotSound: []

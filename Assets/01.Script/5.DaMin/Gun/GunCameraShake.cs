@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class GunCameraShake : MonoBehaviour
 {
-    public static GunCameraShake Instance {get; private set;}
+    public static GunCameraShake Instance { get; private set; }
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float shakeTimer;
     private float startingIntensity;
@@ -30,15 +30,18 @@ public class GunCameraShake : MonoBehaviour
 
     private void Update()
     {
-        if(shakeTimer > 0)
+        if (shakeTimer > 0)
         {
             shakeTimer -= Time.deltaTime;
-            //if(shakeTimer <= 0)
-            //{
-                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
-            //}
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
+        }
+        if (shakeTimer <= 0)
+        {
+
+            //cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
         }
     }
 }
