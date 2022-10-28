@@ -46,7 +46,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void Move()
     {
-        Vector3 moveVector = new Vector3(MoveDirection.x * moveSpeed, transform.localPosition.y, MoveDirection.z * moveSpeed);
+        Vector3 moveVector = new Vector3(MoveDirection.x * moveSpeed, 0, MoveDirection.z * moveSpeed);
         controller.Move(moveVector * Time.deltaTime);
 
         Turn();
