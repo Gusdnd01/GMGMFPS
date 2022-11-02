@@ -1077,6 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 972815253}
+  resumeButton: {fileID: 0}
   isPausePos: {fileID: 1787981979}
   isResumePos: {fileID: 189002299}
   isPausing: 0
@@ -1680,7 +1681,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1240272342}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568148744}
+        m_TargetAssemblyTypeName: ESCLoader, Assembly-CSharp
+        m_MethodName: PauseMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1240272342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,7 +3117,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1940357314}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568148744}
+        m_TargetAssemblyTypeName: ESCLoader, Assembly-CSharp
+        m_MethodName: OtherButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Setting
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1940357314
 MonoBehaviour:
   m_ObjectHideFlags: 0

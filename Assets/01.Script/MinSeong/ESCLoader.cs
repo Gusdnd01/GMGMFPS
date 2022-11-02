@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ESCLoader : MonoBehaviour
 {
     [SerializeField] GameObject panel;
+
+    [SerializeField] Button resumeButton;
+
     [SerializeField] GameObject isPausePos;
     [SerializeField] GameObject isResumePos;
 
@@ -13,9 +17,20 @@ public class ESCLoader : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPausing = !isPausing;
+            PauseMenu();
         }
+
         OnPanel();
+    }
+    
+    public void PauseMenu()
+    {
+        isPausing = !isPausing;
+    }
+
+    public void OtherButton(string sceneName)
+    {
+        SceneLoader.Instance.LoadScene(sceneName);
     }
 
     private void OnPanel()
