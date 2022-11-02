@@ -5219,7 +5219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneName: HyunWoong
   level: 1
-  isOpenLevel: 1
+  isOpenLevel: 0
   aa: {fileID: 0}
 --- !u!114 &1634900882
 MonoBehaviour:
@@ -5267,7 +5267,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1634900881}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OpenLevel
+        m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
