@@ -9,14 +9,14 @@ public class ItemPool : PoolAbleObject
 
     [SerializeField]
     private List<GameObject> _items = new List<GameObject>();
+    Vector3 _trm;
 
     public override void Init_Pop()//Reset
     {
         for (int i = 0; i < _items.Count; i++)
         {
-            GameObject obj = Instantiate(_data.items[i]);
+            GameObject obj = Instantiate(_data.items[i], gameObject.transform.position, Quaternion.identity);
             obj.transform.SetParent(transform);
-            obj.transform.position = transform.position;
             obj.SetActive(false);
 
             _items[i] = obj;
@@ -28,8 +28,21 @@ public class ItemPool : PoolAbleObject
 
     }
 
+    private void Update()
+    {
+        transform.position = new Vector3(transform.position.x, 0.5f * Mathf.Sin(Time.time) + 1.5f, transform.position.z);
+    }
+
+    public void SetPosition(Vector3 trm)
+    {
+        _trm = trm;
+    }
+
     public void ItemActive(int index)
     {
+        print(_trm);
+        gameObject.transform.position = _trm;
+
         if (index == 2)
         {
             PoolManager.Instance.Push(PoolType.Item, gameObject);

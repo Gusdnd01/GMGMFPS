@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] private PlayerData playerData;
     private float m_Hp;
     private float m_Speed;
-    private float currentHp;
+    public float currentHp; //ì´ì„¤ì•„ê°€ pulicìœ¼ë¡œ ë°”ê¿ˆ! í—ˆë½ë°›ìŒ!!!
     private bool isDie = false;
     private bool isJumped;
 
@@ -59,10 +59,9 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (isAya)
         {
-            intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
+            
         }
-        vignette.color.Override(Color.red);
-        vignette.intensity.Override(intencity);
+
     }
 
     private IEnumerator Dash()
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour, IDamage
             m_Speed /= 4;
             yield return new WaitForSeconds(2f);
         }
-    }//ÀÀ¾Ö ³ª´Â ¹®¾î ²ŞÀ» ²Ù´Â ¹®¿ö¾î ²Ş¼Ó¿¡¼­´Â ¹«¾ùÀÌµçÁö µÉ ¼ö ÀÖ¾î¾î -ÇÔÀº¾Æ
+    }//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ -ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private void Animate()
     {
@@ -86,7 +85,7 @@ public class PlayerController : MonoBehaviour, IDamage
         anim.SetFloat(SpeedHash, animSpeed);
     }
 
-    [ContextMenu("¾Æ¾ßÇØ¿ë")]
+    [ContextMenu("ï¿½Æ¾ï¿½ï¿½Ø¿ï¿½")]
     private void GetDamage()
     {
         OnDamaged(10);
@@ -96,7 +95,7 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 moveDir;
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î ¿òÁ÷ÀÓ
+    /// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void Move()
     {
@@ -129,7 +128,7 @@ public class PlayerController : MonoBehaviour, IDamage
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î µµ¾à
+    /// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator Jump()
     {
@@ -149,7 +148,9 @@ public class PlayerController : MonoBehaviour, IDamage
         print(currentHp/m_Hp);
         if (currentHp/m_Hp <= 0.3f)// 100 <= 0.3f
         {
-            isAya = true;
+            intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
+            vignette.color.Override(Color.red);
+            vignette.intensity.Override(intencity);
         }
 
         if (m_Hp <= 0f)
@@ -161,6 +162,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Die()
     {
-        //Á×¾úÀ» ¶§ ½ÇÇà
+        //ï¿½×¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
