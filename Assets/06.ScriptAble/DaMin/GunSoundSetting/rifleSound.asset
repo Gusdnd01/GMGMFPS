@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d483328f19c8a834ba8feea014b057d2, type: 3}
+  m_Name: rifleSound
+  m_EditorClassIdentifier: 
+  shotSound:
+  - {fileID: 8300000, guid: 08bc9d0ef72d6bc45bc628105f4e58df, type: 3}
+  - {fileID: 8300000, guid: 0fd5fc7e095297146bf40023a92b3540, type: 3}
+  - {fileID: 8300000, guid: 6adc45e3ff15640448dedf1f29ba8b44, type: 3}
+  - {fileID: 8300000, guid: 0cf951c70deac574392280c8902895e8, type: 3}
+  - {fileID: 8300000, guid: 1f330b61008a5fd40b4d8a68275bde42, type: 3}
+  - {fileID: 8300000, guid: 1e1caf4ad93d1fa4f8cd9b6360060506, type: 3}
+  reloadSound:
+  - {fileID: 8300000, guid: 8261d4b475c7d084ab94d937e0de9a55, type: 3}
+  - {fileID: 8300000, guid: 4566bae70d8007744bf2e7a5e6611a1f, type: 3}
+  - {fileID: 8300000, guid: cb1e535410b4e9c439cd965d350ca052, type: 3}
+  - {fileID: 8300000, guid: 824f3bdfe11cfbf4388ccc61e4e57c2a, type: 3}
+  - {fileID: 8300000, guid: f7c400cd38bf2984cb97c437445644ba, type: 3}
