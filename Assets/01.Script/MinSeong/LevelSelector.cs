@@ -35,16 +35,15 @@ public class LevelSelector : MonoBehaviour
 
     public void OpenScene()
     {
-        if (gameObject.name == "Start")
-        {
-            SceneLoader.Instance.LoadScene(SceneName);
-            //SceneManager.LoadScene(SceneName);
-        }
+
+        SceneLoader.Instance.LoadScene(SceneName);
+        //SceneManager.LoadScene(SceneName);
     }
 
     public void OpenLevel()
     {
         SceneLoader.Instance.LoadScene("Level " + level.ToString());
+
     }
 
     public void Quit()

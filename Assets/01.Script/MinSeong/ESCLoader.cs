@@ -19,8 +19,6 @@ public class ESCLoader : MonoBehaviour
     [SerializeField] GameObject ThreePos;
     [SerializeField] GameObject FourPos;
 
-    [SerializeField] Dropdown resolutions;
-
     [SerializeField]
     AudioMixer audioMixer;
 
@@ -30,6 +28,8 @@ public class ESCLoader : MonoBehaviour
     Slider FXAudioSlider;
     [SerializeField]
     Slider BGMAudioSlider;
+
+    public bool isMainMenu;
 
     public bool isPausing = false;
     public bool isInSetting = false;
@@ -67,21 +67,31 @@ public class ESCLoader : MonoBehaviour
 
     private void OnPanel()
     {
-        if(isPausing && !isInSetting)
+        if(isPausing && !isInSetting && !isMainMenu)
         {
             LerpMove(pausePanel, TwoPos);
             LerpMove(settingPanel, ThreePos);
         }
-        if(isPausing && isInSetting)
+        if(isPausing && isInSetting && !isMainMenu)
         {
             LerpMove(pausePanel, OnePos);
             LerpMove(settingPanel, TwoPos);
         }
-        if (!isPausing)
+        if (!isPausing && !isMainMenu)
         {
             LerpMove(pausePanel, ThreePos);
             LerpMove(settingPanel, FourPos);
             isInSetting = false;
+        }
+
+
+        if(isInSetting && isMainMenu)
+        {
+            LerpMove(settingPanel, TwoPos);
+        }
+        if(!isInSetting && isMainMenu)
+        {
+            LerpMove(settingPanel, ThreePos);
         }
     }
 
