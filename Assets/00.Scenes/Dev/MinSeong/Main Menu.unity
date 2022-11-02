@@ -361,8 +361,6 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 0.95, y: 0.95, z: 0.95}
   mouseOn: {x: 1.2, y: 1.2, z: 1.2}
-  lerpT: 0.7
-  curTime: 0
   isPointEnter: 0
 --- !u!114 &306001847
 MonoBehaviour:
@@ -379,9 +377,6 @@ MonoBehaviour:
   SceneName: Level Select
   level: 0
   isOpenLevel: 0
-  text: {fileID: 0}
-  sceneLoader: {fileID: 0}
-  aa: {fileID: 0}
 --- !u!114 &306001848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,8 +1248,6 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 0.95, y: 0.95, z: 0.95}
   mouseOn: {x: 1.2, y: 1.2, z: 1.2}
-  lerpT: 0.7
-  curTime: 0
   isPointEnter: 0
 --- !u!114 &1258413729
 MonoBehaviour:
@@ -1271,9 +1264,6 @@ MonoBehaviour:
   SceneName: no
   level: 0
   isOpenLevel: 0
-  text: {fileID: 0}
-  sceneLoader: {fileID: 0}
-  aa: {fileID: 0}
 --- !u!114 &1258413730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,9 +1416,6 @@ MonoBehaviour:
   SceneName: Level Select
   level: 0
   isOpenLevel: 0
-  text: {fileID: 0}
-  sceneLoader: {fileID: 0}
-  aa: {fileID: 0}
 --- !u!114 &1286244612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,8 +1525,6 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 0.95, y: 0.95, z: 0.95}
   mouseOn: {x: 1.2, y: 1.2, z: 1.2}
-  lerpT: 0.7
-  curTime: 0
   isPointEnter: 0
 --- !u!114 &1286244616
 MonoBehaviour:
@@ -1689,8 +1674,6 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 0.95, y: 0.95, z: 0.95}
   mouseOn: {x: 1.2, y: 1.2, z: 1.2}
-  lerpT: 0.7
-  curTime: 0
   isPointEnter: 0
 --- !u!114 &1288303384
 MonoBehaviour:
@@ -1707,9 +1690,6 @@ MonoBehaviour:
   SceneName: Option
   level: 0
   isOpenLevel: 0
-  text: {fileID: 0}
-  sceneLoader: {fileID: 0}
-  aa: {fileID: 0}
 --- !u!114 &1288303385
 MonoBehaviour:
   m_ObjectHideFlags: 0

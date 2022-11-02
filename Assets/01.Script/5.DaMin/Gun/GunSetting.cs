@@ -30,5 +30,9 @@ public class GunSetting : ScriptableObject
     public float Intensity => intensity;
     [SerializeField] private float shaketime;
     public float Shaketime => shaketime;
+
+    [Header("GunSounds")]
+    public List<AudioClip> shotSound = new List<AudioClip>();
+    public List<AudioClip> reloadSound = new List<AudioClip>();
 }
 
