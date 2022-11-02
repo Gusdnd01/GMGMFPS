@@ -6,6 +6,7 @@ using UnityEditor;
 [AddComponentMenu("ColorHierarchy/ColorHierarchy")]
 public class ColorHierarchy : MonoBehaviour
 {
+#if UNITY_EDITOR
     //기본값 : 회색
     //빨간색 : 별로 안건들이는거
     //파란색 : Player
@@ -71,4 +72,5 @@ public class ColorHierarchy : MonoBehaviour
             coloredObjects.Add(this.gameObject, this);
         }
     }
+#endif
 }

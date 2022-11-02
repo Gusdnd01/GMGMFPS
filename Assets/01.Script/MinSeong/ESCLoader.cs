@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.Build.Content;
+#endif
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -17,6 +19,8 @@ public class ESCLoader : MonoBehaviour
     [SerializeField] GameObject ThreePos;
     [SerializeField] GameObject FourPos;
 
+    [SerializeField] GameObject resolutions;
+
     [SerializeField]
     AudioMixer audioMixer;
 
@@ -29,6 +33,8 @@ public class ESCLoader : MonoBehaviour
 
     public bool isPausing = false;
     public bool isInSetting = false;
+
+    public bool isFullScreen = true;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -39,8 +45,6 @@ public class ESCLoader : MonoBehaviour
         audioMixer.SetFloat("Master", masterAudioSlider.value);
         audioMixer.SetFloat("BGM", FXAudioSlider.value);
         audioMixer.SetFloat("SFX", BGMAudioSlider.value);
-
-        
 
         OnPanel();
     }
@@ -80,11 +84,27 @@ public class ESCLoader : MonoBehaviour
         }
     }
 
-    public void ChangeScreenMode(bool isFullScreenButton)
+    public void ChangeScreenMode()
     {
-        if (isFullScreenButton) { Screen.fullScreen = true; }
-        if (!isFullScreenButton) { Screen.fullScreen = false; }
+        isFullScreen = !isFullScreen;
+        Screen.fullScreen = isFullScreen;
     }
+
+/*    public void ChangeResolution()
+    {
+        if (resolutions.GetComponent<Dropdown>().value == 0)
+        {
+            Screen.SetResolution(1920, 1080, isFullScreen);
+        }
+        if (resolutions.GetComponent<Dropdown>().value == 1)
+        {
+            Screen.SetResolution(1366, 768, isFullScreen);
+        }
+        if (resolutions.GetComponent<Dropdown>().value == 2)
+        {
+            Screen.SetResolution(1024, 768, isFullScreen);
+        }
+    }*/
 
     private void LerpMove(GameObject obj, GameObject pos)
     {
