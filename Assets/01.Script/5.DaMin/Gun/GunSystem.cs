@@ -8,10 +8,11 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
+    [SerializeField] private Recoil recoil;
 
     [Header("GunSoundSetting")]
     [SerializeField] private AudioSource mysfx;
-    [SerializeField] private GunSoundSetting gunSound;
+    //[SerializeField] private GunSoundSetting gunSound;
     private int gunSoundCount;
 
     private int curbullet;
@@ -40,6 +41,7 @@ public class GunSystem : MonoBehaviour
     {
         curbullet = gunSet.MagazineSize;
         readyToShoot = true;
+        recoil = GameObject.Find("Main Camera").GetComponent<Recoil>();
     }
     private void Update()
     {
@@ -67,7 +69,8 @@ public class GunSystem : MonoBehaviour
 
         GunShotSound();
 
-        GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
+        recoil.RecoilFire();
+        //GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
 
         readyToShoot = false;
 
@@ -126,13 +129,17 @@ public class GunSystem : MonoBehaviour
 
     private void GunShotSound()
     {
-        mysfx.PlayOneShot(gunSound.shotSound[gunSoundCount]);
+        if (gunSoundCount < gunSet.reloadSound.Count)
+        {
+            gunSoundCount = 0;
+        }
+        mysfx.PlayOneShot(gunSet.shotSound[gunSoundCount]);
         gunSoundCount++;
     }
 
     private void GunReloadSound()
     {
-        int ran = Random.Range(0, gunSound.reloadSound.Count);
-        mysfx.PlayOneShot(gunSound.reloadSound[ran]);
+        int ran = Random.Range(0, gunSet.reloadSound.Count);
+        mysfx.PlayOneShot(gunSet.reloadSound[ran]);
     }
 }
