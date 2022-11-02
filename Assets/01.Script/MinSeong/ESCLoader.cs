@@ -19,7 +19,7 @@ public class ESCLoader : MonoBehaviour
     [SerializeField] GameObject ThreePos;
     [SerializeField] GameObject FourPos;
 
-    [SerializeField] GameObject resolutions;
+    [SerializeField] Dropdown resolutions;
 
     [SerializeField]
     AudioMixer audioMixer;
@@ -35,6 +35,7 @@ public class ESCLoader : MonoBehaviour
     public bool isInSetting = false;
 
     public bool isFullScreen = true;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -90,21 +91,23 @@ public class ESCLoader : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
-/*    public void ChangeResolution()
+    public void ChangeResolution(int index)
     {
-        if (resolutions.GetComponent<Dropdown>().value == 0)
+        if (index == 0)
         {
             Screen.SetResolution(1920, 1080, isFullScreen);
         }
-        if (resolutions.GetComponent<Dropdown>().value == 1)
+        else if (index == 1)
         {
             Screen.SetResolution(1366, 768, isFullScreen);
+            Debug.Log("qkRna");
         }
-        if (resolutions.GetComponent<Dropdown>().value == 2)
+        else if (index == 2)
         {
+            Debug.Log("qkRna");
             Screen.SetResolution(1024, 768, isFullScreen);
         }
-    }*/
+    }
 
     private void LerpMove(GameObject obj, GameObject pos)
     {
