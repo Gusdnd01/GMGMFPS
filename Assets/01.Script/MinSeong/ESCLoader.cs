@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -34,9 +35,13 @@ public class ESCLoader : MonoBehaviour
         {
             PauseMenu();
         }
+
         audioMixer.SetFloat("Master", masterAudioSlider.value);
         audioMixer.SetFloat("BGM", FXAudioSlider.value);
         audioMixer.SetFloat("SFX", BGMAudioSlider.value);
+
+        
+
         OnPanel();
     }
     
@@ -73,6 +78,12 @@ public class ESCLoader : MonoBehaviour
             LerpMove(settingPanel, FourPos);
             isInSetting = false;
         }
+    }
+
+    public void ChangeScreenMode(bool isFullScreenButton)
+    {
+        if (isFullScreenButton) { Screen.fullScreen = true; }
+        if (!isFullScreenButton) { Screen.fullScreen = false; }
     }
 
     private void LerpMove(GameObject obj, GameObject pos)
