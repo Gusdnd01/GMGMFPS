@@ -40,8 +40,6 @@ public class Bear : EnemyBase
     [Header("포효")]
     public float ShoutTime;
 
-    private Animator animator;
-
     private int moveSpeedHash = Animator.StringToHash("MoveSpeed");
     private int wieldHash = Animator.StringToHash("Wield");
     private int downSlapHash = Animator.StringToHash("DownSlap");
@@ -179,9 +177,9 @@ public class Bear : EnemyBase
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(transform.position, 3.5f);
+        /*Gizmos.DrawWireSphere(transform.position, 3.5f);
         Gizmos.DrawWireSphere(transform.position, 7);
-        Gizmos.DrawWireSphere(transform.position, 10);
+        Gizmos.DrawWireSphere(transform.position, 10);*/
     }
 #endif
 }

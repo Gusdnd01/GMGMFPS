@@ -32702,7 +32702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91f105c92fa86246b9e0f0de63936f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 5
+  health: 100
   moveSpeed: 5
   turnSpeed: 2.5
   gravityScale: -9.81

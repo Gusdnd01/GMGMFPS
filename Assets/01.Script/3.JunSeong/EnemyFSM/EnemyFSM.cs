@@ -42,6 +42,7 @@ public class EnemyFSM : MonoBehaviour
         fsmManager = new StateMachine<EnemyFSM>(this, new StateIdle());
         fsmManager.AddState(new StateMove());
         fsmManager.AddState(new StateAttack());
+        fsmManager.AddState(new StateDie());
 
         animator = GetComponent<Animator>();       
     }
@@ -56,6 +57,7 @@ public class EnemyFSM : MonoBehaviour
     private void Update()
     {
         fsmManager.Update(Time.deltaTime);
+        Die();
     }
 
     public void OnHit()
@@ -74,6 +76,14 @@ public class EnemyFSM : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void Die()
+    {
+        if(enemy.Health <= 0)
+        {
+            fsmManager.ChangeState<StateDie>();
+        }
     }
 
     public void SetAttackPattern(EnemyBase _enemy)

@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class EnemyBase : MonoBehaviour
 {
-    [SerializeField] protected int Health;
+    [SerializeField] protected int health;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float turnSpeed;
     [SerializeField] private float gravityScale = -9.81f;
@@ -15,9 +15,11 @@ public abstract class EnemyBase : MonoBehaviour
     public bool endAttack;
 
     public float MoveSpeed { get => moveSpeed; }
+    public int Health { get => health; set => health = value; }
 
     protected CharacterController controller;
     protected Transform player;
+    protected Animator animator;
 
     protected float Distance
     {
@@ -73,6 +75,12 @@ public abstract class EnemyBase : MonoBehaviour
     {
         endAttack = true;
     }
+
+    public void Die()
+    {
+        Debug.Log("die");
+        animator.SetTrigger("Die");
+    }
     public bool CheckAngle()
     {
         Vector2 targetDir = player.position - transform.position;
@@ -80,7 +88,6 @@ public abstract class EnemyBase : MonoBehaviour
 
         return Vector3.Dot(transform.forward, targetDir) > Mathf.Cos((angle * 0.5f) * Mathf.Deg2Rad);
     }
-
     private bool CheckGround()
     {
         return Physics.Raycast(transform.position, Vector3.down, 0.2f, 1 << 9);
