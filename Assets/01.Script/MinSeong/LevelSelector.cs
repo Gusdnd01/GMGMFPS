@@ -14,6 +14,8 @@ public class LevelSelector : MonoBehaviour
     TextMeshProUGUI text;
 
     SceneLoader sceneLoader = new SceneLoader();
+
+    [SerializeField] bool isCantGoIn;
     private void Start()
     {
         sceneLoader = GetComponent<SceneLoader>();
@@ -22,7 +24,10 @@ public class LevelSelector : MonoBehaviour
 
     public void OpenScene(string SceneName)
     {
+        if (isCantGoIn)
+        {
 
+        }
         SceneLoader.Instance.LoadScene(SceneName);
         //SceneManager.LoadScene(SceneName);
     }
