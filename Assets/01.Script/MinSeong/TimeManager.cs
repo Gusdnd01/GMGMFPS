@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public static class TimeManager
 {
@@ -12,4 +12,4 @@ public static class TimeManager
 
     static float deltaTime;
     public static float DeltaTime { get { return Time.deltaTime * timeScale; } }
-} 
+} */

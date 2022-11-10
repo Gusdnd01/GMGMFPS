@@ -9,6 +9,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected int Health;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float turnSpeed;
+    [SerializeField] private float gravityScale = -9.81f;
 
     public float minAttackDistance;
     public bool endAttack;
@@ -44,9 +45,18 @@ public abstract class EnemyBase : MonoBehaviour
 
     public abstract void Attacking(Transform target);
 
+    private void Update()
+    {
+        if (!CheckGround())
+        {
+            controller.Move(new Vector3(0 ,gravityScale,0) * Time.deltaTime);
+        }
+    }
+
     public void Move()
     {
         Vector3 moveVector = new Vector3(MoveDirection.x * moveSpeed, 0, MoveDirection.z * moveSpeed);
+        
         controller.Move(moveVector * Time.deltaTime);
 
         Turn();
@@ -59,17 +69,20 @@ public abstract class EnemyBase : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * turnSpeed);
     }
-
     public void EndAttack()
     {
         endAttack = true;
     }
-
     public bool CheckAngle()
     {
         Vector2 targetDir = player.position - transform.position;
         float angle = 10f;
 
         return Vector3.Dot(transform.forward, targetDir) > Mathf.Cos((angle * 0.5f) * Mathf.Deg2Rad);
+    }
+
+    private bool CheckGround()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.2f, 1 << 9);
     }
 }

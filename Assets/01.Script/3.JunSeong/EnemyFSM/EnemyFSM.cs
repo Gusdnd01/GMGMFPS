@@ -12,7 +12,7 @@ public class EnemyFSM : MonoBehaviour
     public float attackDistance;
     public float speed;
 
-    public float idleTime = 2f;
+    public float idleTime = 1f;
     public float moveTime = 3f;
 
     public Vector3 originPos = Vector3.zero;
