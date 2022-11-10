@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class InteractableObject : MonoBehaviour, IInteract
 {
@@ -10,12 +11,16 @@ public class InteractableObject : MonoBehaviour, IInteract
     private bool isDissolve = false;
     private float fade = 1;
 
+    [SerializeField]
+    protected MMF_Player player;
+
     private void Start(){
         mat = GetComponent<MeshRenderer>().materials;
     }
     public void OnInteractive()
     {
         isDissolve = true;
+        player.PlayFeedbacks();
         index = Random.Range(0, objects.Count);
 
         ItemPool ip = PoolManager.Instance.Pop(PoolType.Item).GetComponent<ItemPool>();

@@ -41,7 +41,7 @@ public class GunSystem : MonoBehaviour
     {
         curbullet = gunSet.MagazineSize;
         readyToShoot = true;
-        recoil = GameObject.Find("Main Camera").GetComponent<Recoil>();
+        //recoil = GameObject.Find("Main Camera").GetComponent<Recoil>();
     }
     private void Update()
     {
@@ -87,10 +87,10 @@ public class GunSystem : MonoBehaviour
             Debug.Log(rayHit.collider.name);
             Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
 
-            // if (rayHit.collider.CompareTag("Enemy"))
-            // {
-            //     //rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
-            // }
+            if (rayHit.collider.CompareTag("Enemy"))
+            {
+                 rayHit.collider.GetComponent<IDamage>().OnDamaged(50);
+            }
 
             // if (rayHit.collider.CompareTag("Player"))
             // {
