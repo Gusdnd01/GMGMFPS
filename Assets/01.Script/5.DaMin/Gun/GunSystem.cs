@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class GunSystem : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private AudioSource mysfx;
     //[SerializeField] private GunSoundSetting gunSound;
     private int gunSoundCount;
+    private LineRenderer lineRenderer;
 
     private int curbullet;
     private int bulletsShot;
@@ -29,23 +31,28 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private RaycastHit rayHit;
     [SerializeField] private LayerMask Tag;
+    [SerializeField] protected MMF_Player player;
 
     [Header("Graphics")]
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private GameObject bulletHoleGraphic;
-
-
+    [SerializeField] private RectTransform crosshair;
     [SerializeField] private TextMeshProUGUI text;
+
+    private bool Shooting = false;
+    private float currenSize = 50;
 
     private void Awake()
     {
         curbullet = gunSet.MagazineSize;
         readyToShoot = true;
         recoil = GameObject.Find("Main Camera").GetComponent<Recoil>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
     private void Update()
     {
         MyInput();
+        Cross();
 
         //SetText
         text.SetText(curbullet + " / " + gunSet.MagazineSize);
@@ -60,12 +67,20 @@ public class GunSystem : MonoBehaviour
         //Shoot
         if (readyToShoot && shooting && !reloading && curbullet > 0)
         {
+            shooting = true;
             bulletsShot = gunSet.BulletsPerTap;
             Shoot();
         }
+        else
+        {
+            shooting = false;
+        }
+
+
     }
     private void Shoot()
     {
+        player.PlayFeedbacks();
 
         GunShotSound();
 
@@ -80,16 +95,24 @@ public class GunSystem : MonoBehaviour
 
         //Calculate Direction with Spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
-
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
         {
             Debug.Log(rayHit.collider.name);
             Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
+            //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
+
+            StopCoroutine("lineStop");
+            lineRenderer.enabled = false;
+
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, attackPoint.transform.position);
+            lineRenderer.SetPosition(1, rayHit.point);
+            StartCoroutine("lineStop");
 
             // if (rayHit.collider.CompareTag("Enemy"))
             // {
-            //     //rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
+            //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
             // }
 
             // if (rayHit.collider.CompareTag("Player"))
@@ -99,8 +122,9 @@ public class GunSystem : MonoBehaviour
         }
 
 
+
         //Graphics
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        // Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         Instantiate(muzzleFlash, attackPoint.position, Quaternion.Euler(0, 270, 0));
 
         curbullet--;
@@ -141,5 +165,24 @@ public class GunSystem : MonoBehaviour
     {
         int ran = Random.Range(0, gunSet.reloadSound.Count);
         mysfx.PlayOneShot(gunSet.reloadSound[ran]);
+    }
+
+    private IEnumerator lineStop()
+    {
+        yield return new WaitForSeconds(0.2f);
+        lineRenderer.enabled = false;
+    }
+
+    private void Cross()
+    {
+        if (shooting)
+        {
+            currenSize = Mathf.Lerp(currenSize, gunSet.AimSize, Time.deltaTime * 10);
+        }
+        else
+        {
+            currenSize = Mathf.Lerp(currenSize, gunSet.IdleSize, Time.deltaTime * 10);
+        }
+        crosshair.sizeDelta = new Vector2(currenSize, currenSize);
     }
 }
