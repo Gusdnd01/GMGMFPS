@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class ESCLoader : MonoBehaviour
 {
+    [SerializeField] Button[] willActiveFalse;
+
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject settingPanel;
 
@@ -19,6 +21,7 @@ public class ESCLoader : MonoBehaviour
     [SerializeField] GameObject ThreePos;
     [SerializeField] GameObject FourPos;
 
+    [Space]
     [SerializeField]
     AudioMixer audioMixer;
 
@@ -41,7 +44,11 @@ public class ESCLoader : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseMenu();
-        }
+        }   
+            foreach (Button b in willActiveFalse)
+            {
+                b.interactable = !isInSetting;
+            }
 
         audioMixer.SetFloat("Master", masterAudioSlider.value);
         audioMixer.SetFloat("BGM", FXAudioSlider.value);
@@ -49,7 +56,7 @@ public class ESCLoader : MonoBehaviour
 
         OnPanel();
     }
-    
+
     public void PauseMenu()
     {
         isPausing = !isPausing;
@@ -67,12 +74,12 @@ public class ESCLoader : MonoBehaviour
 
     private void OnPanel()
     {
-        if(isPausing && !isInSetting && !isMainMenu)
+        if (isPausing && !isInSetting && !isMainMenu)
         {
             LerpMove(pausePanel, TwoPos);
             LerpMove(settingPanel, ThreePos);
         }
-        if(isPausing && isInSetting && !isMainMenu)
+        if (isPausing && isInSetting && !isMainMenu)
         {
             LerpMove(pausePanel, OnePos);
             LerpMove(settingPanel, TwoPos);
@@ -85,11 +92,11 @@ public class ESCLoader : MonoBehaviour
         }
 
 
-        if(isInSetting && isMainMenu)
+        if (isInSetting && isMainMenu)
         {
             LerpMove(settingPanel, TwoPos);
         }
-        if(!isInSetting && isMainMenu)
+        if (!isInSetting && isMainMenu)
         {
             LerpMove(settingPanel, ThreePos);
         }

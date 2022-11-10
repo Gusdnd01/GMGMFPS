@@ -11,43 +11,25 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
-    [Header("OpenScene()에 쓰이는 것")]
-    public string SceneName;
-
-    [Header("OpenLevel()에 쓰이는 것")]
-    public int level;
-    public bool isOpenLevel;
-
     TextMeshProUGUI text;
 
     SceneLoader sceneLoader = new SceneLoader();
-
-    [SerializeField] TextMeshProUGUI aa;
     private void Start()
     {
         sceneLoader = GetComponent<SceneLoader>();
-        if (isOpenLevel)
-        {
-            text = GetComponentInChildren<TextMeshProUGUI>();
-            text.text = level.ToString();
-        }
+        text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void OpenScene()
+    public void OpenScene(string SceneName)
     {
 
         SceneLoader.Instance.LoadScene(SceneName);
         //SceneManager.LoadScene(SceneName);
     }
 
-    public void OpenLevel()
-    {
-        SceneLoader.Instance.LoadScene("Level " + level.ToString());
-
-    }
-
     public void Quit()
     {
         Application.Quit();
+        Debug.Log("Quit");
     }
 }
