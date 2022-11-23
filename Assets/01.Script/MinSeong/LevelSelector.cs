@@ -15,21 +15,32 @@ public class LevelSelector : MonoBehaviour
 
     SceneLoader sceneLoader = new SceneLoader();
 
+    [Space]
     [SerializeField] bool isCantGoIn;
+    [SerializeField] GameObject cantGoInCanvas;
     private void Start()
     {
         sceneLoader = GetComponent<SceneLoader>();
         text = GetComponentInChildren<TextMeshProUGUI>();
+
+        if (isCantGoIn)
+            cantGoInCanvas.SetActive(false);
     }
 
     public void OpenScene(string SceneName)
     {
         if (isCantGoIn)
         {
-
+            cantGoInCanvas.SetActive(true);
+            return;
         }
         SceneLoader.Instance.LoadScene(SceneName);
         //SceneManager.LoadScene(SceneName);
+    }
+
+    public void CancelWindow(GameObject window)
+    {
+        window.SetActive(false);
     }
 
     public void Quit()
