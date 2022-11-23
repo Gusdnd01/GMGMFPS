@@ -12,7 +12,7 @@ public class EnemyFSM : MonoBehaviour
     public float attackDistance;
     public float speed;
 
-    public float idleTime = 2f;
+    public float idleTime = 1f;
     public float moveTime = 3f;
 
     public Vector3 originPos = Vector3.zero;
@@ -42,6 +42,7 @@ public class EnemyFSM : MonoBehaviour
         fsmManager = new StateMachine<EnemyFSM>(this, new StateIdle());
         fsmManager.AddState(new StateMove());
         fsmManager.AddState(new StateAttack());
+        fsmManager.AddState(new StateDie());
 
         animator = GetComponent<Animator>();       
     }
@@ -56,6 +57,7 @@ public class EnemyFSM : MonoBehaviour
     private void Update()
     {
         fsmManager.Update(Time.deltaTime);
+        Die();
     }
 
     public void OnHit()
@@ -74,6 +76,14 @@ public class EnemyFSM : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void Die()
+    {
+        if(enemy.Health <= 0)
+        {
+            fsmManager.ChangeState<StateDie>();
+        }
     }
 
     public void SetAttackPattern(EnemyBase _enemy)
