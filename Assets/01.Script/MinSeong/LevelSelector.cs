@@ -11,44 +11,41 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
-    [Header("OpenScene()에 쓰이는 것")]
-    public string SceneName;
-
-    [Header("OpenLevel()에 쓰이는 것")]
-    public int level;
-    public bool isOpenLevel;
-
     TextMeshProUGUI text;
 
     SceneLoader sceneLoader = new SceneLoader();
 
-    [SerializeField] TextMeshProUGUI aa;
+    [Space]
+    [SerializeField] bool isCantGoIn;
+    [SerializeField] GameObject cantGoInCanvas;
     private void Start()
     {
         sceneLoader = GetComponent<SceneLoader>();
-        if (isOpenLevel)
-        {
-            text = GetComponentInChildren<TextMeshProUGUI>();
-            text.text = level.ToString();
-        }
+        text = GetComponentInChildren<TextMeshProUGUI>();
+
+        if (isCantGoIn)
+            cantGoInCanvas.SetActive(false);
     }
 
-    public void OpenScene()
+    public void OpenScene(string SceneName)
     {
-        if (gameObject.name == "Start")
+        if (isCantGoIn)
         {
-            SceneLoader.Instance.LoadScene(SceneName);
-            //SceneManager.LoadScene(SceneName);
+            cantGoInCanvas.SetActive(true);
+            return;
         }
+        SceneLoader.Instance.LoadScene(SceneName);
+        //SceneManager.LoadScene(SceneName);
     }
 
-    public void OpenLevel()
+    public void CancelWindow(GameObject window)
     {
-        SceneLoader.Instance.LoadScene("Level " + level.ToString());
+        window.SetActive(false);
     }
 
     public void Quit()
     {
         Application.Quit();
+        Debug.Log("Quit");
     }
 }

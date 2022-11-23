@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/00.Scenes/Dev/MinSeong/Level Select.unity
+    guid: 96e396bea8c2db2419c4632f22bcbdde
+  - enabled: 1
     path: Assets/00.Scenes/Public/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
@@ -32,9 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Dev/MinSeong/Level 3.unity
     guid: f70926222a38bec4e93d0e52c7685773
-  - enabled: 1
-    path: Assets/00.Scenes/Dev/MinSeong/Level Select.unity
-    guid: 96e396bea8c2db2419c4632f22bcbdde
   - enabled: 1
     path: Assets/00.Scenes/Dev/MinSeong/Main Menu.unity
     guid: 875f0c60ca9ab67409b579ccf36156e4
