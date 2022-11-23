@@ -36,6 +36,7 @@ public class DropTile : MonoBehaviour
                 {
                     _tile[count].DOMoveY(_tile[count].position.y - _dropedLength, _dropTime);
                     _dropedtile.Add(_tile[count]);
+                    _tile[count].GetComponent<MeshCollider>().enabled = false;
                     _tile.Remove(_tile[count]);
                     Debug.Log("¶³±ÅÁü");
                 }
@@ -58,7 +59,7 @@ public class DropTile : MonoBehaviour
             rand = UnityEngine.Random.Range(0, _dropedtile.Count);
             if (_dropedtile.Count != 0)
             {
-                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime);
+                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime).OnComplete(() => _dropedtile[rand].GetComponent<MeshCollider>().enabled = false);
                 _tile.Add(_dropedtile[rand]);
                 _dropedtile.Remove(_dropedtile[rand]);
             }
