@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public float currentHp; //이설아가 pulic으로 바꿈! 허락받음!!!
     private bool isDie = false;
     private bool isJumped;
+    public string _tag;
 
     [Header("Volume Property")]
     [SerializeField] protected MMF_Player feedbacks;
@@ -61,7 +62,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             
         }
-
     }
 
     private IEnumerator Dash()
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour, IDamage
             m_Speed /= 4;
             yield return new WaitForSeconds(2f);
         }
-    }//���� ���� ���� ���� �ٴ� ������ �޼ӿ����� �����̵��� �� �� �־�� -������
+    }
 
     private void Animate()
     {
@@ -160,8 +160,18 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(_tag))
+        {
+            Die();
+        }
+    }
+
     private void Die()
     {
-        //�׾��� �� ����
+        print("떨어져서 죽음, GameOver");
+
+        Time.timeScale = 0;
     }
 }

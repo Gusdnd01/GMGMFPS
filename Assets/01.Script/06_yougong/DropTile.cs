@@ -59,7 +59,7 @@ public class DropTile : MonoBehaviour
             rand = UnityEngine.Random.Range(0, _dropedtile.Count);
             if (_dropedtile.Count != 0)
             {
-                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime).OnComplete(() => _dropedtile[rand].GetComponent<MeshCollider>().enabled = false);
+                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime).OnComplete(() => _dropedtile[rand].GetComponent<MeshCollider>().enabled = true);
                 _tile.Add(_dropedtile[rand]);
                 _dropedtile.Remove(_dropedtile[rand]);
             }
