@@ -62,3 +62,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6999c530e6ef5544adac859bcca4252, type: 3}
   - {fileID: 8300000, guid: a6cfc39d6cfbee44aa333a2fae54f77b, type: 3}
   - {fileID: 8300000, guid: 0966ef406dce1504b8b44ad9a99c1905, type: 3}
+  idleSize: 50
+  aimSize: 250
