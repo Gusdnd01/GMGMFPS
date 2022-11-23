@@ -405,14 +405,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: isMainMenu
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: willActiveFalse.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: willActiveFalse.Array.data[0]
       value: 
       objectReference: {fileID: 1258413730}
@@ -428,26 +420,6 @@ PrefabInstance:
       propertyPath: willActiveFalse.Array.data[3]
       value: 
       objectReference: {fileID: 306001848}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: willActiveFalse.Array.data[4]
-      value: 
-      objectReference: {fileID: 306001848}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: willActiveFalse.Array.data[5]
-      value: 
-      objectReference: {fileID: 306001848}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: willActiveFalse.Array.data[6]
-      value: 
-      objectReference: {fileID: 306001848}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: willActiveFalse.Array.data[7]
-      value: 
-      objectReference: {fileID: 306001848}
-    - target: {fileID: 1492887215719338727, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1492887216044657246, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5776,6 +5748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCantGoIn: 0
+  cantGoInCanvas: {fileID: 0}
 --- !u!114 &306001848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5852,7 +5826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59f54ee0e2ad04fd58ac87ab41462ec1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f9973dc02b244c54912d48accb29d82, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24740,7 +24714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59f54ee0e2ad04fd58ac87ab41462ec1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac58bb78a34e846a0a6e6ac11a9da887, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25334,7 +25308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -631, y: -175}
+  m_AnchoredPosition: {x: -631, y: -172.22}
   m_SizeDelta: {x: 517.8, y: 148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286244611
@@ -25349,6 +25323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCantGoIn: 0
+  cantGoInCanvas: {fileID: 0}
 --- !u!114 &1286244612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25425,7 +25401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59f54ee0e2ad04fd58ac87ab41462ec1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac58bb78a34e846a0a6e6ac11a9da887, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25620,6 +25596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCantGoIn: 0
+  cantGoInCanvas: {fileID: 0}
 --- !u!114 &1288303385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25696,7 +25674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59f54ee0e2ad04fd58ac87ab41462ec1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac58bb78a34e846a0a6e6ac11a9da887, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
