@@ -106,22 +106,24 @@ public class ESCLoader : MonoBehaviour
     {
         isFullScreen = !isFullScreen;
         Screen.fullScreen = isFullScreen;
+        Debug.Log("fullScreen " + isFullScreen);
     }
 
     public void ChangeResolution(int index)
     {
         if (index == 0)
         {
+            Debug.Log("1920 qkRna");
             Screen.SetResolution(1920, 1080, isFullScreen);
         }
         else if (index == 1)
         {
+            Debug.Log("1366 qkRna");
             Screen.SetResolution(1366, 768, isFullScreen);
-            Debug.Log("qkRna");
         }
         else if (index == 2)
         {
-            Debug.Log("qkRna");
+            Debug.Log("1024 qkRna");
             Screen.SetResolution(1024, 768, isFullScreen);
         }
     }
