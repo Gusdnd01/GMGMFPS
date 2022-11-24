@@ -2922,6 +2922,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1492887215237993345, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 1492887215582931569, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
