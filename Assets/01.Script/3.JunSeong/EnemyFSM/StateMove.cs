@@ -25,6 +25,7 @@ public class StateMove : State<EnemyFSM>
         if(stateMachineClass.enemy.CheckAngle())
         {
             stateMachineClass.enemy.Move();
+            Debug.Log(stateMachineClass.enemy.CheckAngle());
             Debug.Log("Move");
         }
         else
@@ -33,7 +34,8 @@ public class StateMove : State<EnemyFSM>
             Debug.Log("Turn");
         }
 
-        if(stateMachineClass.moveTime <= deltaTime || stateMachineClass.SearchPlayer())
+        if(stateMachineClass.moveTime <= deltaTime || stateMachineClass.SearchPlayer() 
+        || (stateMachineClass.FlagAttack && stateMachineClass.enemy.CheckAngle()))
         {
             stateMachine.ChangeState<StateAttack>();
         }

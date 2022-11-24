@@ -55,8 +55,6 @@ public class Bear : EnemyBase
 
     public override void Attacking(Transform target)
     {
-        Debug.Log(Distance);
-
         if(Distance <= wieldAttackDis)
         {
             Wield();
@@ -168,7 +166,7 @@ public class Bear : EnemyBase
         if (hit.Length > 0)
         {
             hit[0].GetComponent<IDamage>().OnDamaged(damage);
-            Debug.Log("attack");
+            Debug.Log("attack123123");
         }
     }
 
