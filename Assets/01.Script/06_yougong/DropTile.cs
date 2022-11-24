@@ -11,7 +11,6 @@ public class DropTile : MonoBehaviour
     [SerializeField] float _dropTime = 3f;
     [SerializeField] float _dropedLength = 10f;
 
-
     private void OnEnable()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -26,7 +25,10 @@ public class DropTile : MonoBehaviour
         int count;
         while (true)
         {
-            
+            for(int i = 0; i < _dropTiles_num; i++)
+            {
+                _tile[i].GetComponent<MeshCollider>().enabled = true;
+            }
             yield return new WaitForSeconds(_dropTime);
             Debug.Log("¶³±¸´ÂÁß");
             for (int i = 0; i < _dropTiles_num; i++)
@@ -36,19 +38,16 @@ public class DropTile : MonoBehaviour
                 {
                     _tile[count].DOMoveY(_tile[count].position.y - _dropedLength, _dropTime);
                     _dropedtile.Add(_tile[count]);
-                    _tile[count].GetComponent<MeshCollider>().enabled = false;
                     _tile.Remove(_tile[count]);
                     Debug.Log("¶³±ÅÁü");
                 }
-
-
             }
-
             yield return new WaitForSeconds(_dropTime);
 
             Uping();
         }
     }
+
 
     void Uping()
     {
@@ -59,11 +58,10 @@ public class DropTile : MonoBehaviour
             rand = UnityEngine.Random.Range(0, _dropedtile.Count);
             if (_dropedtile.Count != 0)
             {
-                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime).OnComplete(() => _dropedtile[rand].GetComponent<MeshCollider>().enabled = true);
+                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime - 0.1f);
                 _tile.Add(_dropedtile[rand]);
                 _dropedtile.Remove(_dropedtile[rand]);
             }
-
         }
     }
 }
