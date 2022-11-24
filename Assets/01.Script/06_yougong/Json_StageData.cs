@@ -46,7 +46,7 @@ public class Json_StageData : MonoSingleTon<Json_StageData>
 
 }
 
-
+#if UNITY_EDITOR
 public class Json_Stage : EditorWindow
 {
 
@@ -92,6 +92,7 @@ public class Json_Stage : EditorWindow
         File.WriteAllText(path, jsonData);
     }
 }
+#endif
 
 public class StageClearData
 {
