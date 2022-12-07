@@ -973,10 +973,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2927,10 +2927,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1492887215237993345, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Main Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 1492887215582931569, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
@@ -3018,22 +3014,6 @@ PrefabInstance:
     - target: {fileID: 1492887215582931573, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: isMainMenu
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: willActiveFalse.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215719338724, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 3073
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215719338727, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1492887216044657246, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_AnchorMax.x
