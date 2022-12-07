@@ -38,9 +38,6 @@ public class HpBar : MonoBehaviour
     private void Scale()
     {
         float value = enemy.Health / enemy.MaxHealth * originXScale;
-        Debug.Log(enemy.Health);
-        Debug.Log(enemy.MaxHealth);
-        Debug.Log(value);
 
         hpBar.localScale = new Vector3(value, hpBar.localScale.y, hpBar.localScale.z);
         hpBar.localPosition = new Vector3((originXScale - value) * 0.5f, hpBar.localPosition.y, hpBar.localPosition.z);
