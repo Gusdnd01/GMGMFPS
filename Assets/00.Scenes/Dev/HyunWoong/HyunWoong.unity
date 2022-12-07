@@ -18358,6 +18358,7 @@ GameObject:
   - component: {fileID: 999787587}
   - component: {fileID: 999787586}
   - component: {fileID: 999787591}
+  - component: {fileID: 999787592}
   m_Layer: 0
   m_Name: GunTest
   m_TagString: Untagged
@@ -18491,7 +18492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
-  recoil: {fileID: 1687477734}
+  recoil: {fileID: 999787592}
   mysfx: {fileID: 999787586}
   fpsCam: {fileID: 1687477733}
   attackPoint: {fileID: 686679976}
@@ -18665,6 +18666,23 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!114 &999787592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999787584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da00699cce9a1184b87f115afadb136c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilX: -6
+  recoilY: 2
+  recoilZ: 0.35
+  snappiness: 7
+  returnSpeed: 5
 --- !u!1001 &1001189185
 PrefabInstance:
   m_ObjectHideFlags: 0
