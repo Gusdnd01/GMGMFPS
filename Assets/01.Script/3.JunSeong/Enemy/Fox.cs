@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalBear : EnemyBase
+public class Fox : EnemyBase
 {
     private enum AttackPos
     {
@@ -49,7 +49,7 @@ public class NormalBear : EnemyBase
         damage = wieldDamage;
     }
 
-    public void CheckHit(float attackRadius)
+    public void CheckHit()
     {
         Vector3 attackingPos = Vector3.zero;
 
@@ -62,7 +62,7 @@ public class NormalBear : EnemyBase
             attackingPos = transform.position + transform.forward * 2;
         }
 
-        Collider[] hit = Physics.OverlapSphere(attackingPos, attackRadius, playerLayer);
+        Collider[] hit = Physics.OverlapSphere(attackingPos, wieldRange, playerLayer);
 
         if (hit.Length > 0)
         {

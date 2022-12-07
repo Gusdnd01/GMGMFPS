@@ -45,6 +45,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         controller = GetComponent<CharacterController>();
+
+        health = maxHealth;
     }
 
     public abstract void Attacking(Transform target);
@@ -69,13 +71,13 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     public void Turn()
     {
-        //ȸ��
         float angle = Mathf.Atan2(MoveDirection.x, MoveDirection.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * turnSpeed);
     }
     public void EndAttack()
     {
+        Debug.Log("endAttack");
         endAttack = true;
     }
 

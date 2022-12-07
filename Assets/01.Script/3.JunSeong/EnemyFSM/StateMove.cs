@@ -25,7 +25,6 @@ public class StateMove : State<EnemyFSM>
         if(stateMachineClass.enemy.CheckAngle())
         {
             stateMachineClass.enemy.Move();
-            Debug.Log(stateMachineClass.enemy.CheckAngle());
             Debug.Log("Move");
         }
         else
