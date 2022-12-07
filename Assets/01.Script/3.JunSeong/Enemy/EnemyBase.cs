@@ -6,7 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public abstract class EnemyBase : MonoBehaviour, IDamage
 {
-    [SerializeField] protected int health;
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected float health;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float turnSpeed;
     [SerializeField] private float gravityScale = -9.81f;
@@ -15,7 +16,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     public bool endAttack;
 
     public float MoveSpeed { get => moveSpeed; }
-    public int Health { get => health; set => health = value; }
+    public float Health { get => health; set => health = value; }
+    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
 
     protected CharacterController controller;
     protected Transform player;
