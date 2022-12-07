@@ -127,7 +127,13 @@ public class GunSystem : MonoBehaviour
             lineRenderer.SetPosition(0, attackPoint.transform.position);
             lineRenderer.SetPosition(1, rayHit.point);
             StartCoroutine("lineStop");
-
+            if (rayHit.collider != null)
+            {
+                if (rayHit.collider.transform.GetComponent<IDamage>() != null)
+                {
+                    rayHit.collider.transform.GetComponent<IDamage>().OnDamaged(10);
+                }
+            }
             // if (rayHit.collider.CompareTag("Enemy"))
             // {
             //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
