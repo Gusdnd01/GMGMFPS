@@ -9,7 +9,8 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
-    [SerializeField] private Recoil recoil;
+    private Recoil recoil;
+    private Recoil camRecoil;
 
     [Header("GunSoundSetting")]
     [SerializeField] private AudioSource mysfx;
@@ -32,6 +33,8 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private RaycastHit rayHit;
     [SerializeField] private LayerMask Tag;
     [SerializeField] protected MMF_Player player;
+    [SerializeField] private Transform GunPos;
+    [SerializeField] private Transform GunZoomPos;
 
     [Header("Graphics")]
     [SerializeField] private GameObject muzzleFlash;
@@ -41,12 +44,16 @@ public class GunSystem : MonoBehaviour
 
     private bool Shooting = false;
     private float currenSize = 50;
+    private GameObject MainCamera;
+    private Camera CameraComp;
 
     private void Awake()
     {
         curbullet = gunSet.MagazineSize;
         readyToShoot = true;
-        recoil = GameObject.Find("Main Camera").GetComponent<Recoil>();
+        MainCamera = GameObject.Find("Main Camera");
+        camRecoil = MainCamera.GetComponent<Recoil>();
+        CameraComp = MainCamera.GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
     }
     private void Update()
@@ -76,6 +83,16 @@ public class GunSystem : MonoBehaviour
             shooting = false;
         }
 
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
+            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
+        }
+        else
+        {
+            CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
+            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
+        }
 
     }
     private void Shoot()
@@ -85,6 +102,7 @@ public class GunSystem : MonoBehaviour
         GunShotSound();
 
         recoil.RecoilFire();
+        camRecoil.RecoilFire();
         //GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
 
         readyToShoot = false;
