@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] private PlayerData playerData;
     private float m_Hp;
     private float m_Speed;
-    public float currentHp; //이설아가 pulic으로 바꿈! 허락받음!!!
+    public float currentHp;
     private bool isDie = false;
     private bool isJumped;
     public string _tag;
@@ -31,10 +31,13 @@ public class PlayerController : MonoBehaviour, IDamage
     private float intencity = 0;
     private bool isAya = false;
 
+    private PlayerHp playerHp;
+
     private void Awake()
     {
         volumeProfile.TryGet(out vignette);
         vignette.intensity.Override(0);
+        playerHp = GetComponent<PlayerHp>();
     }
 
     private void Start()
@@ -145,6 +148,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void OnDamaged(int damage)
     {
         currentHp -= damage;
+        playerHp.ModifyHp(currentHp/m_Hp);
         print(currentHp/m_Hp);
         if (currentHp/m_Hp <= 0.3f)// 100 <= 0.3f
         {
