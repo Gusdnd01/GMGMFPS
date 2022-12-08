@@ -9,6 +9,7 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
+    [SerializeField]
     private Recoil recoil;
     private Recoil camRecoil;
 
@@ -86,12 +87,12 @@ public class GunSystem : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1))
         {
             CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
+            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 7);
         }
         else
         {
             CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
+            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 7);
         }
 
     }

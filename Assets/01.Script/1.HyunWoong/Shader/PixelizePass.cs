@@ -12,13 +12,11 @@ public class PixelizePass : ScriptableRenderPass
     private Material material;
     private int pixelScreenHeight, pixelScreenWidth;
 
-    public string URL = "Hidden/Pixelize";
-
     public PixelizePass(PixelizeFeature.CustomPassSetting settings)
     {
         this.settings = settings;
         this.renderPassEvent = settings.renderPassEvent;
-        if (material == null) material = CoreUtils.CreateEngineMaterial(URL);
+        if (material == null) material = CoreUtils.CreateEngineMaterial("Hidden/Pixelize");
     }
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {

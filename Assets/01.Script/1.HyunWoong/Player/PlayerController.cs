@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Awake()
     {
         volumeProfile.TryGet(out vignette);
-        vignette.intensity.Override(0);
         playerHp = GetComponent<PlayerHp>();
     }
 
@@ -56,16 +55,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         Animate();
 
-        VignetteOverride();
     }
 
-    private void VignetteOverride()
-    {
-        if (isAya)
-        {
-            
-        }
-    }
 
     private IEnumerator Dash()
     {
