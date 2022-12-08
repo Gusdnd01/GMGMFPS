@@ -83,12 +83,18 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     public void Die()
     {
-        GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Remove(this.gameObject);
-
         Debug.Log("die");
         animator.SetTrigger("Die");
+    }
+
+    //잡몹 전용
+    public void DieProcess()
+    {
+        GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Remove(this.gameObject);
+        Destroy(gameObject);
         //보스 아니면 오브젝트풀로 넣어주기
     }
+
     public bool CheckAngle()
     {
         Vector2 targetDir = player.position - transform.position.normalized;
