@@ -7,8 +7,11 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
     private List<int> uesdSpawnPoint = new List<int>();
+    [SerializeField] private int spawnCount = 0;
 
     public GameObject enemyPrefab;
+    public GameObject boss;
+    public Transform bossSpawnPoint;
     public int spawnNumber = 0;
 
     private Transform playerTrm;
@@ -32,7 +35,8 @@ public class EnemySpawn : MonoBehaviour
     {
         if(CheckSpawn())
         {
-            Spawn();
+            if(spawnCount <= spawnNumber)
+                Spawn();
         }
     }
 
@@ -41,6 +45,13 @@ public class EnemySpawn : MonoBehaviour
         uesdSpawnPoint.Clear();
         enemies.Clear();
 
+        if(spawnCount == spawnNumber)
+        {
+            SpawnBoss();
+
+            return;
+        }
+
         for (int i = 0; i < spawnNumber; i++)
         {
             Transform spawnPoint = spawnPoints[SetSpawnPointValue()];
@@ -48,7 +59,15 @@ public class EnemySpawn : MonoBehaviour
             GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, SetRotation(spawnPoint)); //나중에 오브젝트 풀 사용 개객꺄
             enemies.Add(enemy);
             Debug.Log("spawn");
-        }      
+        }
+
+        spawnCount++;
+    }
+
+    private void SpawnBoss()
+    {
+        Instantiate(boss, bossSpawnPoint.position, Quaternion.identity);
+        spawnCount++;
     }
 
     private bool CheckSpawn()
