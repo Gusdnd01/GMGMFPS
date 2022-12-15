@@ -14,19 +14,19 @@ public class Bear : EnemyBase
     [Header("앞발 휘두르기")]
     public int wieldDamage = 20; 
     public float wieldRange = 2f;
-    public float wieldAttackDis = 2f;
+    public float wieldAttackDis = 4.75f;
     public float wieldTime;
 
     [Header("앞발 내려치기")]
     public int downSlapDamage = 30;
     public float downSlapRange = 8f;
-    public float downSlapAttackDis = 3.75f;
+    public float downSlapAttackDis = 10f;
     public float downSlapTime;
 
     [Header("크게 내려치기")]
     public int bigDownSlapDamage = 50;
     public float bigDownSlapRange = 10f;
-    public float bigDownSlapAttackDis = 5f;
+    public float bigDownSlapAttackDis = 15f;
     public float bigDownSlapTime;
 
     [Header("돌진")]
@@ -34,14 +34,11 @@ public class Bear : EnemyBase
     public float rushSpeed = 10f;
     public float rushTime;
     public LayerMask wallLayer;
-    private float wallRaycastDistance;
     private bool rushHit;
     private bool isRush;
 
     [Header("포효")]
     public float ShoutTime;
-
-    private Animator animator;
 
     private int moveSpeedHash = Animator.StringToHash("MoveSpeed");
     private int wieldHash = Animator.StringToHash("Wield");
@@ -169,7 +166,7 @@ public class Bear : EnemyBase
         if (hit.Length > 0)
         {
             hit[0].GetComponent<IDamage>().OnDamaged(damage);
-            Debug.Log("attack");
+            Debug.Log("attack123123");
         }
     }
 
@@ -178,9 +175,9 @@ public class Bear : EnemyBase
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(transform.position, 7.5f / 2);
-        Gizmos.DrawWireSphere(transform.position, 10 / 2);
-        Gizmos.DrawWireSphere(transform.position + transform.forward * 2, 1);
+        /*Gizmos.DrawWireSphere(transform.position, 3.5f);
+        Gizmos.DrawWireSphere(transform.position, 7);
+        Gizmos.DrawWireSphere(transform.position, 10);*/
     }
 #endif
 }
