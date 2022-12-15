@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: bd8a5889ac71fbb40b0075fa08e2ea17
+<<<<<<<< HEAD:Assets/01.Script/06_yougong.meta
+guid: da96a6ad0b6450240b28c856ac68d190
+folderAsset: yes
+========
+guid: 5ba3e163e75a716478245edea9e1c850
+>>>>>>>> JunSung:Assets/00.Scenes/Dev/JunSeong/Junsung.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
