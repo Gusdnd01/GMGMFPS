@@ -117,8 +117,9 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
         {
+            print("시발 시발 시발");
             Debug.Log(rayHit.collider.name);
-            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
+            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red,10);
             //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
 
             StopCoroutine("lineStop");
@@ -129,6 +130,10 @@ public class GunSystem : MonoBehaviour
             lineRenderer.SetPosition(1, rayHit.point);
             StartCoroutine("lineStop");
 
+            if(rayHit.transform.CompareTag("Enemy")){
+                rayHit.transform.GetComponent<IDamage>().OnDamaged(10);
+                print("쳐맞았죠? 아프죠?");
+            }
             // if (rayHit.collider.CompareTag("Enemy"))
             // {
             //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
