@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< Updated upstream
   tags: []
+=======
+  tags:
+  - DiePlane
+  - bullet
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -14,7 +20,14 @@ TagManager:
   - 
   - Player
   - Wall
+<<<<<<< Updated upstream
   - 
+=======
+  - Ground
+  - BossBody
+  - EnemyOnly
+  - bullet
+>>>>>>> Stashed changes
   - 
   - 
   - 
