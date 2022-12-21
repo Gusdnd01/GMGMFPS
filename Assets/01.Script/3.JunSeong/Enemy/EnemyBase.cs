@@ -45,6 +45,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         controller = GetComponent<CharacterController>();
+
+        health = maxHealth;
     }
 
     public abstract void Attacking(Transform target);
@@ -69,13 +71,13 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     public void Turn()
     {
-        //회占쏙옙
         float angle = Mathf.Atan2(MoveDirection.x, MoveDirection.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, Time.deltaTime * turnSpeed);
     }
     public void EndAttack()
     {
+        Debug.Log("endAttack");
         endAttack = true;
     }
 
@@ -84,6 +86,15 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         Debug.Log("die");
         animator.SetTrigger("Die");
     }
+
+    //잡몹 전용
+    public void DieProcess()
+    {
+        GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Remove(this.gameObject);
+        Destroy(gameObject);
+        //보스 아니면 오브젝트풀로 넣어주기
+    }
+
     public bool CheckAngle()
     {
         Vector2 targetDir = player.position - transform.position.normalized;
