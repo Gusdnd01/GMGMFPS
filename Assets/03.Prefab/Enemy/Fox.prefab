@@ -574,9 +574,9 @@ GameObject:
   - component: {fileID: 8283175643815309868}
   - component: {fileID: 8283175643815309871}
   - component: {fileID: 8283175643815309869}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Fox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
