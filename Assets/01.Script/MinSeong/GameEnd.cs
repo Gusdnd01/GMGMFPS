@@ -9,7 +9,6 @@ public class GameEnd : MonoBehaviour
     [SerializeField] GameObject onScreenPos;
     [SerializeField] GameObject outScreenPos;
 
-    public bool isGameClear;
     public bool isGameEnd = false;
     void Start()
     {
@@ -21,17 +20,17 @@ public class GameEnd : MonoBehaviour
     {
         if (isGameEnd)
         {
-            if (isGameClear)
+            if (isGameEnd)
             {
                 LerpMove(clearPanel, onScreenPos);
                 LerpMove(overPanel, outScreenPos);
             }
-            else if (!isGameClear)
-            {
-                LerpMove(overPanel, onScreenPos);
-                LerpMove(clearPanel, outScreenPos);
-            }
         }
+    }
+
+    public void GameClear()
+    {
+        isGameEnd = true;
     }
 
     private void LerpMove(GameObject obj, GameObject pos)
