@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - DiePlane
-  - Enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -14,11 +12,6 @@ TagManager:
   - Water
   - UI
   - 
-  - Player
-  - Wall
-  - Ground
-  - BossBody
-  - EnemyOnly
   - 
   - 
   - 
@@ -38,11 +31,13 @@ TagManager:
   - 
   - 
   - 
-  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
-  - name: text
-    uniqueID: 4148568639
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

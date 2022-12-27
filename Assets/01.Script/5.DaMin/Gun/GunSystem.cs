@@ -9,8 +9,9 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
-    [SerializeField]
+
     private Recoil recoil;
+
     private Recoil camRecoil;
 
     [Header("GunSoundSetting")]
@@ -42,18 +43,20 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private GameObject bulletHoleGraphic;
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameObject BulletOBJ;
 
     private bool Shooting = false;
     private float currenSize = 50;
     private GameObject MainCamera;
     private Camera CameraComp;
+    public Vector3 BulletMovePos;
 
     private void Awake()
     {
         curbullet = gunSet.MagazineSize;
         readyToShoot = true;
         MainCamera = GameObject.Find("Main Camera");
-        camRecoil = MainCamera.GetComponent<Recoil>();
+        camRecoil = GetComponent<Recoil>();
         CameraComp = MainCamera.GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
     }
@@ -87,12 +90,12 @@ public class GunSystem : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1))
         {
             CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 7);
+            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
         }
         else
         {
             CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 7);
+            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
         }
 
     }
@@ -102,8 +105,8 @@ public class GunSystem : MonoBehaviour
 
         GunShotSound();
 
-        recoil.RecoilFire();
-        camRecoil.RecoilFire();
+        //recoil.RecoilFire();
+        //camRecoil.RecoilFire();
         //GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
 
         readyToShoot = false;
@@ -117,9 +120,8 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
         {
-            print("시발 시발 시발");
             Debug.Log(rayHit.collider.name);
-            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red,10);
+            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
             //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
 
             StopCoroutine("lineStop");
@@ -128,11 +130,17 @@ public class GunSystem : MonoBehaviour
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, attackPoint.transform.position);
             lineRenderer.SetPosition(1, rayHit.point);
-            StartCoroutine("lineStop");
+            BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
+            GameObject bullet = Instantiate(BulletOBJ, attackPoint);
 
-            if(rayHit.transform.CompareTag("Enemy")){
-                rayHit.transform.GetComponent<IDamage>().OnDamaged(10);
-                print("쳐맞았죠? 아프죠?");
+            //bullet.transform.position = Vector3.MoveTowards(transform.position, rayHit.point, 5 * Time.deltaTime);
+            StartCoroutine("lineStop");
+            if (rayHit.collider != null)
+            {
+                if (rayHit.collider.transform.GetComponent<IDamage>() != null)
+                {
+                    rayHit.collider.transform.GetComponent<IDamage>().OnDamaged(10);
+                }
             }
             // if (rayHit.collider.CompareTag("Enemy"))
             // {
