@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("Player")]
     [SerializeField] private CharacterController player;
     [SerializeField] private PlayerData playerData;
-    private float m_Hp;
     private float m_Speed;
     public float currentHp;
     private bool isDie = false;
@@ -41,8 +40,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Start()
     {
-        m_Hp = playerData.hp;
-        currentHp = m_Hp;
+        currentHp = playerData.hp;
         m_Speed = playerData.speed;
 
         StartCoroutine(Jump());
@@ -139,16 +137,16 @@ public class PlayerController : MonoBehaviour, IDamage
     public void OnDamaged(int damage)
     {
         currentHp -= damage;
-        playerHp.ModifyHp(currentHp/m_Hp);
-        print(currentHp/m_Hp);
-        if (currentHp/m_Hp <= 0.3f)// 100 <= 0.3f
+        playerHp.ModifyHp(currentHp/currentHp);
+        print(currentHp/currentHp);
+        if (currentHp/currentHp <= 0.3f)// 100 <= 0.3f
         {
             intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
             vignette.color.Override(Color.red);
             vignette.intensity.Override(intencity);
         }
 
-        if (m_Hp <= 0f)
+        if (currentHp <= 0f)
         {
             print("Player Die");
             Die();
