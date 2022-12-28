@@ -10,6 +10,7 @@ public class Fox : EnemyBase
         front
     }
     private AttackPos attackPos;
+    private int damage;
 
     [Header("앞발 휘두르기")]
     public int wieldDamage = 20;

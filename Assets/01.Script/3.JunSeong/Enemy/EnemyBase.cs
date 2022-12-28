@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[RequireComponent(typeof(CharacterController))]
 public abstract class EnemyBase : MonoBehaviour, IDamage
 {
     [SerializeField] protected float maxHealth;
@@ -12,11 +11,9 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float turnSpeed;
     [SerializeField] private float gravityScale = -9.81f;
-    public int damage = 0;
 
     public float minAttackDistance;
     public bool endAttack;
-    public bool SetGravity = false;
 
     public float MoveSpeed { get => moveSpeed; }
     public float Health { get => health; set => health = value; }
@@ -48,7 +45,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
 
         health = maxHealth;
     }
@@ -57,7 +53,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     private void Update()
     {
-        if (!CheckGround() && SetGravity)
+        if (!CheckGround())
         {
             controller.Move(new Vector3(0 ,gravityScale,0) * Time.deltaTime);
         }
