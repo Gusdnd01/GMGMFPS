@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 #if UNITY_EDITOR
 using UnityEditor.Build.Content;
 #endif
@@ -9,8 +10,6 @@ using UnityEngine.UI;
 
 public class ESCLoader : MonoBehaviour
 {
-    [SerializeField] Button[] willActiveFalse;
-
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject settingPanel;
 
@@ -45,16 +44,25 @@ public class ESCLoader : MonoBehaviour
         {
             PauseMenu();
         }   
-            foreach (Button b in willActiveFalse)
-            {
-                b.interactable = !isInSetting;
-            }
 
         audioMixer.SetFloat("Master", masterAudioSlider.value);
         audioMixer.SetFloat("BGM", FXAudioSlider.value);
         audioMixer.SetFloat("SFX", BGMAudioSlider.value);
 
         OnPanel();
+
+        if (isPausing)
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void PauseMenu()

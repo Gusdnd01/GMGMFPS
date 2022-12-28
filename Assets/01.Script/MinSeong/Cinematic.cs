@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Cinematic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] bool isCinematic;
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

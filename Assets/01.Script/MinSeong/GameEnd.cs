@@ -31,7 +31,6 @@ public class GameEnd : MonoBehaviour
     public void GameClear()
     {
         isGameEnd = true;
-        Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -45,7 +44,6 @@ public class GameEnd : MonoBehaviour
 
     public void gomenu()
     {
-        Time.timeScale = 1;
         isGameEnd = false;
         clearPanel.GetComponent<RectTransform>().anchoredPosition = outScreenPos.GetComponent<RectTransform>().anchoredPosition;
         overPanel.GetComponent<RectTransform>().anchoredPosition = outScreenPos.GetComponent<RectTransform>().anchoredPosition;
