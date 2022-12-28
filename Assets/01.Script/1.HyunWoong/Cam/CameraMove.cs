@@ -25,15 +25,18 @@ public class CameraMove : MonoBehaviour
     }
     private void MouseControll()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        if(Time.timeScale != 0)
+        {
+            float mouseX = Input.GetAxis("Mouse X");
+            float mouseY = Input.GetAxis("Mouse Y");
 
-        xRotation -= mouseY;
+            xRotation -= mouseY;
 
-        xRotation = Mathf.Clamp(xRotation, -70f, 70f);
+            xRotation = Mathf.Clamp(xRotation, -70f, 70f);
 
-        transform.localRotation = Quaternion.Euler(xRotation * m_sensitivity, 0, 0);
+            transform.localRotation = Quaternion.Euler(xRotation * m_sensitivity, 0, 0);
 
-        player.Rotate(0, mouseX * m_sensitivity, 0);
+            player.Rotate(0, mouseX * m_sensitivity, 0);
+        }
     }
 }

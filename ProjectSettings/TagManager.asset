@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DiePlane
   - Enemy
+  - DangerousPanel
   layers:
   - Default
   - TransparentFX
