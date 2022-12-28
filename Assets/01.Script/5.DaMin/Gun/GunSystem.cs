@@ -27,6 +27,8 @@ public class GunSystem : MonoBehaviour
     private bool shooting;
     private bool readyToShoot;
     private bool reloading;
+    [Space]
+    [SerializeField] private ParticleSystem magicBallStart;
 
 
     [Header("Reference")]
@@ -131,7 +133,8 @@ public class GunSystem : MonoBehaviour
             lineRenderer.SetPosition(0, attackPoint.transform.position);
             lineRenderer.SetPosition(1, rayHit.point);
             BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
-            GameObject bullet = Instantiate(BulletOBJ, attackPoint);
+            GameObject bullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
+            magicBallStart.Play();
 
             //bullet.transform.position = Vector3.MoveTowards(transform.position, rayHit.point, 5 * Time.deltaTime);
             StartCoroutine("lineStop");
