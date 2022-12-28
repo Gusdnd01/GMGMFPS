@@ -9,6 +9,7 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
+    [SerializeField] private float Power = 40;
 
     private Recoil recoil;
 
@@ -49,7 +50,6 @@ public class GunSystem : MonoBehaviour
     private float currenSize = 50;
     private GameObject MainCamera;
     private Camera CameraComp;
-    public Vector3 BulletMovePos;
 
     private void Awake()
     {
@@ -105,6 +105,8 @@ public class GunSystem : MonoBehaviour
 
         GunShotSound();
 
+
+
         //recoil.RecoilFire();
         //camRecoil.RecoilFire();
         //GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
@@ -115,43 +117,63 @@ public class GunSystem : MonoBehaviour
         float x = Random.Range(-gunSet.Spread, gunSet.Spread);
         float y = Random.Range(-gunSet.Spread, gunSet.Spread);
 
+        Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); //Just a ray through the middle of your current view
+        RaycastHit hit;
+
+        //check if ray hits something
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+            targetPoint = hit.point;
+        else
+            targetPoint = ray.GetPoint(75);
+
+        Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        GameObject bullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
+        bullet.transform.forward = directionWithSpread.normalized;
+        bullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * Power, ForceMode.Impulse);
+
         //Calculate Direction with Spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
         //RayCast
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
-        {
-            Debug.Log(rayHit.collider.name);
-            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
-            //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
+        // if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
+        // {
+        //     Debug.Log(rayHit.collider.name);
+        //     Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
+        //     //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
 
-            StopCoroutine("lineStop");
-            lineRenderer.enabled = false;
+        //     StopCoroutine("lineStop");
+        //     lineRenderer.enabled = false;
 
-            lineRenderer.enabled = true;
-            lineRenderer.SetPosition(0, attackPoint.transform.position);
-            lineRenderer.SetPosition(1, rayHit.point);
-            BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
-            GameObject bullet = Instantiate(BulletOBJ, attackPoint);
+        //     lineRenderer.enabled = true;
+        //     lineRenderer.SetPosition(0, attackPoint.transform.position);
+        //     lineRenderer.SetPosition(1, rayHit.point);
+        //     //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
 
-            //bullet.transform.position = Vector3.MoveTowards(transform.position, rayHit.point, 5 * Time.deltaTime);
-            StartCoroutine("lineStop");
-            if (rayHit.collider != null)
-            {
-                if (rayHit.collider.transform.GetComponent<IDamage>() != null)
-                {
-                    rayHit.collider.transform.GetComponent<IDamage>().OnDamaged(10);
-                }
-            }
-            // if (rayHit.collider.CompareTag("Enemy"))
-            // {
-            //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
-            // }
 
-            // if (rayHit.collider.CompareTag("Player"))
-            // {
-            //     Debug.Log("굿");
-            // }
-        }
+
+
+        //     //bullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * 0, ForceMode.Impulse);
+
+        //     //bullet.transform.position = Vector3.MoveTowards(transform.position, rayHit.point, 5 * Time.deltaTime);
+        //     StartCoroutine("lineStop");
+        //     if (rayHit.collider != null)
+        //     {
+        //         if (rayHit.collider.transform.GetComponent<IDamage>() != null)
+        //         {
+        //             rayHit.collider.transform.GetComponent<IDamage>().OnDamaged(10);
+        //         }
+        //     }
+        //     // if (rayHit.collider.CompareTag("Enemy"))
+        //     // {
+        //     //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
+        //     // }
+
+        //     // if (rayHit.collider.CompareTag("Player"))
+        //     // {
+        //     //     Debug.Log("굿");
+        //     // }
+        // }
 
 
 
