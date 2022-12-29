@@ -9,8 +9,10 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
-    [SerializeField]
+    [SerializeField] private float Power = 40;
+
     private Recoil recoil;
+
     private Recoil camRecoil;
 
     [Header("GunSoundSetting")]
@@ -26,6 +28,8 @@ public class GunSystem : MonoBehaviour
     private bool shooting;
     private bool readyToShoot;
     private bool reloading;
+    [Space]
+    [SerializeField] private ParticleSystem magicBallStart;
 
 
     [Header("Reference")]
@@ -42,6 +46,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private GameObject bulletHoleGraphic;
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameObject BulletOBJ;
 
     private bool Shooting = false;
     private float currenSize = 50;
@@ -53,7 +58,7 @@ public class GunSystem : MonoBehaviour
         curbullet = gunSet.MagazineSize;
         readyToShoot = true;
         MainCamera = GameObject.Find("Main Camera");
-        camRecoil = MainCamera.GetComponent<Recoil>();
+        camRecoil = GetComponent<Recoil>();
         CameraComp = MainCamera.GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
     }
@@ -87,12 +92,12 @@ public class GunSystem : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1))
         {
             CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 7);
+            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
         }
         else
         {
             CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 7);
+            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
         }
 
     }
@@ -102,8 +107,10 @@ public class GunSystem : MonoBehaviour
 
         GunShotSound();
 
-        recoil.RecoilFire();
-        camRecoil.RecoilFire();
+
+
+        //recoil.RecoilFire();
+        //camRecoil.RecoilFire();
         //GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
 
         readyToShoot = false;
@@ -112,38 +119,68 @@ public class GunSystem : MonoBehaviour
         float x = Random.Range(-gunSet.Spread, gunSet.Spread);
         float y = Random.Range(-gunSet.Spread, gunSet.Spread);
 
+        Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); //Just a ray through the middle of your current view
+        RaycastHit hit;
+
+        //check if ray hits something
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+            targetPoint = hit.point;
+        else
+            targetPoint = ray.GetPoint(75);
+
+        Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        GameObject bullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
+        bullet.transform.forward = directionWithSpread.normalized;
+        bullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * Power, ForceMode.Impulse);
+
         //Calculate Direction with Spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
         //RayCast
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
-        {
-            print("시발 시발 시발");
-            Debug.Log(rayHit.collider.name);
-            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red,10);
-            //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
+        // if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
+        // {
+        //     Debug.Log(rayHit.collider.name);
+        //     Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
+        //     //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
 
-            StopCoroutine("lineStop");
-            lineRenderer.enabled = false;
+        //     StopCoroutine("lineStop");
+        //     lineRenderer.enabled = false;
 
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, attackPoint.transform.position);
             lineRenderer.SetPosition(1, rayHit.point);
-            StartCoroutine("lineStop");
+            BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
+            GameObject bullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
+            magicBallStart.Play();
 
-            if(rayHit.transform.CompareTag("Enemy")){
-                rayHit.transform.GetComponent<IDamage>().OnDamaged(10);
-                print("쳐맞았죠? 아프죠?");
-            }
-            // if (rayHit.collider.CompareTag("Enemy"))
-            // {
-            //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
-            // }
+        //     lineRenderer.enabled = true;
+        //     lineRenderer.SetPosition(0, attackPoint.transform.position);
+        //     lineRenderer.SetPosition(1, rayHit.point);
+        //     //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z)
 
-            // if (rayHit.collider.CompareTag("Player"))
-            // {
-            //     Debug.Log("굿");
-            // }
-        }
+
+        //     //bullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * 0, ForceMode.Impulse);
+
+        //     //bullet.transform.position = Vector3.MoveTowards(transform.position, rayHit.point, 5 * Time.deltaTime);
+        //     StartCoroutine("lineStop");
+        //     if (rayHit.collider != null)
+        //     {
+        //         if (rayHit.collider.transform.GetComponent<IDamage>() != null)
+        //         {
+        //             rayHit.collider.transform.GetComponent<IDamage>().OnDamaged(10);
+        //         }
+        //     }
+        //     // if (rayHit.collider.CompareTag("Enemy"))
+        //     // {
+        //     //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
+        //     // }
+
+        //     // if (rayHit.collider.CompareTag("Player"))
+        //     // {
+        //     //     Debug.Log("굿");
+        //     // }
+        // }
 
 
 
