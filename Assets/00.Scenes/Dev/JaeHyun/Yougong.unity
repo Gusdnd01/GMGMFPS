@@ -648,8 +648,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
-  recoil: {fileID: 999787592}
+  Power: 40
   mysfx: {fileID: 6692605}
+  magicBallStart: {fileID: 0}
   fpsCam: {fileID: 1687477733}
   attackPoint: {fileID: 160467917}
   Tag:
@@ -662,6 +663,7 @@ MonoBehaviour:
   bulletHoleGraphic: {fileID: 1000010844420130, guid: 4edabb1c0dde62743b137378c7d22980, type: 3}
   crosshair: {fileID: 0}
   text: {fileID: 0}
+  BulletOBJ: {fileID: 0}
 --- !u!65 &6692607
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33613,8 +33615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
-  recoil: {fileID: 999787592}
+  Power: 40
   mysfx: {fileID: 999787586}
+  magicBallStart: {fileID: 0}
   fpsCam: {fileID: 1687477733}
   attackPoint: {fileID: 686679976}
   Tag:
@@ -33627,6 +33630,7 @@ MonoBehaviour:
   bulletHoleGraphic: {fileID: 1000010844420130, guid: 4edabb1c0dde62743b137378c7d22980, type: 3}
   crosshair: {fileID: 985116436}
   text: {fileID: 774676402}
+  BulletOBJ: {fileID: 0}
 --- !u!65 &999787588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71952,6 +71956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Bulldog
       objectReference: {fileID: 0}
+    - target: {fileID: 463881551868065010, guid: 9183b51b5225b7a47890111b1cb58bfc, type: 3}
+      propertyPath: ShootObj
+      value: 
+      objectReference: {fileID: 5324933099490808800, guid: 745a790e1ee365f43971e09fa681c356, type: 3}
     - target: {fileID: 810136817876302892, guid: 9183b51b5225b7a47890111b1cb58bfc, type: 3}
       propertyPath: m_RootOrder
       value: 14

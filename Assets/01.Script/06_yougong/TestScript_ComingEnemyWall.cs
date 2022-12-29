@@ -54,13 +54,15 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
         float t = Random.Range(_minShootTime, _maxShootTime);
         yield return new WaitForSeconds(t);
         AttackCommand();
-        Command();
+        StartCoroutine(Command());
         Debug.Log("리로드");
     }
     void AttackCommand()
     {
-        //GameObject obj = Instantiate(ShootObj);
-        //obj.transform.position = _StartPos[Random.Range(0, _StartPos.Count)].position;
+        GameObject obj = Instantiate(ShootObj);
+        obj.transform.position = _StartPos[Random.Range(0, _StartPos.Count)].position;
+        obj.GetComponent<Rigidbody>().velocity = transform.forward * obj.GetComponent<GroundSlash>().speed * 2f;
+        obj.transform.localScale = new Vector3(1,1,1) *  2;
         Debug.Log("발사");
     }
     
