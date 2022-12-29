@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
-    GunSystem gunSystem;
-    private Vector3 movePos;
-    void Start()
-    {
-        gunSystem = FindObjectOfType<GunSystem>();
-        movePos = gunSystem.BulletMovePos;
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider collision)
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePos, Time.deltaTime * 5);
+        if (collision.transform.GetComponent<IDamage>() != null)
+        {
+            collision.transform.GetComponent<IDamage>().OnDamaged(10);
+        }
+        Destroy(this.gameObject);
     }
 }

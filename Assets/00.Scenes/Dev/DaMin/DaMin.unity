@@ -1013,6 +1013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
+  Power: 40
   mysfx: {fileID: 537002269}
   fpsCam: {fileID: 771575920}
   attackPoint: {fileID: 1284704543}
@@ -1027,7 +1028,6 @@ MonoBehaviour:
   crosshair: {fileID: 1167257756}
   text: {fileID: 885755298}
   BulletOBJ: {fileID: 4034499320097292295, guid: fb737e141018c064c88dc078e5a52fc6, type: 3}
-  BulletMovePos: {x: 0, y: 0, z: 0}
 --- !u!120 &537002271
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1356,7 +1356,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852915477}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
