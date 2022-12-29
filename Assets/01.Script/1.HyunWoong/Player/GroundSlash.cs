@@ -18,13 +18,10 @@ public class GroundSlash : MonoBehaviour
 
         if(GetComponent<Rigidbody>() != null){
             rb = GetComponent<Rigidbody>();
-            StartCoroutine(SlowDown());
         }
         else{
             print($"{gameObject.name} haven't Rigidbody");
         }
-
-        Destroy(gameObject, destroyDelay);
     }
 
     private void FixedUpdate() {
@@ -39,16 +36,5 @@ public class GroundSlash : MonoBehaviour
             }
             Debug.DrawRay(distance, transform.TransformDirection(-Vector3.up * detectingDistance), Color.blue);
         }
-    }
-
-    private IEnumerator SlowDown(){
-        float t = 1;
-        while(t>0){
-            rb.velocity = Vector3.Lerp(Vector3.zero, rb.velocity, t);
-            t -= slowDownRate;
-            yield return new WaitForSeconds(.1f);
-        }
-
-        stopped = true;
     }
 }
