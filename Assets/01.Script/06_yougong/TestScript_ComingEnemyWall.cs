@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TestScript_ComingEnemyWall : MonoBehaviour
 {
@@ -54,25 +55,31 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
         float t = Random.Range(_minShootTime, _maxShootTime);
         yield return new WaitForSeconds(t);
         AttackCommand();
-        StartCoroutine(Command());
         Debug.Log("리로드");
     }
     void AttackCommand()
     {
-        GameObject obj = Instantiate(ShootObj);
-        obj.transform.position = _StartPos[Random.Range(0, _StartPos.Count)].position;
-        obj.GetComponent<Rigidbody>().velocity = transform.forward * obj.GetComponent<GroundSlash>().speed * 2f;
-        obj.transform.localScale = new Vector3(1,1,1) *  2;
+        int t = Random.Range(0, _StartPos.Count);
         Debug.Log("발사");
+        _panels[t].color = new Color(1, 0, 0);
+        _panels[t].DOFade(0.4f, 0.3f).SetEase(Ease.InOutBounce).OnComplete(() =>
+         {
+             GameObject obj = Instantiate(ShootObj);
+             obj.transform.position = _StartPos[t].position;
+             obj.GetComponent<Rigidbody>().velocity = transform.forward * obj.GetComponent<GroundSlash>().speed * 2f;
+             obj.transform.localScale = new Vector3(1, 1, 1) * 2;
+             _panels[t].DOFade(0, 0.3f);
+             StartCoroutine(Command());
+         });
     }
     
 
     void Update()
     {
-        direction = (Player.position - transform.position).normalized;
-        direction.y = 0;
+        //direction = (Player.position - transform.position).normalized;
+        //direction.y = 0;
 
-        transform.position += direction * 5 * Time.deltaTime;
+        transform.position += transform.forward * 5 * Time.deltaTime;
         if(FindObjectOfType<GameEnd>().isGameEnd)
         {
             Destroy(this);
@@ -84,4 +91,5 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
         if(other.CompareTag("Player"))
             Player.GetComponent<PlayerController>().OnDamaged(99999);
     }
+    
 }
