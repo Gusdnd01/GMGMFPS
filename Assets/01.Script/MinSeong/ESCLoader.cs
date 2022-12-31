@@ -15,8 +15,8 @@ public class ESCLoader : MonoBehaviour
 
     [SerializeField] Button resumeButton;
 
-    [SerializeField] GameObject OnePos;
-    [SerializeField] GameObject TwoPos;
+     public GameObject OnePos;
+    public GameObject TwoPos;
     [SerializeField] GameObject ThreePos;
     [SerializeField] GameObject FourPos;
 
@@ -123,10 +123,10 @@ public class ESCLoader : MonoBehaviour
         }
     }
 
-    private void LerpMove(GameObject obj, GameObject pos)
+    public void LerpMove(GameObject obj, GameObject pos)
     {
         obj.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(obj.GetComponent<RectTransform>().anchoredPosition,
             new Vector2(pos.GetComponent<RectTransform>().anchoredPosition.x,
-            pos.GetComponent<RectTransform>().anchoredPosition.y), 0.1f);
+            pos.GetComponent<RectTransform>().anchoredPosition.y), 0.15f);
     }
 }
