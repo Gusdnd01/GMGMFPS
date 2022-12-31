@@ -151,6 +151,8 @@ public class GunSystem : MonoBehaviour
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, attackPoint.transform.position);
             lineRenderer.SetPosition(1, rayHit.point);
+            //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
+            //GameObject bullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
             magicBallStart.Play();
 
         // lineRenderer.enabled = true;
