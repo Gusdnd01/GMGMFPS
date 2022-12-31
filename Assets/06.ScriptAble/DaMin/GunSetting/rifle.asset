@@ -18,7 +18,7 @@ MonoBehaviour:
   range: 100
   reloadTime: 1
   timeBetweenShots: 0
-  magazineSize: 32
+  magazineSize: 100
   bulletsPerTap: 1
   allowButtonHold: 1
   intensity: 15

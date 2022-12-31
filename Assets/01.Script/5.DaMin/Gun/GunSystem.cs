@@ -53,7 +53,7 @@ public class GunSystem : MonoBehaviour
     private float currenSize = 50;
     private GameObject MainCamera;
     private Camera CameraComp;
-
+    private GunCameraShake shake;
     private void Awake()
     {
         curbullet = gunSet.MagazineSize;
@@ -62,6 +62,7 @@ public class GunSystem : MonoBehaviour
         camRecoil = GetComponent<Recoil>();
         CameraComp = MainCamera.GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
+        shake = MainCamera.GetComponent<GunCameraShake>();
     }
     private void Update()
     {
@@ -83,33 +84,31 @@ public class GunSystem : MonoBehaviour
         {
             shooting = true;
             bulletsShot = gunSet.BulletsPerTap;
-            Shoot();
+            LeftShoot();
         }
         else
         {
             shooting = false;
         }
 
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && curbullet >= 30)
         {
-            CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
+            RightShoot();
+            // CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
+            // transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
         }
         else
         {
-            CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
-            transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
+            // CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
+            // transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
         }
 
     }
-    private void Shoot()
+    private void LeftShoot()
     {
         player.PlayFeedbacks();
 
         GunShotSound();
-
-
-
         //recoil.RecoilFire();
         //camRecoil.RecoilFire();
         //GunCameraShake.Instance.ShakeCamera(gunSet.Intensity, gunSet.Shaketime);
@@ -154,7 +153,7 @@ public class GunSystem : MonoBehaviour
         // lineRenderer.SetPosition(1, rayHit.point);
         // //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
         // GameObject makebullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
-        magicBallStart.Play();
+        //magicBallStart.Play();
 
 
 
@@ -187,13 +186,59 @@ public class GunSystem : MonoBehaviour
 
         Instantiate(muzzleFlash, attackPoint.position, Quaternion.Euler(0, 270, 0));
 
-        curbullet--;
+        curbullet -= 5;
         bulletsShot--;
 
         Invoke("ResetShot", gunSet.TimeBetweenShooting);
 
         if (bulletsShot > 0 && curbullet > 0)
             Invoke("Shoot", gunSet.TimeBetweenShots);
+    }
+
+    private void RightShoot()
+    {
+        shake.start = true;
+        player.PlayFeedbacks();
+        Vector3 direction = fpsCam.transform.forward;
+
+        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
+        {
+            Debug.Log(rayHit.collider.name);
+            Debug.DrawRay(fpsCam.transform.position, direction * gunSet.Range, Color.red);
+            //lineRenderer(attackPoint,direction * gunSet.Range, Mathf.Infinity);
+
+            StopCoroutine("lineStop");
+            lineRenderer.enabled = false;
+
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, attackPoint.transform.position);
+            lineRenderer.SetPosition(1, rayHit.point);
+            //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
+            //GameObject makebullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
+            //magicBallStart.Play();
+            //bullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * 0, ForceMode.Impulse);
+
+            //bullet.transform.position = Vector3.MoveTowards(transform.position, rayHit.point, 5 * Time.deltaTime);
+            StartCoroutine("lineStop");
+            if (rayHit.collider != null)
+            {
+                if (rayHit.collider.transform.GetComponent<IDamage>() != null)
+                {
+                    rayHit.collider.transform.GetComponent<IDamage>().OnDamaged(gunSet.Damage * 3);
+                }
+            }
+            // if (rayHit.collider.CompareTag("Enemy"))
+            // {
+            //     rayHit.collider.GetComponent<enemy>().TakeDamage(damage);
+            // }
+
+            // if (rayHit.collider.CompareTag("Player"))
+            // {
+            //     Debug.Log("굿");
+            // }
+        }
+        curbullet -= 30;
+        bulletsShot--;
     }
     private void ResetShot()
     {
@@ -235,7 +280,7 @@ public class GunSystem : MonoBehaviour
 
     private void Cross()
     {
-        if (shooting)
+        if (shooting || (Input.GetKeyDown(KeyCode.Mouse1) && curbullet >= 30))
         {
             currenSize = Mathf.Lerp(currenSize, gunSet.AimSize, Time.deltaTime * 10);
         }
