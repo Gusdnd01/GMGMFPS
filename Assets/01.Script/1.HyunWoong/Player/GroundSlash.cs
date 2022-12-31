@@ -51,4 +51,10 @@ public class GroundSlash : MonoBehaviour
 
         stopped = true;
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Player")){
+            other.GetComponent<PlayerController>().OnDamaged(33);
+        }
+    }
 }
