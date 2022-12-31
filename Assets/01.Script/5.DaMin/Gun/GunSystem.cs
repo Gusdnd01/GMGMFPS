@@ -32,6 +32,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private ParticleSystem magicBallStart;
 
 
+
     [Header("Reference")]
     [SerializeField] private Camera fpsCam;
     [SerializeField] private Transform attackPoint;
@@ -154,10 +155,17 @@ public class GunSystem : MonoBehaviour
             //GameObject bullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
             magicBallStart.Play();
 
-        //     lineRenderer.enabled = true;
-        //     lineRenderer.SetPosition(0, attackPoint.transform.position);
-        //     lineRenderer.SetPosition(1, rayHit.point);
-        //     //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z)
+        // lineRenderer.enabled = true;
+        // lineRenderer.SetPosition(0, attackPoint.transform.position);
+        // lineRenderer.SetPosition(1, rayHit.point);
+        // //BulletMovePos = new Vector3(rayHit.point.x, rayHit.point.y, rayHit.point.z);
+        // GameObject makebullet = Instantiate(BulletOBJ, attackPoint.position, Quaternion.identity);
+        magicBallStart.Play();
+
+
+
+
+
 
 
         //     //bullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * 0, ForceMode.Impulse);
@@ -183,9 +191,6 @@ public class GunSystem : MonoBehaviour
         // }
 
 
-
-        //Graphics
-        // Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         Instantiate(muzzleFlash, attackPoint.position, Quaternion.Euler(0, 270, 0));
 
         curbullet--;
