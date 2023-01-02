@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
-
+    private void Start()
+    {
+        Destroy(this.gameObject, 5);
+    }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.transform.GetComponent<IDamage>() != null)
