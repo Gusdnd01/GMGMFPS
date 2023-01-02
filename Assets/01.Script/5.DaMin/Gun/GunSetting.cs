@@ -40,11 +40,5 @@ public class GunSetting : ScriptableObject
     public float IdleSize => idleSize;
     [SerializeField] private float aimSize;
     public float AimSize => aimSize;
-
-    [Header("Camera Zoom")]
-    [SerializeField] private float zoom;
-    public float Zoom => zoom;
-    [SerializeField] private float smooth;
-    public float Smooth => smooth;
 }
 
