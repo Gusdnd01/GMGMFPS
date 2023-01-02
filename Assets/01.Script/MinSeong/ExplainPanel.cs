@@ -36,6 +36,6 @@ public class ExplainPanel : MonoBehaviour
     {
         obj.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(obj.GetComponent<RectTransform>().anchoredPosition,
             new Vector2(pos.GetComponent<RectTransform>().anchoredPosition.x,
-            pos.GetComponent<RectTransform>().anchoredPosition.y), 0.1f);
+            pos.GetComponent<RectTransform>().anchoredPosition.y), 0.15f);
     }
 }
