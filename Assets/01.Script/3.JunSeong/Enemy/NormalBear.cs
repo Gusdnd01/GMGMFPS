@@ -31,6 +31,7 @@ public class NormalBear : EnemyBase
         if (Distance <= wieldAttackDis)
         {
             Wield();
+            PlayAttackSound1();
         }
         else
         {

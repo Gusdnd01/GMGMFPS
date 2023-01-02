@@ -12,6 +12,7 @@ public class Eagle : EnemyBase
         if (Distance <= minAttackDistance)
         {
             animator.SetTrigger("Attack");
+            PlayAttackSound1();
         }
         else
         {

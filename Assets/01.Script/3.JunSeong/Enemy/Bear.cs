@@ -9,7 +9,7 @@ public class Bear : EnemyBase
         front
     }
     private AttackPos attackPos;
-    private int damage;
+    //private int damage;
 
     [Header("앞발 휘두르기")]
     public int wieldDamage = 20; 
@@ -37,9 +37,6 @@ public class Bear : EnemyBase
     private bool rushHit;
     private bool isRush;
 
-    [Header("포효")]
-    public float ShoutTime;
-
     private int moveSpeedHash = Animator.StringToHash("MoveSpeed");
     private int wieldHash = Animator.StringToHash("Wield");
     private int downSlapHash = Animator.StringToHash("DownSlap");
@@ -58,18 +55,22 @@ public class Bear : EnemyBase
         if(Distance <= wieldAttackDis)
         {
             Wield();
+            PlayAttackSound1();
         }
         else if(Distance <= downSlapAttackDis)
         {
             DownSlap();
+            PlayAttackSound2();
         }
         else if(Distance <= bigDownSlapAttackDis)
         {
             BigDownSlap();
+            PlayAttackSound2();
         }
         else
         {
             Rush();
+            PlayAttackSound1();
         }
     } 
 
@@ -114,13 +115,6 @@ public class Bear : EnemyBase
 
         damage = rushDamage;
         StartCoroutine(DoRush());
-    }
-
-    private void Shout()
-    {
-        Debug.Log("Shout");
-
-        //
     }
 
     private IEnumerator DoRush()
