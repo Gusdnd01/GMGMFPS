@@ -47,5 +47,3 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d57d655cbafbea14cbab35809f06ea51, type: 3}
   idleSize: 50
   aimSize: 250
-  zoom: 30
-  smooth: 5

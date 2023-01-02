@@ -13,7 +13,7 @@ public class LevelSelector : MonoBehaviour
 {
     TextMeshProUGUI text;
 
-    SceneLoader sceneLoader;
+    SceneLoader sceneLoader = new SceneLoader();
 
     [Space]
     [SerializeField] bool isCantGoIn;
