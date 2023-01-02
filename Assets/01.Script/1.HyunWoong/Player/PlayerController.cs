@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public float currentHp;
     private bool isDie = false;
     private bool isJumped;
+    private bool isDashed;
     public string _tag;
 
     [Header("Volume Property")]
@@ -32,11 +33,20 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private PlayerHp playerHp;
 
+    [Header("Sound")]
+    private SoundPlay audio;
+    public AudioClip moveSound;
+    public AudioClip dashSound;
+    public AudioClip jumpSound;
+    public AudioClip dieSound;
+    public AudioClip hitSound;
+
     private void Awake()
     {
         volumeProfile.TryGet(out vignette);
         playerHp = GetComponent<PlayerHp>();
         vignette.intensity.Override(0);
+        audio = GetComponent<SoundPlay>();
     }
 
     private void Start()
@@ -63,11 +73,14 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.LeftShift));
 
+            audio.PlaySound(dashSound);
             vignette.color.Override(Color.white);
             m_Speed *= 4f;
             feedbacks.PlayFeedbacks();
+            isDashed = true;
             yield return new WaitForSeconds(0.3f);
             m_Speed /= 4;
+            isDashed = false;
             yield return new WaitForSeconds(2f);
         }
     }
@@ -111,6 +124,11 @@ public class PlayerController : MonoBehaviour, IDamage
         if (h != 0 || v != 0)
         {
             animSpeedGoal = 1;
+
+            if(!isJumped || !isDashed)
+            {
+
+            }
         }
         else
         {
@@ -128,6 +146,7 @@ public class PlayerController : MonoBehaviour, IDamage
         while (true)
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) && !isJumped);
+            audio.PlaySound(jumpSound);
             isJumped = true;
             moveDir.y = 5f;
             yield return new WaitForSeconds(1f);
@@ -146,6 +165,10 @@ public class PlayerController : MonoBehaviour, IDamage
             print("Player Die");
             Die();
         }
+        else
+        {
+            audio.PlaySound(hitSound);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -159,7 +182,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Die()
     {
         print("떨어져서 죽음, GameOver");
-
+        audio.PlaySound(dieSound);
         Time.timeScale = 0;
     }
 }

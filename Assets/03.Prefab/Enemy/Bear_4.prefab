@@ -204,12 +204,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91f105c92fa86246b9e0f0de63936f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 100
   moveSpeed: 5
   turnSpeed: 2.5
   gravityScale: -9.81
+  damage: 0
   minAttackDistance: 3
   endAttack: 0
+  SetGravity: 1
   wieldDamage: 20
   wieldRange: 10
   wieldAttackDis: 4.75
