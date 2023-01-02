@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         volumeProfile.TryGet(out vignette);
         playerHp = GetComponent<PlayerHp>();
+        vignette.intensity.Override(0);
     }
 
     private void Start()
@@ -139,13 +140,7 @@ public class PlayerController : MonoBehaviour, IDamage
         currentHp -= damage;
         playerHp.ModifyHp(currentHp/currentHp);
         print(currentHp/currentHp);
-        if (currentHp/currentHp <= 0.3f)// 100 <= 0.3f
-        {
-            intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
-            vignette.color.Override(Color.red);
-            vignette.intensity.Override(intencity);
-        }
-
+        vignette.intensity.Override((playerData.hp - currentHp)/50);
         if (currentHp <= 0f)
         {
             print("Player Die");

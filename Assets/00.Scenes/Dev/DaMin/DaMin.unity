@@ -1013,12 +1013,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
+  Power: 40
   mysfx: {fileID: 537002269}
   fpsCam: {fileID: 771575920}
   attackPoint: {fileID: 1284704543}
   Tag:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 2147487671
   player: {fileID: 205614112}
   GunPos: {fileID: 63205914}
   GunZoomPos: {fileID: 620583391}
@@ -1026,6 +1027,7 @@ MonoBehaviour:
   bulletHoleGraphic: {fileID: 1000010844420130, guid: 4edabb1c0dde62743b137378c7d22980, type: 3}
   crosshair: {fileID: 1167257756}
   text: {fileID: 885755298}
+  BulletOBJ: {fileID: 4034499320097292295, guid: fb737e141018c064c88dc078e5a52fc6, type: 3}
 --- !u!120 &537002271
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1354,7 +1356,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852915477}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1934,7 +1936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284704542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.53}
+  m_LocalPosition: {x: 0, y: 0, z: 0.749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -24,8 +24,6 @@ public class PlayerHp : MonoBehaviour
 
     private void Update()
     {
-        print($"hp : {curHp}");
-
         hpSlider.fillAmount = curHp;
         backSlider.fillAmount = Mathf.Lerp(backSlider.fillAmount, curHp, Time.deltaTime);
     }
