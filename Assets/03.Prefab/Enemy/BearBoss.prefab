@@ -1771,9 +1771,9 @@ GameObject:
   - component: {fileID: 3945059205294817103}
   - component: {fileID: 3945059205294817137}
   - component: {fileID: 3945059205294817102}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: BearBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1786,7 +1786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6395323671303304381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.72, y: 7.4, z: 1.96}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1872,8 +1872,10 @@ MonoBehaviour:
   moveSpeed: 5
   turnSpeed: 2.5
   gravityScale: -9.81
+  damage: 0
   minAttackDistance: 5
   endAttack: 0
+  SetGravity: 0
   wieldDamage: 20
   wieldRange: 10
   wieldAttackDis: 4.75

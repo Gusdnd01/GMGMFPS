@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour, IDamage
         volumeProfile.TryGet(out vignette);
         playerHp = GetComponent<PlayerHp>();
         vignette.intensity.Override(0);
+        vignette.color.Override(Color.red);
     }
 
     private void Start()
@@ -63,7 +64,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.LeftShift));
 
-            vignette.color.Override(Color.white);
             m_Speed *= 4f;
             feedbacks.PlayFeedbacks();
             yield return new WaitForSeconds(0.3f);
@@ -76,13 +76,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         animSpeed = Mathf.Lerp(animSpeed, animSpeedGoal, Time.deltaTime * 5);
         anim.SetFloat(SpeedHash, animSpeed);
-    }
-
-    [ContextMenu("�ƾ��ؿ�")]
-    private void GetDamage()
-    {
-        OnDamaged(10);
-        print(currentHp);
     }
 
     Vector3 moveDir;
@@ -137,10 +130,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void OnDamaged(int damage)
     {
-        currentHp -= damage;
-        playerHp.ModifyHp(currentHp/currentHp);
-        print(currentHp/currentHp);
-        vignette.intensity.Override((playerData.hp - currentHp)/50);
+        print("Damaged");
+        currentHp -= (float)damage;
+        playerHp.ModifyHp(currentHp);
+        print($"currentHp: {currentHp}");
+        vignette.intensity.Override((playerData.hp - currentHp)/200);
         if (currentHp <= 0f)
         {
             print("Player Die");
@@ -158,8 +152,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Die()
     {
-        print("떨어져서 죽음, GameOver");
-
         Time.timeScale = 0;
     }
 }

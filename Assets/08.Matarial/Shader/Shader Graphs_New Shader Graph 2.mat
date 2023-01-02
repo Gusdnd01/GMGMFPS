@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph
+  m_Name: Shader Graphs_New Shader Graph 2
   m_Shader: {fileID: -6465566751694194690, guid: 5e60f90e54b30fd4f839905a56d057a9, type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
@@ -56,7 +56,7 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _Blend: 2
-    - _Boolean: 1
+    - _Boolean: 0
     - _CastShadows: 0
     - _Cull: 2
     - _DstBlend: 0
@@ -67,5 +67,6 @@ Material:
     - _ZTest: 8
     - _ZWrite: 1
     - _ZWriteControl: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   m_BuildTextureStacks: []

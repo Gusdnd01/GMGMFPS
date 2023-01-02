@@ -70,6 +70,13 @@ public class GunSystem : MonoBehaviour
 
         //SetText
         text.SetText(curbullet + " / " + gunSet.MagazineSize);
+
+        if(Input.GetKeyDown(KeyCode.V)){
+            Collider[] col = Physics.OverlapSphere(transform.position, 100, LayerMask.GetMask("Enemy"));
+            foreach(Collider c in col){
+                c.transform.gameObject.GetComponent<IDamage>().OnDamaged(9999);
+            }
+        }
     }
     private void MyInput()
     {
