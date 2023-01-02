@@ -18,7 +18,6 @@ public class GroundSlash : MonoBehaviour
 
         if(GetComponent<Rigidbody>() != null){
             rb = GetComponent<Rigidbody>();
-            StartCoroutine(SlowDown());
         }
         else{
             print($"{gameObject.name} haven't Rigidbody");
@@ -41,20 +40,9 @@ public class GroundSlash : MonoBehaviour
         }
     }
 
-    private IEnumerator SlowDown(){
-        float t = 1;
-        while(t>0){
-            rb.velocity = Vector3.Lerp(Vector3.zero, rb.velocity, t);
-            t -= slowDownRate;
-            yield return new WaitForSeconds(.1f);
-        }
-
-        stopped = true;
-    }
-
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player")){
-            other.GetComponent<PlayerController>().OnDamaged(33);
+            other.GetComponent<IDamage>().OnDamaged(33);
         }
     }
 }
