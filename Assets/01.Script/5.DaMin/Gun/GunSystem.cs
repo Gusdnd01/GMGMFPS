@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using MoreMountains.Feedbacks;
-using UnityEngine.VFX;
 
 public class GunSystem : MonoBehaviour
 {
@@ -49,8 +48,6 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private GameObject BulletOBJ;
-    [SerializeField] private VisualEffect LaserObj;
-    [SerializeField] private Animator armAnim;
 
     private bool Shooting = false;
     private float currenSize = 50;
@@ -95,30 +92,28 @@ public class GunSystem : MonoBehaviour
             shooting = true;
             bulletsShot = gunSet.BulletsPerTap;
             LeftShoot();
-
         }
         else
         {
             shooting = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && curbullet-30 >= 0)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && curbullet >= 30)
         {
             RightShoot();
             // CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, gunSet.Zoom, Time.deltaTime * gunSet.Smooth);
             // transform.position = Vector3.MoveTowards(transform.position, GunZoomPos.position, Time.deltaTime * 10);
         }
-        //else
-        //{
+        else
+        {
             // CameraComp.fieldOfView = Mathf.Lerp(MainCamera.GetComponent<Camera>().fieldOfView, 60, Time.deltaTime * gunSet.Smooth);
             // transform.position = Vector3.MoveTowards(transform.position, GunPos.position, Time.deltaTime * 10);
-        //}
+        }
 
     }
     private void LeftShoot()
     {
         player.PlayFeedbacks();
-        armAnim.SetTrigger("Normal");
 
         GunShotSound();
         //recoil.RecoilFire();
@@ -218,8 +213,6 @@ public class GunSystem : MonoBehaviour
         shake.start = true;
         player.PlayFeedbacks();
         Vector3 direction = fpsCam.transform.forward;
-        LaserObj.SendEvent("OnPlay");
-        armAnim.SetTrigger("Laser");
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
         {

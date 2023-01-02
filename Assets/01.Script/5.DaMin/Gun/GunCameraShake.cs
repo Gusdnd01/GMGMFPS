@@ -14,12 +14,11 @@ public class GunCameraShake : MonoBehaviour
 
     private void Start()
     {
+        startPosition = transform.position;
     }
 
     private void Update()
     {
-        startPosition = transform.parent.position;
-
         if (start)
         {
             start = false;
