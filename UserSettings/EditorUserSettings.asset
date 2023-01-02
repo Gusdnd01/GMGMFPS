@@ -15,22 +15,26 @@ EditorUserSettings:
       value: 5406025f03065a5d0f5a0a2342260a44434f4b7e78297566787c4b32e6b76268
       flags: 0
     RecentlyUsedSceneGuid-3:
-      value: 0702035e0653595d0b0b552345750e44154f197b757170627d2c4464e4b8666d
-      flags: 0
-    RecentlyUsedSceneGuid-4:
-      value: 55095150510459590f570a274326074412154178797c27637a781c32b5b8373d
-      flags: 0
-    RecentlyUsedSceneGuid-5:
-      value: 5a0751555c030b5e0c560f7014210d44474e1b7e7a7b74367f7b1f30e0e4303d
-      flags: 0
-    RecentlyUsedSceneGuid-6:
-      value: 540603535354085f095d5b7645710f444e4f1c2e782d74642b704b65b6b5303e
-      flags: 0
-    RecentlyUsedSceneGuid-7:
       value: 5b02025555510c0b5d0a5d7212745a44174f4a782f2a72692c7f4b31bab0303a
       flags: 0
-    RecentlyUsedSceneGuid-8:
+    RecentlyUsedSceneGuid-4:
+      value: 0702035e0653595d0b0b552345750e44154f197b757170627d2c4464e4b8666d
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 55095150510459590f570a274326074412154178797c27637a781c32b5b8373d
+      flags: 0
+    RecentlyUsedSceneGuid-6:
       value: 5b06010055565f0b0e0f552312750844464e1a7f7b7125332b7a4b62b7b6316c
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 5a0751555c030b5e0c560f7014210d44474e1b7e7a7b74367f7b1f30e0e4303d
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+<<<<<<< HEAD
+      value: 5b06010055565f0b0e0f552312750844464e1a7f7b7125332b7a4b62b7b6316c
+=======
+      value: 540603535354085f095d5b7645710f444e4f1c2e782d74642b704b65b6b5303e
+>>>>>>> parent of 387d32e0 (팔 추가)
       flags: 0
     RecentlyUsedSceneGuid-9:
       value: 5a00555f5c505d03090c5f27117a074447154a2e7f7b7e362e7f1e65e4e1316d
