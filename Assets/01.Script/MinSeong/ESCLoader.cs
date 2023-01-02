@@ -123,6 +123,7 @@ public class ESCLoader : MonoBehaviour
         }
     }
 
+
     public void LerpMove(GameObject obj, GameObject pos)
     {
         obj.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(obj.GetComponent<RectTransform>().anchoredPosition,
