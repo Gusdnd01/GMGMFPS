@@ -27,14 +27,32 @@ public class LevelSelector : MonoBehaviour
     [Space]
     [SerializeField] bool isCantGoIn;
     [SerializeField] GameObject cantGoInCanvas;
+
+    private JSON json;
     private void Start()
     {
+        json = FindObjectOfType<JSON>();
+        switch (stageIndex)
+        {
+            case 2:
+                if (!json.saveData.stage2)
+                {
+                    isCantGoIn = true;
+                }
+                break;
+            case 3:
+                if (!json.saveData.stage3)
+                {
+                    isCantGoIn = true;
+                }
+                break;
+        }
         if (isLevelSelect)
         {
             sceneLoader = GetComponent<SceneLoader>();
             text = textObj.GetComponent<TextMeshProUGUI>();
             image = GetComponent<Image>();
-                cantGoInCanvas.SetActive(false);
+            cantGoInCanvas.SetActive(false);
 
             if (isCantGoIn)
             {
@@ -47,11 +65,25 @@ public class LevelSelector : MonoBehaviour
                 image.sprite = stageImages[stageIndex - 1];
             }
         }
-
     }
 
     public void OpenScene(string sceneName)
     {
+        switch (stageIndex)
+        {
+            case 2:
+                if (!json.saveData.stage2)
+                {
+                    isCantGoIn = true;
+                }
+                break;
+            case 3:
+                if (!json.saveData.stage3)
+                {
+                    isCantGoIn = true;
+                }
+                break;
+        }
         if (!isCantGoIn)
         {
             SceneManager.LoadScene(sceneName);

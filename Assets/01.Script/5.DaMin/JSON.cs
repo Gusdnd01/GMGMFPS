@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+
+[System.Serializable]
+public class SaveData
+{
+    public bool stage1;
+    public bool stage2;
+    public bool stage3;
+}
+
 public class JSON : MonoBehaviour
 {
     private string savePath;
     private string saveFileName = "/SaveFIle.txt";
-    private SaveData saveData = new SaveData();
+    public SaveData saveData = new SaveData();
 
     private void Start()
     {
@@ -15,6 +24,8 @@ public class JSON : MonoBehaviour
 
         if (!Directory.Exists(savePath))
             Directory.CreateDirectory(savePath);
+
+        Load();
     }
 
     [ContextMenu("저장")]
@@ -35,10 +46,3 @@ public class JSON : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class SaveData
-{
-    public bool stage1;
-    public bool stage2;
-    public bool stage3;
-}

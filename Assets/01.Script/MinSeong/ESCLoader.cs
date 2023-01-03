@@ -9,6 +9,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class ESCLoader : MonoBehaviour
 {
@@ -51,10 +52,15 @@ public class ESCLoader : MonoBehaviour
 
     void Update()
     {
+        if (SceneManager.GetActiveScene().ToString() == "Level Select")
+        {
+            Cursor.visible = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseMenu();
-        }   
+        }
 
         audioMixer.SetFloat("Master", masterAudioSlider.value);
         audioMixer.SetFloat("BGM", FXAudioSlider.value);
@@ -156,6 +162,6 @@ public class ESCLoader : MonoBehaviour
 
     public void GoMainMenu()
     {
-        SceneLoader.Instance.LoadScene("MainMenu"); 
+        SceneLoader.Instance.LoadScene("MainMenu");
     }
 }
