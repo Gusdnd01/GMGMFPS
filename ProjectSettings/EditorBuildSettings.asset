@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Dev/HyunWoong/HyunWoong.unity
     guid: 91a99e48db3ea9841b2d338fc6c6fae5
+  - enabled: 1
+    path: Assets/02.Asset/Feel/MMTools/Tools/MMSceneLoading/LoadingScreens/LoadingScreen.unity
+    guid: 888394d52616e5e42b3b54c3f2bbd3eb
   m_configObjects: {}

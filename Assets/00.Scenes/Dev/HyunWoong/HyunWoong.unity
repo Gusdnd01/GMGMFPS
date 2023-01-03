@@ -27337,7 +27337,11 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 8cae1532d5754b649a1537309b96583d, type: 3}
   dieSound: {fileID: 8300000, guid: b75a3a1980f4a214ab5399ce1f995b90, type: 3}
   hitSound: {fileID: 8300000, guid: df5d135e56c37954daf5f110aae09b5a, type: 3}
-  footStepSounds: []
+  footStepSounds:
+  - {fileID: 8300000, guid: 857e13957d17a074781d84f20553eea0, type: 3}
+  - {fileID: 8300000, guid: 81f63607ae7227a4bb5e2acbbe967145, type: 3}
+  - {fileID: 8300000, guid: 8dba3910bb7e7c942b965a1850ec68f3, type: 3}
+  - {fileID: 8300000, guid: 591a811fc84aee34d894c7e35caeffba, type: 3}
 --- !u!114 &1521458629
 MonoBehaviour:
   m_ObjectHideFlags: 0
