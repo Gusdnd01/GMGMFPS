@@ -74,7 +74,7 @@ public class EnemySpawn : MonoBehaviour
         Instantiate(boss, bossSpawnPoint.position, Quaternion.identity);
         spawnCount++;
 
-        GameObject obj = Instantiate(portalObj,bossSpawnPoint.position,Quaternion.identity);
+        GameObject obj = Instantiate(portalObj,transform.Find("PortalSpawnPoint").transform.position,Quaternion.identity, transform);
         enemies.Add(obj);
         obj.SetActive(false);
     }

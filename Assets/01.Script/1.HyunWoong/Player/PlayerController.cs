@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour, IDamage
         volumeProfile.TryGet(out vignette);
         playerHp = GetComponent<PlayerHp>();
         vignette.intensity.Override(0);
-        vignette.color.Override(Color.red);
         Saudio = GetComponent<SoundPlay>();
+        vignette.color.Override(Color.red);
     }
 
     private void Start()
