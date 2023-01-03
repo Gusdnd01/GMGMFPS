@@ -1,6 +1,7 @@
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -11,7 +12,15 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
+    [SerializeField] bool isQuit;
+    [SerializeField] string stageName;
+    [SerializeField] int stageIndex;
+    [SerializeField] GameObject textObj;
+    [SerializeField]
+    Sprite[] stageImages;
+
     TextMeshProUGUI text;
+    Image image;
 
     SceneLoader sceneLoader;
 
@@ -20,21 +29,37 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] GameObject cantGoInCanvas;
     private void Start()
     {
-        sceneLoader = GetComponent<SceneLoader>();
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        if (!isQuit)
+        {
+            sceneLoader = GetComponent<SceneLoader>();
+            text = textObj.GetComponent<TextMeshProUGUI>();
+            image = GetComponent<Image>();
 
-        if (isCantGoIn)
-            cantGoInCanvas.SetActive(false);
+            if (isCantGoIn)
+                cantGoInCanvas.SetActive(false);
+            else
+            {
+                text.text = stageName;
+                image.sprite = stageImages[stageIndex - 1];
+            }
+        }
+
     }
 
-    public void OpenScene(string SceneName)
+    public void OpenScene(string sceneName)
     {
         if (isCantGoIn)
         {
             cantGoInCanvas.SetActive(true);
             return;
         }
-        SceneLoader.Instance.LoadScene(SceneName);
+        if (sceneName == "")
+        {
+            SceneLoader.Instance.LoadScene(stageName);
+            return;
+        }
+
+        SceneLoader.Instance.LoadScene(sceneName);
         //SceneManager.LoadScene(SceneName);
     }
 

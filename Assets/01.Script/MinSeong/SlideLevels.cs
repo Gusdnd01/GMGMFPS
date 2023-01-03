@@ -61,6 +61,11 @@ public class SlideLevels : MonoBehaviour
                 text[i].GetComponent<TextMeshProUGUI>().fontSize =
                     Mathf.Lerp(text[i].GetComponent<TextMeshProUGUI>().fontSize,
                     fontSize, 0.1f);
+
+/*                image[i].GetComponent<RectTransform>().sizeDelta =
+                    Vector2.Lerp(image[i].GetComponent<RectTransform>().sizeDelta,
+                    new Vector2(imagerectX, imagerectY), 0.1f);*/
+
                 for (int a = 0; a < pos.Length; a++)
                 {
                     if (a != i)
@@ -72,6 +77,10 @@ public class SlideLevels : MonoBehaviour
                         text[a].GetComponent<TextMeshProUGUI>().fontSize =
                             Mathf.Lerp(text[a].GetComponent<TextMeshProUGUI>().fontSize,
                             fontSize * 0.75f, 0.1f);//
+
+/*                        image[i].GetComponent<RectTransform>().sizeDelta =
+                        Vector2.Lerp(image[i].GetComponent<RectTransform>().sizeDelta,
+                        new Vector2(imagerectX * 0.8f, imagerectY * 0.8f), 0.1f);*/
 
                     }
                 }

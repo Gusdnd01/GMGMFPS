@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: isMainMenu
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
+      propertyPath: volumeProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 98cfde3b92a467943bc6a97147b9613d, type: 2}
     - target: {fileID: 1492887215719338727, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -25474,6 +25478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isQuit: 0
+  stageName: 
+  stageIndex: 0
+  textObj: {fileID: 0}
+  stageImages: []
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 0}
 --- !u!114 &1286244612
@@ -25747,6 +25756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isQuit: 0
+  stageName: 
+  stageIndex: 0
+  textObj: {fileID: 0}
+  stageImages: []
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 0}
 --- !u!114 &1288303385
