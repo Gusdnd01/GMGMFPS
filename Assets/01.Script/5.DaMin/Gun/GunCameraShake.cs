@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,43 +6,38 @@ using Cinemachine;
 
 public class GunCameraShake : MonoBehaviour
 {
-    public static GunCameraShake Instance { get; private set; }
-    private CinemachineVirtualCamera cinemachineVirtualCamera;
-    private float shakeTimer;
-    private float startingIntensity;
-    private float shakeTimerTotal;
 
-    private void Awake()
+    public bool start = false;
+    public AnimationCurve curve;
+    [SerializeField] private float duration = 1;
+    private Vector3 startPosition;
+
+    private void Start()
     {
-        Instance = this;
-        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
-    }
-
-    public void ShakeCamera(float intensity, float time)
-    {
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-
-        startingIntensity = intensity;
-        shakeTimerTotal = time;
-        shakeTimer = time;
     }
 
     private void Update()
     {
-        if (shakeTimer > 0)
+        startPosition = transform.parent.position;
+
+        if (start)
         {
-            shakeTimer -= Time.deltaTime;
-
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
+            start = false;
+            StartCoroutine(Shaking());
         }
-        if (shakeTimer <= 0)
+    }
+
+    IEnumerator Shaking()
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
         {
-
-            //cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+            elapsedTime += Time.deltaTime;
+            float strength = curve.Evaluate(elapsedTime / duration);
+            transform.position = startPosition + Random.insideUnitSphere * strength;
+            yield return null;
         }
+        transform.position = startPosition;
     }
 }

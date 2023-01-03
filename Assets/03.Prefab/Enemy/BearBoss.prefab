@@ -1857,6 +1857,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   enemy: {fileID: 0}
   moveSpeedHash: 526065662
+  _portal: {fileID: 3225606222740998130, guid: dd0180e32463d6446b8d11677dd2f949, type: 3}
 --- !u!114 &3945059205294817102
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -77,12 +77,15 @@ public class EnemyFSM : MonoBehaviour
 
         return null;
     }
-
+    [Space]
+    public GameObject _portal;
+    private DissolvePortal dissolvePortal;
     public void Die()
     {
         if(enemy.Health <= 0)
         {
             fsmManager.ChangeState<StateDie>();
+            dissolvePortal.isDissolve = true;
         }
     }
 

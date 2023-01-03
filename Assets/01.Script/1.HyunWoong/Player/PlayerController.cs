@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour, IDamage
         playerHp = GetComponent<PlayerHp>();
         vignette.intensity.Override(0);
         Saudio = GetComponent<SoundPlay>();
+        vignette.color.Override(Color.red);
+        audio = GetComponent<SoundPlay>();
     }
 
     private void Start()
@@ -90,13 +92,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         animSpeed = Mathf.Lerp(animSpeed, animSpeedGoal, Time.deltaTime * 5);
         anim.SetFloat(SpeedHash, animSpeed);
-    }
-
-    [ContextMenu("�ƾ��ؿ�")]
-    private void GetDamage()
-    {
-        OnDamaged(10);
-        print(currentHp);
     }
 
     Vector3 moveDir;
@@ -163,10 +158,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void OnDamaged(int damage)
     {
-        currentHp -= damage;
-        playerHp.ModifyHp(currentHp/currentHp);
-        print(currentHp/currentHp);
-        vignette.intensity.Override((playerData.hp - currentHp)/50);
+        print("Damaged");
+        currentHp -= (float)damage;
+        playerHp.ModifyHp(currentHp);
+        print($"currentHp: {currentHp}");
+        vignette.intensity.Override((playerData.hp - currentHp)/200);
         if (currentHp <= 0f)
         {
             print("Player Die");
