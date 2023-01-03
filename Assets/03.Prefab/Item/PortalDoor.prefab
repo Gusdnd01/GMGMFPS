@@ -209,6 +209,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2848658059741633864}
   - component: {fileID: 3097182798678111564}
+  - component: {fileID: 949921852186686252}
+  - component: {fileID: 2026301499032932855}
   m_Layer: 0
   m_Name: PortalDoor
   m_TagString: Untagged
@@ -248,6 +250,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeSpeed: 0
   isDissolve: 0
+--- !u!65 &949921852186686252
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225606222740998130}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.137323, y: 6.7151237, z: 2.114923}
+  m_Center: {x: 0.13435476, y: -0.46577963, z: -0.10856843}
+--- !u!114 &2026301499032932855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225606222740998130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4df8e31e3ca8a1f4d81bc82b79b0910a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6526597247247971004
 GameObject:
   m_ObjectHideFlags: 0

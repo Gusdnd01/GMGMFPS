@@ -100,7 +100,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     //��� ����
     public void DieProcess()
     {
-        GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Remove(this.gameObject);
+        FindObjectOfType<EnemySpawn>().Remove(this.gameObject);
         Destroy(gameObject);
         //���� �ƴϸ� ������ƮǮ�� �־��ֱ�
     }

@@ -157,9 +157,10 @@ MonoBehaviour:
   spawnCount: 0
   enemyPrefab: {fileID: 0}
   boss: {fileID: 0}
+  portalObj: {fileID: 0}
   bossSpawnPoint: {fileID: 0}
   spawnNumber: 4
-  spawnSound: {fileID: 8300000, guid: 205de81f370788547b74ea78d5d11d3c, type: 3}
+  spawnSound: {fileID: 8300000, guid: 1016fb9ecf6c18c42a122c4f8f800213, type: 3}
 --- !u!114 &-4067138803106468464
 MonoBehaviour:
   m_ObjectHideFlags: 0

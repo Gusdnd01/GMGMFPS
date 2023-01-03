@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour, IDamage
         vignette.intensity.Override(0);
         Saudio = GetComponent<SoundPlay>();
         vignette.color.Override(Color.red);
-        audio = GetComponent<SoundPlay>();
     }
 
     private void Start()

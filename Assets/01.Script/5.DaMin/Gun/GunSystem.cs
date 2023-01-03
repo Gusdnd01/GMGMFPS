@@ -18,6 +18,7 @@ public class GunSystem : MonoBehaviour
 
     [Header("GunSoundSetting")]
     [SerializeField] private AudioSource mysfx;
+    public AudioClip beamSound;
     //[SerializeField] private GunSoundSetting gunSound;
     private int gunSoundCount;
     private LineRenderer lineRenderer;
@@ -217,6 +218,7 @@ public class GunSystem : MonoBehaviour
     {
         shake.start = true;
         player.PlayFeedbacks();
+        mysfx.PlayOneShot(beamSound);
         Vector3 direction = fpsCam.transform.forward;
         LaserObj.SendEvent("OnPlay");
         armAnim.SetTrigger("Laser");

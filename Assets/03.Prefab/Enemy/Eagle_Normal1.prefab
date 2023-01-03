@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 7596622339412779388}
   - component: {fileID: 7596622339412779389}
   - component: {fileID: 735159478934917644}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Eagle_Normal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,6 +422,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   enemy: {fileID: 7596622339412779389}
   moveSpeedHash: 526065662
+  _portal: {fileID: 0}
 --- !u!114 &7596622339412779389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,7 +776,7 @@ GameObject:
   - component: {fileID: 7507295089768196463}
   - component: {fileID: 7626381332859724899}
   - component: {fileID: 5869882419483819794}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Eaglle_Normal
   m_TagString: Enemy
   m_Icon: {fileID: 0}

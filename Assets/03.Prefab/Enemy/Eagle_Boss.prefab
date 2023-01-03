@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 8278399298458858237}
   - component: {fileID: 8278399298458858238}
   - component: {fileID: 2493893685672540269}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Eagle_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,6 +480,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   enemy: {fileID: 8278399298458858237}
   moveSpeedHash: 526065662
+  _portal: {fileID: 0}
 --- !u!82 &2493893685672540269
 AudioSource:
   m_ObjectHideFlags: 0
