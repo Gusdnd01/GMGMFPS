@@ -806,9 +806,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4142011429585738288}
   - component: {fileID: 4071954463047030588}
+  - component: {fileID: 45019612814900725}
   m_Layer: 0
   m_Name: Eaglle_Normal
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -913,6 +914,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.5967352, z: -0.03434094}
     m_Extent: {x: 0.5074854, y: 0.10936844, z: 0.23936614}
   m_DirtyAABB: 0
+--- !u!65 &45019612814900725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138478432614475588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13489777, y: 0.06362737, z: 0.029071897}
+  m_Center: {x: 0, y: 0.0045641838, z: -0.0018334016}
 --- !u!1 &4138532955849324150
 GameObject:
   m_ObjectHideFlags: 0

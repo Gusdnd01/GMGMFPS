@@ -14,8 +14,10 @@ public class EnemySpawn : MonoBehaviour
     public GameObject portalObj;
     public Transform bossSpawnPoint;
     public int spawnNumber = 0;
+    public AudioClip spawnSound;
 
     private Transform playerTrm;
+    private SoundPlay Saudio;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class EnemySpawn : MonoBehaviour
         }
 
         playerTrm = GameObject.Find("Player").GetComponent<Transform>();
+        Saudio = GetComponent<SoundPlay>();
     }
 
     private void Start()
@@ -45,6 +48,7 @@ public class EnemySpawn : MonoBehaviour
     {
         uesdSpawnPoint.Clear();
         enemies.Clear();
+        Saudio.PlaySound(spawnSound);
 
         if(spawnCount == spawnNumber)
         {
