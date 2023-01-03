@@ -86,7 +86,13 @@ public class EnemyFSM : MonoBehaviour
         if(enemy.Health <= 0)
         {
             fsmManager.ChangeState<StateDie>();
-            dissolvePortal.isDissolve = true;
+
+            if(gameObject.name.Contains("Boss"))
+            {
+                dissolvePortal = GameObject.Find("EnemySpawner").transform.Find("PortalDoor(Clone)").GetComponent<DissolvePortal>();
+                dissolvePortal.gameObject.SetActive(true);
+                dissolvePortal.isDissolve = true;
+            }           
         }
     }
 
