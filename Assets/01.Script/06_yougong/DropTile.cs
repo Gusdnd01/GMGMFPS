@@ -10,6 +10,7 @@ public class DropTile : MonoBehaviour
     [SerializeField] int _dropTiles_num = 10;
     [SerializeField] float _dropTime = 3f;
     [SerializeField] float _dropedLength = 10f;
+    float t = 0;
 
     private void OnEnable()
     {
@@ -17,6 +18,15 @@ public class DropTile : MonoBehaviour
         {
             _tile.Add(transform.GetChild(i));
         }
+        if(_dropTime/5 < 1)
+        {
+            t = 1;
+        }
+        else
+        {
+            t = _dropTime / 5;
+        }
+
         StartCoroutine(Droping());
     }
 
@@ -31,18 +41,21 @@ public class DropTile : MonoBehaviour
             }
             yield return new WaitForSeconds(_dropTime);
             Debug.Log("¶³±¸´ÂÁß");
+
+            
+
             for (int i = 0; i < _dropTiles_num; i++)
             {
                 count = UnityEngine.Random.Range(0, _tile.Count);
                 if (_tile.Count != 0)
                 {
-                    _tile[count].DOMoveY(_tile[count].position.y - _dropedLength, _dropTime);
+                    _tile[count].DOMoveY(_tile[count].position.y - _dropedLength, t);
                     _dropedtile.Add(_tile[count]);
                     _tile.Remove(_tile[count]);
                     Debug.Log("¶³±ÅÁü");
                 }
             }
-            yield return new WaitForSeconds(_dropTime);
+            yield return new WaitForSeconds(t);
 
             Uping();
         }
@@ -58,7 +71,7 @@ public class DropTile : MonoBehaviour
             rand = UnityEngine.Random.Range(0, _dropedtile.Count);
             if (_dropedtile.Count != 0)
             {
-                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, _dropTime - 0.1f);
+                _dropedtile[rand].DOMoveY(_dropedtile[rand].position.y + _dropedLength, t - 0.1f);
                 _tile.Add(_dropedtile[rand]);
                 _dropedtile.Remove(_dropedtile[rand]);
             }
