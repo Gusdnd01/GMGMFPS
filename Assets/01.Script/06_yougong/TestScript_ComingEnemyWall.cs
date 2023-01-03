@@ -14,6 +14,9 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
     [Header("발사 시간")]
     [SerializeField] float _minShootTime = 0.5f;
     [SerializeField] float _maxShootTime = 1.5f;
+
+    [Header("속력")]
+    [SerializeField] float _speed = 5;
     private Transform _player = null;
     public Transform Player
     {
@@ -78,12 +81,8 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
     {
         //direction = (Player.position - transform.position).normalized;
         //direction.y = 0;
-
-        transform.position += transform.forward * 5 * Time.deltaTime;
-        if(FindObjectOfType<GameEnd>().isGameEnd)
-        {
-            Destroy(this);
-        }
+        Debug.Log("실행중");
+        transform.position += transform.forward * _speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
