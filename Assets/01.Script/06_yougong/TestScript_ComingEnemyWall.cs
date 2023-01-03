@@ -83,10 +83,6 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
         //direction.y = 0;
         Debug.Log("Ω««‡¡ﬂ");
         transform.position += transform.forward * _speed * Time.deltaTime;
-        if(FindObjectOfType<GameEnd>().isGameEnd)
-        {
-            Destroy(this);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
