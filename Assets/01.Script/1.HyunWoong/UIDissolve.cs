@@ -5,62 +5,59 @@ using UnityEngine.UI;
 
 public class UIDissolve : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isDissolveOn = false;
-    [SerializeField]
-    private bool _isDissolveOff = false;
+    private bool _isDissolve = false;
+    public bool IsDissolved{
+        get => _isDissolve;
+        set => _isDissolve = value;
+    }
 
     float fade;
 
-    Material material;
-
-    private void Awake()
-    {
-        material = GetComponent<Image>().material;
-        
+    public Material material{
+        get;
+        set;
     }
 
     private void Start()
     {
-        fade = 1000;
-        material.SetFloat("_Cutoff_Height", fade);
+        //fade = 1000;
+        //material.SetFloat("_Cutoff_Height", fade);
     }
 
-    private void Update()
+    IEnumerator DissolveMethod()
     {
-        if (_isDissolveOn)
+        while (true)
         {
-            fade += 3;
-
-            if (fade >= 1000)
+            if (_isDissolve)
             {
-                fade = 1000;
-                _isDissolveOn = false;
+                fade += 3;
+
+                if (fade >= 1000)
+                {
+                    fade = 1000;
+                    StopCoroutine(DissolveMethod());
+                }
             }
 
-            material.SetFloat("_Cutoff_Height", fade);
-        }
-        else if(_isDissolveOff)
-        {
-            fade -= 3;
-
-            if (fade <= -1000)
+            else
             {
-                fade = -1000;
-                _isDissolveOff = false;
-            }
+                fade -= 3;
 
+                if (fade <= -1000)
+                {
+                    fade = -1000;
+                    StopCoroutine(DissolveMethod());
+                }
+            }
             material.SetFloat("_Cutoff_Height", fade);
+            yield return null;
         }
     }
 
-    public void DissolveOn()
+    public void IsDissolve()
     {
-        _isDissolveOn = true;
-    }
+        _isDissolve = !_isDissolve;
 
-    public void DissolveOff()
-    {
-        _isDissolveOff = true;
+        StartCoroutine(DissolveMethod());
     }
 }

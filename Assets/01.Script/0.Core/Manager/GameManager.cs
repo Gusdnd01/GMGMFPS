@@ -8,7 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
-        ui.DissolveOff();
+        ui.IsDissolved = false;
     }
 }
 

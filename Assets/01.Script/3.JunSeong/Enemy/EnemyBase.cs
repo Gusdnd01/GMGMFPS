@@ -26,6 +26,11 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     protected Transform player;
     protected Animator animator;
 
+    [Header("ì‚¬ìš´ë“œ")]
+    public AudioClip attackSound1;
+    public AudioClip attackSound2;
+    public AudioClip dieSound;
+
     protected float Distance
     {
         get
@@ -89,14 +94,15 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         Debug.Log("die");
         animator.SetTrigger("Die");
+        PlayDieSound();
     }
 
-    //Àâ¸÷ Àü¿ë
+    //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void DieProcess()
     {
         GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Remove(this.gameObject);
         Destroy(gameObject);
-        //º¸½º ¾Æ´Ï¸é ¿ÀºêÁ§Æ®Ç®·Î ³Ö¾îÁÖ±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®Ç®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
     }
 
     public bool CheckAngle()
@@ -115,5 +121,18 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         health -= damage;
         Debug.Log("damaged");
+    }
+
+    protected void PlayAttackSound1()
+    {
+        GetComponent<AudioSource>().PlayOneShot(attackSound1);
+    }
+    protected void PlayAttackSound2()
+    {
+        GetComponent<AudioSource>().PlayOneShot(attackSound2);
+    }
+    public void PlayDieSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(dieSound);
     }
 }
