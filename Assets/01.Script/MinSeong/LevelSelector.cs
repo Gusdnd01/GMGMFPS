@@ -43,6 +43,10 @@ public class LevelSelector : MonoBehaviour
         window.SetActive(false);
     }
 
+    public void SceneLoad(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
     public void Quit()
     {
         Application.Quit();
