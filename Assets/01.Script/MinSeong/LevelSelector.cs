@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
-    [SerializeField] bool isQuit;
+    [SerializeField] bool isNotLevelSelect;
     [SerializeField] string stageName;
     [SerializeField] int stageIndex;
     [SerializeField] GameObject textObj;
@@ -29,7 +29,7 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] GameObject cantGoInCanvas;
     private void Start()
     {
-        if (!isQuit)
+        if (isNotLevelSelect)
         {
             sceneLoader = GetComponent<SceneLoader>();
             text = textObj.GetComponent<TextMeshProUGUI>();
@@ -53,12 +53,6 @@ public class LevelSelector : MonoBehaviour
             cantGoInCanvas.SetActive(true);
             return;
         }
-        if (sceneName == "")
-        {
-            SceneLoader.Instance.LoadScene(stageName);
-            return;
-        }
-
         SceneLoader.Instance.LoadScene(sceneName);
         //SceneManager.LoadScene(SceneName);
     }
