@@ -7,6 +7,7 @@ public class GameEndLineer : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _timeline;
 
+
     bool end = false;
 
     private Transform _player = null;
@@ -24,7 +25,7 @@ public class GameEndLineer : MonoBehaviour
     private void Awake()
     {
         _timeline = transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-        end = false;
+        //end = false;
     }
 
     private void Update()
@@ -44,8 +45,8 @@ public class GameEndLineer : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            FindObjectOfType<GameEnd>().GameClear();
-            end = true;
+            //FindObjectOfType<GameEnd>().GameClear();
+            //end = true;
             _timeline.text = $"Goal";
 
         }

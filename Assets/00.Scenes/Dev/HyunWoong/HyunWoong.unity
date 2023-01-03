@@ -27333,11 +27333,11 @@ MonoBehaviour:
   _tag: DiePlane
   feedbacks: {fileID: 446878791}
   volumeProfile: {fileID: 11400000, guid: 98cfde3b92a467943bc6a97147b9613d, type: 2}
-  moveSound: {fileID: 8300000, guid: 857e13957d17a074781d84f20553eea0, type: 3}
   dashSound: {fileID: 8300000, guid: 9b1e6e26a04fb0547a416b9ce158abb7, type: 3}
   jumpSound: {fileID: 8300000, guid: 8cae1532d5754b649a1537309b96583d, type: 3}
   dieSound: {fileID: 8300000, guid: b75a3a1980f4a214ab5399ce1f995b90, type: 3}
   hitSound: {fileID: 8300000, guid: df5d135e56c37954daf5f110aae09b5a, type: 3}
+  footStepSounds: []
 --- !u!114 &1521458629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33249,6 +33249,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7c8eca8ad21e87b4ca86092ecbfb815e, type: 3}
   m_PrefabInstance: {fileID: 1833905042}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1835356778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1835356780}
+  - component: {fileID: 1835356779}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1835356779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835356778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9251a9f35d2c384a9e26195e0c63ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: 
+  LoadingSceneMode: 1
+--- !u!4 &1835356780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835356778}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -55.93578, y: -142.58148, z: 11.385047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1840100057
 PrefabInstance:
   m_ObjectHideFlags: 0
