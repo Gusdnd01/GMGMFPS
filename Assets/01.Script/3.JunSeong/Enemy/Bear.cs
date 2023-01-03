@@ -43,6 +43,7 @@ public class Bear : EnemyBase
     private int bigDownSlapHash = Animator.StringToHash("BigDownSlap");
     private int rushHash = Animator.StringToHash("Rush");
 
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
