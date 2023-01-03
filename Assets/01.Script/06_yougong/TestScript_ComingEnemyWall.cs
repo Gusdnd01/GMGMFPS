@@ -61,7 +61,7 @@ public class TestScript_ComingEnemyWall : MonoBehaviour
     {
         int t = Random.Range(0, _StartPos.Count);
         Debug.Log("น฿ป็");
-        _panels[t].color = new Color(1, 0, 0);
+        _panels[t].color = new Color(1, 0, 0, 0.4f);
         _panels[t].DOFade(0.4f, 0.3f).SetEase(Ease.InOutBounce).OnComplete(() =>
          {
              GameObject obj = Instantiate(ShootObj);
