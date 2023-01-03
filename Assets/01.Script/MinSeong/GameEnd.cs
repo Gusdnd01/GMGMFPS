@@ -21,9 +21,9 @@ public class GameEnd : MonoBehaviour
         if (isGameEnd)
         {
             if (isGameEnd)
-            {
+            {/*
                 LerpMove(clearPanel, onScreenPos);
-                LerpMove(overPanel, outScreenPos);
+                LerpMove(overPanel, outScreenPos);*/
             }
         }
     }

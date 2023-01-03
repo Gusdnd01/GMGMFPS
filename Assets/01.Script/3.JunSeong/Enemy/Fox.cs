@@ -31,6 +31,7 @@ public class Fox : EnemyBase
         if (Distance <= wieldAttackDis)
         {
             Wield();
+            PlayAttackSound1();
         }
         else
         {

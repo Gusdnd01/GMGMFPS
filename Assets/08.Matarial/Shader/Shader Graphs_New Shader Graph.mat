@@ -22,14 +22,17 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_New Shader Graph
   m_Shader: {fileID: -6465566751694194690, guid: 5e60f90e54b30fd4f839905a56d057a9, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2500
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: TransparentCutout
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,7 +54,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
+    - _Blend: 2
+    - _Boolean: 1
+    - _CastShadows: 0
+    - _Cull: 2
+    - _DstBlend: 0
     - _QueueControl: 0
     - _QueueOffset: 50
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _ZTest: 8
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors: []
   m_BuildTextureStacks: []

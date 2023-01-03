@@ -11,10 +11,13 @@ public class EnemySpawn : MonoBehaviour
 
     public GameObject enemyPrefab;
     public GameObject boss;
+    public GameObject portalObj;
     public Transform bossSpawnPoint;
     public int spawnNumber = 0;
+    public AudioClip spawnSound;
 
     private Transform playerTrm;
+    private SoundPlay Saudio;
 
     private void Awake()
     {
@@ -24,6 +27,7 @@ public class EnemySpawn : MonoBehaviour
         }
 
         playerTrm = GameObject.Find("Player").GetComponent<Transform>();
+        Saudio = GetComponent<SoundPlay>();
     }
 
     private void Start()
@@ -44,6 +48,7 @@ public class EnemySpawn : MonoBehaviour
     {
         uesdSpawnPoint.Clear();
         enemies.Clear();
+        Saudio.PlaySound(spawnSound);
 
         if(spawnCount == spawnNumber)
         {
@@ -56,7 +61,7 @@ public class EnemySpawn : MonoBehaviour
         {
             Transform spawnPoint = spawnPoints[SetSpawnPointValue()];
 
-            GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, SetRotation(spawnPoint)); //³ªÁß¿¡ ¿ÀºêÁ§Æ® Ç® »ç¿ë °³°´²¥
+            GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, SetRotation(spawnPoint)); //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç® ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             enemies.Add(enemy);
             Debug.Log("spawn");
         }
@@ -68,6 +73,10 @@ public class EnemySpawn : MonoBehaviour
     {
         Instantiate(boss, bossSpawnPoint.position, Quaternion.identity);
         spawnCount++;
+
+        GameObject obj = Instantiate(portalObj,bossSpawnPoint.position,Quaternion.identity);
+        enemies.Add(obj);
+        obj.SetActive(false);
     }
 
     private bool CheckSpawn()
@@ -109,4 +118,5 @@ public class EnemySpawn : MonoBehaviour
     {
         enemies.Remove(enemy);
     }
+    //ï¿½ï¿½ï¿½ï¿½
 }

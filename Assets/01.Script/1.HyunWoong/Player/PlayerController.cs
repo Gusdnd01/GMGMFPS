@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public float currentHp;
     private bool isDie = false;
     private bool isJumped;
+    private bool isDashed;
     public string _tag;
 
     [Header("Volume Property")]
@@ -32,10 +33,22 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private PlayerHp playerHp;
 
+    [Header("Sound")]   
+    public AudioClip dashSound;
+    public AudioClip jumpSound;
+    public AudioClip dieSound;
+    public AudioClip hitSound;
+    public List<AudioClip> footStepSounds = new List<AudioClip>();
+    private int footStepSoundIndex = 0;
+    private SoundPlay Saudio;
+
     private void Awake()
     {
         volumeProfile.TryGet(out vignette);
         playerHp = GetComponent<PlayerHp>();
+        vignette.intensity.Override(0);
+        vignette.color.Override(Color.red);
+        Saudio = GetComponent<SoundPlay>();
     }
 
     private void Start()
@@ -62,11 +75,14 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.LeftShift));
 
+            Saudio.PlaySound(dashSound);
             vignette.color.Override(Color.white);
             m_Speed *= 4f;
             feedbacks.PlayFeedbacks();
+            isDashed = true;
             yield return new WaitForSeconds(0.3f);
             m_Speed /= 4;
+            isDashed = false;
             yield return new WaitForSeconds(2f);
         }
     }
@@ -75,13 +91,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         animSpeed = Mathf.Lerp(animSpeed, animSpeedGoal, Time.deltaTime * 5);
         anim.SetFloat(SpeedHash, animSpeed);
-    }
-
-    [ContextMenu("�ƾ��ؿ�")]
-    private void GetDamage()
-    {
-        OnDamaged(10);
-        print(currentHp);
     }
 
     Vector3 moveDir;
@@ -110,6 +119,17 @@ public class PlayerController : MonoBehaviour, IDamage
         if (h != 0 || v != 0)
         {
             animSpeedGoal = 1;
+
+            if(!isJumped && !isDashed && !Saudio.IsPlaying())
+            {
+                Saudio.PlaySound(footStepSounds[footStepSoundIndex]);
+                footStepSoundIndex++;
+
+                if(footStepSoundIndex >= footStepSounds.Count)
+                {
+                    footStepSoundIndex = 0;
+                }
+            }
         }
         else
         {
@@ -127,6 +147,7 @@ public class PlayerController : MonoBehaviour, IDamage
         while (true)
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) && !isJumped);
+            Saudio.PlaySound(jumpSound);
             isJumped = true;
             moveDir.y = 5f;
             yield return new WaitForSeconds(1f);
@@ -136,20 +157,19 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void OnDamaged(int damage)
     {
-        currentHp -= damage;
-        playerHp.ModifyHp(currentHp/currentHp);
-        print(currentHp/currentHp);
-        if (currentHp/currentHp <= 0.3f)// 100 <= 0.3f
-        {
-            intencity = Mathf.Lerp(intencity, 0.3f, Time.deltaTime);
-            vignette.color.Override(Color.red);
-            vignette.intensity.Override(intencity);
-        }
-
+        print("Damaged");
+        currentHp -= (float)damage;
+        playerHp.ModifyHp(currentHp);
+        print($"currentHp: {currentHp}");
+        vignette.intensity.Override((playerData.hp - currentHp)/200);
         if (currentHp <= 0f)
         {
             print("Player Die");
             Die();
+        }
+        else
+        {
+            Saudio.PlaySound(hitSound);
         }
     }
 
@@ -164,7 +184,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Die()
     {
         print("떨어져서 죽음, GameOver");
-
+        Saudio.PlaySound(dieSound);
         Time.timeScale = 0;
     }
 }
