@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ef3174118b8e74ebc5e0886b98a5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 0
+  fadeSpeed: 1
   isDissolve: 0
 --- !u!65 &949921852186686252
 BoxCollider:
