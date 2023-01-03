@@ -21,7 +21,7 @@ public class GunSystem : MonoBehaviour
     private int gunSoundCount;
     private LineRenderer lineRenderer;
 
-    private int curbullet;
+    public int curbullet;
     private int bulletsShot;
 
     //bools 
@@ -39,8 +39,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private RaycastHit rayHit;
     [SerializeField] private LayerMask Tag;
     [SerializeField] protected MMF_Player player;
-    [SerializeField] private Transform GunPos;
-    [SerializeField] private Transform GunZoomPos;
+
 
     [Header("Graphics")]
     [SerializeField] private GameObject muzzleFlash;
@@ -77,7 +76,7 @@ public class GunSystem : MonoBehaviour
         if (gunSet.AllowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyDown(KeyCode.R) && curbullet < gunSet.MagazineSize && !reloading) Reload();
+        //if (Input.GetKeyDown(KeyCode.R) && curbullet < gunSet.MagazineSize && !reloading) Reload();
 
         //Shoot
         if (readyToShoot && shooting && !reloading && curbullet > 0)
@@ -186,7 +185,7 @@ public class GunSystem : MonoBehaviour
 
         Instantiate(muzzleFlash, attackPoint.position, Quaternion.Euler(0, 270, 0));
 
-        curbullet -= 5;
+        //curbullet -= 5;
         bulletsShot--;
 
         Invoke("ResetShot", gunSet.TimeBetweenShooting);
