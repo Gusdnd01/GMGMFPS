@@ -44,7 +44,8 @@ public class EnemyFSM : MonoBehaviour
         fsmManager.AddState(new StateAttack());
         fsmManager.AddState(new StateDie());
 
-        animator = GetComponent<Animator>();       
+        animator = GetComponent<Animator>();    
+        dissolvePortal = FindObjectOfType<DissolvePortal>();   
     }
 
     private void Start()
