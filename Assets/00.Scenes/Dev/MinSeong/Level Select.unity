@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotLevelSelect: 0
+  isLevelSelect: 0
   stageName: 
   stageIndex: 0
   textObj: {fileID: 0}
@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotLevelSelect: 1
+  isLevelSelect: 1
   stageName: Yougong
   stageIndex: 2
   textObj: {fileID: 1167778719}
@@ -2080,7 +2080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotLevelSelect: 1
+  isLevelSelect: 1
   stageName: HyunWoong
   stageIndex: 1
   textObj: {fileID: 1273545393}
@@ -2089,7 +2089,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0ec88cb0d595abd45aee7589d76e62da, type: 3}
   - {fileID: 21300000, guid: fe6ba67fce8152b4fbd51d526d6dbf97, type: 3}
   isCantGoIn: 0
-  cantGoInCanvas: {fileID: 0}
+  cantGoInCanvas: {fileID: 387890593}
 --- !u!114 &1634900882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1452047599}
+      - m_Target: {fileID: 1634900881}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 5
@@ -2237,7 +2237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotLevelSelect: 1
+  isLevelSelect: 1
   stageName: Bird
   stageIndex: 3
   textObj: {fileID: 1446658139}
@@ -2245,7 +2245,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a3562de26bdaa5947b2067f063fdd2a1, type: 3}
   - {fileID: 21300000, guid: 0ec88cb0d595abd45aee7589d76e62da, type: 3}
   - {fileID: 21300000, guid: fe6ba67fce8152b4fbd51d526d6dbf97, type: 3}
-  isCantGoIn: 1
+  isCantGoIn: 0
   cantGoInCanvas: {fileID: 387890593}
 --- !u!114 &1754286974
 MonoBehaviour:
@@ -2291,7 +2291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1452047599}
+      - m_Target: {fileID: 1754286973}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 5
