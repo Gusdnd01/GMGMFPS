@@ -2667,16 +2667,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 296963974051606687}
-        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: OpenScene
-        m_Mode: 5
+      - m_Target: {fileID: 1492887215582931578}
+        m_TargetAssemblyTypeName: ESCLoader, Assembly-CSharp
+        m_MethodName: GoMainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main Menu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &296963974051606687
@@ -2691,6 +2691,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isQuit: 1
+  stageName: 
+  stageIndex: 0
+  textObj: {fileID: 0}
+  stageImages: []
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 0}
 --- !u!1 &1492887215262668433
@@ -3462,6 +3467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1492887215719338727}
   settingPanel: {fileID: 1492887214956288423}
+  volumeProfile: {fileID: 11400000, guid: 98cfde3b92a467943bc6a97147b9613d, type: 2}
   resumeButton: {fileID: 1492887214914970791}
   OnePos: {fileID: 1492887214313376150}
   TwoPos: {fileID: 1492887214362057193}
@@ -3598,7 +3604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2265, y: 2208}
+  m_AnchoredPosition: {x: 3073, y: 2208}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1492887215719338730
