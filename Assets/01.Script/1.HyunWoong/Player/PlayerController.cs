@@ -33,20 +33,21 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private PlayerHp playerHp;
 
-    [Header("Sound")]
-    private SoundPlay audio;
-    public AudioClip moveSound;
+    [Header("Sound")]   
     public AudioClip dashSound;
     public AudioClip jumpSound;
     public AudioClip dieSound;
     public AudioClip hitSound;
+    public List<AudioClip> footStepSounds = new List<AudioClip>();
+    private int footStepSoundIndex = 0;
+    private SoundPlay Saudio;
 
     private void Awake()
     {
         volumeProfile.TryGet(out vignette);
         playerHp = GetComponent<PlayerHp>();
         vignette.intensity.Override(0);
-        audio = GetComponent<SoundPlay>();
+        Saudio = GetComponent<SoundPlay>();
     }
 
     private void Start()
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.LeftShift));
 
-            audio.PlaySound(dashSound);
+            Saudio.PlaySound(dashSound);
             vignette.color.Override(Color.white);
             m_Speed *= 4f;
             feedbacks.PlayFeedbacks();
@@ -125,9 +126,15 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             animSpeedGoal = 1;
 
-            if(!isJumped || !isDashed)
+            if(!isJumped && !isDashed && !Saudio.IsPlaying())
             {
+                Saudio.PlaySound(footStepSounds[footStepSoundIndex]);
+                footStepSoundIndex++;
 
+                if(footStepSoundIndex >= footStepSounds.Count)
+                {
+                    footStepSoundIndex = 0;
+                }
             }
         }
         else
@@ -146,7 +153,7 @@ public class PlayerController : MonoBehaviour, IDamage
         while (true)
         {
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) && !isJumped);
-            audio.PlaySound(jumpSound);
+            Saudio.PlaySound(jumpSound);
             isJumped = true;
             moveDir.y = 5f;
             yield return new WaitForSeconds(1f);
@@ -167,7 +174,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
         else
         {
-            audio.PlaySound(hitSound);
+            Saudio.PlaySound(hitSound);
         }
     }
 
@@ -182,7 +189,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Die()
     {
         print("떨어져서 죽음, GameOver");
-        audio.PlaySound(dieSound);
+        Saudio.PlaySound(dieSound);
         Time.timeScale = 0;
     }
 }

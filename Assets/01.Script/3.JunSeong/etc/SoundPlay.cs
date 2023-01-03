@@ -15,4 +15,9 @@ public class SoundPlay : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
     }
+
+    public bool IsPlaying()
+    {
+        return audioSource.isPlaying;
+    }
 }
