@@ -77,7 +77,7 @@ public class ESCLoader : MonoBehaviour
 
         }
         else
-        { 
+        {
             Time.timeScale = 1;
         }
 
@@ -97,7 +97,7 @@ public class ESCLoader : MonoBehaviour
 
     public void OtherButton(string sceneName)
     {
-        SceneLoader.Instance.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
     private void OnPanel()
@@ -165,6 +165,6 @@ public class ESCLoader : MonoBehaviour
 
     public void GoMainMenu()
     {
-        SceneLoader.Instance.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 }
