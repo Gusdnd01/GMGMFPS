@@ -908,7 +908,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1784320341106720632}
   - component: {fileID: 234511384341380962}
-  - component: {fileID: 3945059206297908761}
   m_Layer: 10
   m_Name: Body
   m_TagString: Enemy
@@ -1042,19 +1041,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.83984464, y: 0.33303106, z: -0.0000063180923}
     m_Extent: {x: 1.5154362, y: 1.001114, z: 1.0839572}
   m_DirtyAABB: 0
---- !u!65 &3945059206297908761
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3072785038641424760}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7827554, y: 1.7824168, z: 3.1497102}
-  m_Center: {x: -0.035485983, y: 0.89049435, z: 0.17969656}
 --- !u!1 &3132463110122996574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,6 +1758,7 @@ GameObject:
   - component: {fileID: 3945059205294817137}
   - component: {fileID: 3945059205294817102}
   - component: {fileID: 2161847639931697550}
+  - component: {fileID: 4452104681321037266}
   m_Layer: 31
   m_Name: BearBoss
   m_TagString: Enemy
@@ -1996,6 +1983,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4452104681321037266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6395323671303304381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4152398, y: 1.6481111, z: 2.7931075}
+  m_Center: {x: -0.024923086, y: 0.8504704, z: 0.14932442}
 --- !u!1 &6462994529712978407
 GameObject:
   m_ObjectHideFlags: 0
