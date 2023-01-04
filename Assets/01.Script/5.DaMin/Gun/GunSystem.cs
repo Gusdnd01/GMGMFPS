@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 using MoreMountains.Feedbacks;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class GunSystem : MonoBehaviour
 
     [Header("Gun Setting")]
     [SerializeField] private GunSetting gunSet;
+    public AudioClip razerSound;
     [SerializeField] private float Power = 40;
 
     private Recoil recoil;
@@ -33,6 +35,7 @@ public class GunSystem : MonoBehaviour
     private bool reloading;
     [Space]
     [SerializeField] private ParticleSystem magicBallStart;
+    [SerializeField] private VisualEffect laserFX;
 
 
 
@@ -107,6 +110,11 @@ public class GunSystem : MonoBehaviour
             reloadTime = 0;
         }
 
+        if (curbullet > 100)
+        {
+            curbullet = 100;
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse1) && mana >= 50)
         {
             RightShoot();
@@ -159,8 +167,10 @@ public class GunSystem : MonoBehaviour
 
     private void RightShoot()
     {
+        mysfx.PlayOneShot(razerSound);
         shake.start = true;
         player.PlayFeedbacks();
+        laserFX.SendEvent("OnPlay");
         Vector3 direction = fpsCam.transform.forward;
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))

@@ -193,8 +193,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Die()
     {
+        GameObject.Find("GameEndCanvas").GetComponent<GameEnd>().GameClear();
         print("떨어져서 죽음, GameOver");
         Saudio.PlaySound(dieSound);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
     }
 }
