@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -44,8 +43,6 @@ public class SceneLoader : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public void LoadScene(string sceneName)

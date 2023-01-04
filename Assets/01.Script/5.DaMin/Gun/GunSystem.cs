@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class GunSystem : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private GameObject BulletOBJ;
+    [SerializeField] private VisualEffect Laser;
     [SerializeField] private Slider ManaGege;
 
     private bool Shooting = false;
@@ -119,7 +121,7 @@ public class GunSystem : MonoBehaviour
     private void LeftShoot()
     {
         player.PlayFeedbacks();
-
+        magicBallStart.Play();
         GunShotSound();
 
 
@@ -164,6 +166,7 @@ public class GunSystem : MonoBehaviour
         shake.start = true;
         player.PlayFeedbacks();
         mysfx.PlayOneShot(beamSound);
+        Laser.SendEvent("OnPlay");
         Vector3 direction = fpsCam.transform.forward;
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, gunSet.Range, Tag))
