@@ -25478,7 +25478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotLevelSelect: 0
+  isLevelSelect: 0
   stageName: 
   stageIndex: 0
   textObj: {fileID: 0}
@@ -25756,7 +25756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotLevelSelect: 0
+  isLevelSelect: 0
   stageName: 
   stageIndex: 0
   textObj: {fileID: 0}
@@ -29173,6 +29173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1526318538}
   - component: {fileID: 1526318537}
+  - component: {fileID: 1526318539}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29208,6 +29209,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1526318539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526318536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff0d92349406204483adb945d25efe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    stage1: 0
+    stage2: 0
+    stage3: 0
 --- !u!1001 &1531327323
 PrefabInstance:
   m_ObjectHideFlags: 0

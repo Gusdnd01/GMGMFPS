@@ -55,6 +55,7 @@ public class ESCLoader : MonoBehaviour
         if (SceneManager.GetActiveScene().ToString() == "Level Select")
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -76,12 +77,12 @@ public class ESCLoader : MonoBehaviour
 
         }
         else
-        {
+        { 
             Time.timeScale = 1;
         }
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
     }
 
     public void PauseMenu()
