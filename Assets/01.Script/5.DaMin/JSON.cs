@@ -44,5 +44,12 @@ public class JSON : MonoBehaviour
             saveData = JsonUtility.FromJson<SaveData>(json);
         }
     }
+
+    [ContextMenu("초기화")]
+    public void Reset()
+    {
+        string json = JsonUtility.ToJson(saveData);
+        File.WriteAllText(savePath + saveFileName, "");
+    }
 }
 
