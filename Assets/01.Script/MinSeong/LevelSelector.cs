@@ -32,18 +32,27 @@ public class LevelSelector : MonoBehaviour
     private void Start()
     {
         json = FindObjectOfType<JSON>();
+        json.Load();
         switch (stageIndex)
         {
             case 2:
+                if (!json.saveData.stage1)
+                {
+                    isCantGoIn = true;
+                }
+                else
+                {
+                    isCantGoIn = false;
+                }
+                break;
+            case 3:
                 if (!json.saveData.stage2)
                 {
                     isCantGoIn = true;
                 }
-                break;
-            case 3:
-                if (!json.saveData.stage3)
+                else
                 {
-                    isCantGoIn = true;
+                    isCantGoIn = false;
                 }
                 break;
         }
@@ -67,23 +76,69 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    public void OpenScene(string sceneName)
+    private void FixedUpdate()
     {
+        json.Load();
         switch (stageIndex)
         {
             case 2:
+                if (!json.saveData.stage1)
+                {
+                    isCantGoIn = true;
+                }
+                else
+                {
+                    isCantGoIn = false;
+                }
+                break;
+            case 3:
                 if (!json.saveData.stage2)
                 {
                     isCantGoIn = true;
                 }
-                break;
-            case 3:
-                if (!json.saveData.stage3)
+                else
                 {
-                    isCantGoIn = true;
+                    isCantGoIn = false;
                 }
                 break;
         }
+        if (isLevelSelect)
+        {
+            sceneLoader = GetComponent<SceneLoader>();
+            text = textObj.GetComponent<TextMeshProUGUI>();
+            image = GetComponent<Image>();
+            //cantGoInCanvas.SetActive(false);
+
+            if (isCantGoIn)
+            {
+                text.text = "??";
+                image.sprite = stageImages[stageImages.Length - 1];
+            }
+            else
+            {
+                text.text = stageName;
+                image.sprite = stageImages[stageIndex - 1];
+            }
+        }
+    }
+
+    public void OpenScene(string sceneName)
+    {
+        // switch (stageIndex)
+        // {
+        //     case 2:
+        //         if (!json.saveData.stage2)
+        //         {
+        //             isCantGoIn = true;
+        //         }
+        //         break;
+        //     case 3:
+        //         if (!json.saveData.stage3)
+        //         {
+        //             isCantGoIn = true;
+        //         }
+        //         break;
+        // }
         if (!isCantGoIn)
         {
             SceneManager.LoadScene(sceneName);

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Dev/JunSeong/Bird.unity
     guid: d378cf0ffe9a5614c8a199620e97f825
+  - enabled: 1
+    path: Assets/00.Scenes/Dev/JaeHyun/Yougong.unity
+    guid: 477159e429f0aae46b099e131d62977f
   m_configObjects: {}

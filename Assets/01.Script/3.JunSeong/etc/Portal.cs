@@ -23,8 +23,8 @@ public class Portal : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, playerTrm.position) <= 2.5f)
         {
-            int NowScene = SceneManager.GetActiveScene().buildIndex;
-            switch (NowScene)
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            switch (currentScene)
             {
                 case (2):
                     json.saveData.stage1 = true;
