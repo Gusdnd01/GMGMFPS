@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: isMainMenu
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1492887215582931578, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
+      propertyPath: volumeProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 98cfde3b92a467943bc6a97147b9613d, type: 2}
     - target: {fileID: 1492887215719338727, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5675,10 +5679,10 @@ RectTransform:
   m_Father: {fileID: 722211887}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -854.86, y: 438}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: -1790, y: -950}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306001845
 MonoBehaviour:
@@ -22732,27 +22736,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: -1820
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: -980
       objectReference: {fileID: 0}
     - target: {fileID: 2644917973620375352, guid: 763650813a014c84dbb26886d518c0d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24723,10 +24727,10 @@ RectTransform:
   m_Father: {fileID: 722211887}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -230}
-  m_SizeDelta: {x: 450, y: 140}
+  m_SizeDelta: {x: -1470, y: -940}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1258413727
 MonoBehaviour:
@@ -25457,10 +25461,10 @@ RectTransform:
   m_Father: {fileID: 722211887}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -70}
-  m_SizeDelta: {x: 500, y: 144}
+  m_SizeDelta: {x: -1420, y: -936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286244611
 MonoBehaviour:
@@ -25474,6 +25478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNotLevelSelect: 0
+  stageName: 
+  stageIndex: 0
+  textObj: {fileID: 0}
+  stageImages: []
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 0}
 --- !u!114 &1286244612
@@ -25669,10 +25678,10 @@ RectTransform:
   m_Father: {fileID: 722211887}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -373.2}
-  m_SizeDelta: {x: 370.9, y: 110}
+  m_SizeDelta: {x: -1549.1, y: -970}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1288303382
 MonoBehaviour:
@@ -25747,6 +25756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699622ead99a95240ab905dc7a3b8d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNotLevelSelect: 0
+  stageName: 
+  stageIndex: 0
+  textObj: {fileID: 0}
+  stageImages: []
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 0}
 --- !u!114 &1288303385

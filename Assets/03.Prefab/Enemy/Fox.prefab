@@ -231,7 +231,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8257616049329295386}
-  - component: {fileID: 8283175645022650981}
   m_Layer: 10
   m_Name: FoxTransform
   m_TagString: Enemy
@@ -255,19 +254,6 @@ Transform:
   m_Father: {fileID: 5653556093346931303}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8283175645022650981
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2268160180252422997}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.8082583, z: 1.5407586}
-  m_Center: {x: 0, y: 0.028771311, z: 0.8}
 --- !u!1 &2560761378115799623
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +561,7 @@ GameObject:
   - component: {fileID: 8283175643815309871}
   - component: {fileID: 8283175643815309869}
   - component: {fileID: -2858755989984159915}
+  - component: {fileID: 3005830061845988503}
   m_Layer: 31
   m_Name: Fox
   m_TagString: Enemy
@@ -688,6 +675,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   enemy: {fileID: 0}
   moveSpeedHash: 526065662
+  _portal: {fileID: 0}
 --- !u!82 &-2858755989984159915
 AudioSource:
   m_ObjectHideFlags: 0
@@ -784,6 +772,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3005830061845988503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4989610141151148253}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6916795, z: 2.1582952}
+  m_Center: {x: 0, y: 0.8643079, z: -0.12338853}
 --- !u!1 &5026305851322319761
 GameObject:
   m_ObjectHideFlags: 0

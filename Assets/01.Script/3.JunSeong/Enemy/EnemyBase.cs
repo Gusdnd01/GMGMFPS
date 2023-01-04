@@ -94,13 +94,16 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         Debug.Log("die");
         animator.SetTrigger("Die");
+        GetComponent<CharacterController>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
         PlayDieSound();
     }
 
     //��� ����
     public void DieProcess()
     {
-        FindObjectOfType<EnemySpawn>().Remove(this.gameObject);
+        if(GameObject.Find("EnemySpawner"))
+            GameObject.Find("EnemySpawner").GetComponent<EnemySpawn>().Remove(this.gameObject);
         Destroy(gameObject);
         //���� �ƴϸ� ������ƮǮ�� �־��ֱ�
     }

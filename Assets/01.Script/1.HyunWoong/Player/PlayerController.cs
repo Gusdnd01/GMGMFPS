@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private PlayerHp playerHp;
 
-    [Header("Sound")]   
+    [Header("Sound")]
     public AudioClip dashSound;
     public AudioClip jumpSound;
     public AudioClip dieSound;
@@ -66,6 +66,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
         Animate();
 
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Collider[] col = Physics.OverlapSphere(transform.position, 100, LayerMask.GetMask("Enemy"));
+
+            foreach (Collider c in col)
+            {
+                c.GetComponent<IDamage>().OnDamaged(9999999);
+            }
+        }
     }
 
 
@@ -120,12 +130,12 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             animSpeedGoal = 1;
 
-            if(!isJumped && !isDashed && !Saudio.IsPlaying())
+            if (!isJumped && !isDashed && !Saudio.IsPlaying())
             {
                 Saudio.PlaySound(footStepSounds[footStepSoundIndex]);
                 footStepSoundIndex++;
 
-                if(footStepSoundIndex >= footStepSounds.Count)
+                if (footStepSoundIndex >= footStepSounds.Count)
                 {
                     footStepSoundIndex = 0;
                 }
@@ -161,7 +171,7 @@ public class PlayerController : MonoBehaviour, IDamage
         currentHp -= (float)damage;
         playerHp.ModifyHp(currentHp);
         print($"currentHp: {currentHp}");
-        vignette.intensity.Override((playerData.hp - currentHp)/200);
+        vignette.intensity.Override((playerData.hp - currentHp) / 200);
         if (currentHp <= 0f)
         {
             print("Player Die");

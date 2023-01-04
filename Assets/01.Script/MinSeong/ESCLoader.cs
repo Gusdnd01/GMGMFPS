@@ -7,11 +7,17 @@ using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class ESCLoader : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject settingPanel;
+
+    [SerializeField] VolumeProfile volumeProfile;
+    Vignette vignette;
 
     [SerializeField] Button resumeButton;
 
@@ -38,12 +44,23 @@ public class ESCLoader : MonoBehaviour
 
     public bool isFullScreen = true;
 
+    private void Awake()
+    {
+        volumeProfile.TryGet(out vignette);
+        vignette.intensity.Override(0);
+    }
+
     void Update()
     {
+        if (SceneManager.GetActiveScene().ToString() == "Level Select")
+        {
+            Cursor.visible = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseMenu();
-        }   
+        }
 
         audioMixer.SetFloat("Master", masterAudioSlider.value);
         audioMixer.SetFloat("BGM", FXAudioSlider.value);
@@ -56,13 +73,15 @@ public class ESCLoader : MonoBehaviour
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+
         }
         else
         {
             Time.timeScale = 1;
-            //Cursor.visible = false;
-            //Cursor.lockState = CursorLockMode.Locked;
         }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PauseMenu()
@@ -141,5 +160,10 @@ public class ESCLoader : MonoBehaviour
         obj.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(obj.GetComponent<RectTransform>().anchoredPosition,
             new Vector2(pos.GetComponent<RectTransform>().anchoredPosition.x,
             pos.GetComponent<RectTransform>().anchoredPosition.y), 0.1f);
+    }
+
+    public void GoMainMenu()
+    {
+        SceneLoader.Instance.LoadScene("MainMenu");
     }
 }
