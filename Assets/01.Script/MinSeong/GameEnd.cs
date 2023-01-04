@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEnd : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class GameEnd : MonoBehaviour
     void Start()
     {
         clearPanel.GetComponent<RectTransform>().anchoredPosition = outScreenPos.GetComponent<RectTransform>().anchoredPosition;
-        overPanel.GetComponent<RectTransform>().anchoredPosition = outScreenPos.GetComponent<RectTransform>().anchoredPosition;
+        overPanel.GetComponent<RectTransform>().anchoredPosition = onScreenPos.GetComponent<RectTransform>().anchoredPosition;
+        overPanel.SetActive(false);
     }
 
     void Update()
@@ -21,9 +23,8 @@ public class GameEnd : MonoBehaviour
         if (isGameEnd)
         {
             if (isGameEnd)
-            {/*
-                LerpMove(clearPanel, onScreenPos);
-                LerpMove(overPanel, outScreenPos);*/
+            {
+                overPanel.SetActive(true);
             }
         }
     }
@@ -47,6 +48,6 @@ public class GameEnd : MonoBehaviour
         isGameEnd = false;
         clearPanel.GetComponent<RectTransform>().anchoredPosition = outScreenPos.GetComponent<RectTransform>().anchoredPosition;
         overPanel.GetComponent<RectTransform>().anchoredPosition = outScreenPos.GetComponent<RectTransform>().anchoredPosition;
-        SceneLoader.Instance.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 }
