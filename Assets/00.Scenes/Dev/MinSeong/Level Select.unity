@@ -1792,8 +1792,7 @@ MonoBehaviour:
   textObj: {fileID: 1167778719}
   stageImages:
   - {fileID: 21300000, guid: a3562de26bdaa5947b2067f063fdd2a1, type: 3}
-  - {fileID: 21300000, guid: 7d37710c2e334944380361e951e29715, type: 3}
-  - {fileID: 21300000, guid: 708a1a68becab224aa71c5416d690517, type: 3}
+  - {fileID: 21300000, guid: 0ec88cb0d595abd45aee7589d76e62da, type: 3}
   - {fileID: 21300000, guid: fe6ba67fce8152b4fbd51d526d6dbf97, type: 3}
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 387890593}
@@ -2087,8 +2086,7 @@ MonoBehaviour:
   textObj: {fileID: 1273545393}
   stageImages:
   - {fileID: 21300000, guid: a3562de26bdaa5947b2067f063fdd2a1, type: 3}
-  - {fileID: 21300000, guid: 7d37710c2e334944380361e951e29715, type: 3}
-  - {fileID: 21300000, guid: 708a1a68becab224aa71c5416d690517, type: 3}
+  - {fileID: 21300000, guid: 0ec88cb0d595abd45aee7589d76e62da, type: 3}
   - {fileID: 21300000, guid: fe6ba67fce8152b4fbd51d526d6dbf97, type: 3}
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 387890593}
@@ -2245,8 +2243,7 @@ MonoBehaviour:
   textObj: {fileID: 1446658139}
   stageImages:
   - {fileID: 21300000, guid: a3562de26bdaa5947b2067f063fdd2a1, type: 3}
-  - {fileID: 21300000, guid: 7d37710c2e334944380361e951e29715, type: 3}
-  - {fileID: 21300000, guid: 708a1a68becab224aa71c5416d690517, type: 3}
+  - {fileID: 21300000, guid: 0ec88cb0d595abd45aee7589d76e62da, type: 3}
   - {fileID: 21300000, guid: fe6ba67fce8152b4fbd51d526d6dbf97, type: 3}
   isCantGoIn: 0
   cantGoInCanvas: {fileID: 387890593}
@@ -2625,9 +2622,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveData:
-    stage1: 1
-    stage2: 1
-    stage3: 1
+    stage1: 0
+    stage2: 0
+    stage3: 0
 --- !u!1 &2068110297
 GameObject:
   m_ObjectHideFlags: 0

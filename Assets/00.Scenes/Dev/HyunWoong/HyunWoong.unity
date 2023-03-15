@@ -369,12 +369,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
-  razerSound: {fileID: 0}
   Power: 40
   mysfx: {fileID: 6692605}
   curbullet: 0
   magicBallStart: {fileID: 0}
-  laserFX: {fileID: 0}
   fpsCam: {fileID: 1687477733}
   attackPoint: {fileID: 160467917}
   Tag:
@@ -5400,12 +5398,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1492887215237993345, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492887215237993345, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoMainMenu
+      value: SceneLoad
       objectReference: {fileID: 0}
     - target: {fileID: 1492887215237993345, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -5425,7 +5419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1492887215582931573, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1492887215582931573, guid: 9b146e50d7f272c40b235e50b2d37ba4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8807,7 +8801,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &456333826
 PrefabInstance:
@@ -13964,7 +13958,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733114476
 GameObject:
@@ -19067,11 +19061,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7652499820084907512, guid: 6c510613244abd34dbfb03ecb96e3dd3, type: 3}
   m_PrefabInstance: {fileID: 968568584}
   m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &968568586 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 7652499819948124586, guid: 6c510613244abd34dbfb03ecb96e3dd3, type: 3}
-  m_PrefabInstance: {fileID: 968568584}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &984080884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19634,12 +19623,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSet: {fileID: 11400000, guid: ee005e9142a54fe4084f9a2d88be17ce, type: 2}
-  razerSound: {fileID: 8300000, guid: 5434a66c0902a9045a97eef52844a7b0, type: 3}
   Power: 40
   mysfx: {fileID: 999787586}
   curbullet: 0
   magicBallStart: {fileID: 1609538295}
-  laserFX: {fileID: 968568586}
   fpsCam: {fileID: 1687477733}
   attackPoint: {fileID: 686679976}
   Tag:
@@ -28840,7 +28827,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1576705996
 PrefabInstance:
