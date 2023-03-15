@@ -1,1 +1,1 @@
-{"stage1":false,"stage2":true,"stage3":false}
+{"stage1":true,"stage2":true,"stage3":true}
